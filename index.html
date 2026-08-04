@@ -373,6 +373,9 @@ footer{padding:40px 0}
 body.nav-open{overflow:hidden}
 
 @media (max-width:900px){
+  /* --- hero: disable canvas interactivity on mobile for scroll --- */
+  #scene{pointer-events:none}
+
   /* --- nav: burger + slide-in panel --- */
   .nav-burger{display:flex}
   .nav-links{
@@ -655,7 +658,6 @@ body.nav-open{overflow:hidden}
     </p>
     <div class="contact-row reveal">
       <a class="contact-btn primary" href="mailto:connor.panayi@gmail.com">✉&nbsp; connor.panayi@gmail.com</a>
-      <a class="contact-btn" href="tel:+447805406043">☏&nbsp; +44 7805 406043</a>
       <a class="contact-btn" href="https://calendly.com/connor-panayi/30min" target="_blank" rel="noopener">📅&nbsp; Book a call</a>
     </div>
   </div>
