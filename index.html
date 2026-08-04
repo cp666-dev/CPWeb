@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Connor Panayi — Recording Engineer · Producer · Building AI</title>
+<meta name="description" content="Recording engineer and producer (Coldplay, BTS, The Rolling Stones, Mark Ronson) now building AI products. Portfolio & recorded works." />
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   CONNOR PANAYI — portfolio
+   Dark studio-hardware aesthetic. One accent: 808 orange.
+   ============================================================ */
+:root{
+  --bg:#0a0a0c;
+  --bg-2:#0e0e12;
+  --panel:#141419;
+  --panel-2:#1b1b21;
+  --panel-3:#232329;
+  --line:#2a2a32;
+  --line-soft:#20202700;
+  --ink:#f3f0e9;          /* warm off-white */
+  --ink-muted:#a3a3ad;
+  --ink-faint:#6d6d78;
+
+  /* 808 hardware palette */
+  --orange:#ff6a2b;       /* THE accent */
+  --orange-deep:#e2481f;
+  --red:#e2483d;
+  --amber:#f2b63c;
+  --cream:#efe6d0;
+  --cyan:#38c6d9;         /* used sparingly for LED display only */
+
+  --r-sm:6px; --r-md:10px; --r-lg:16px; --r-xl:22px;
+  --maxw:1180px;
+
+  --shadow-lift:0 1px 0 rgba(255,255,255,.04) inset, 0 20px 50px -20px rgba(0,0,0,.8);
+  --glow-orange:0 0 0 1px rgba(255,106,43,.25), 0 8px 40px -8px rgba(255,106,43,.35);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+body.locked{overflow:hidden;height:100vh}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:600;line-height:1.05;margin:0;letter-spacing:-.02em}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--orange); font-weight:500;
+}
+
+/* subtle film grain + vignette over everything */
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:60;
+  background:
+    radial-gradient(120% 90% at 50% 0%, transparent 55%, rgba(0,0,0,.45) 100%);
+  mix-blend-mode:multiply;
+}
+
+/* ---------- GLOBAL RAILS / GRID DECOR ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative}
+
+/* ============================================================
+   PASSWORD GATE
+   ============================================================ */
+#gate{
+  position:fixed; inset:0; z-index:100;
+  background:
+    radial-gradient(90% 70% at 50% 30%, #16161c 0%, #0a0a0c 70%);
+  display:flex; align-items:center; justify-content:center;
+  transition:opacity .8s ease, visibility .8s;
+}
+#gate.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.gate-card{
+  width:min(420px,90vw); text-align:center; padding:12px;
+}
+.gate-unit{
+  background:linear-gradient(180deg,#1a1a20,#111116);
+  border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:34px 30px 30px; box-shadow:var(--shadow-lift);
+  position:relative;
+}
+.gate-unit::before{ /* orange hardware stripe */
+  content:""; position:absolute; left:0; right:0; top:0; height:4px;
+  background:linear-gradient(90deg,var(--orange),var(--orange-deep));
+  border-radius:var(--r-lg) var(--r-lg) 0 0;
+}
+.gate-led{
+  width:9px;height:9px;border-radius:50%;background:var(--red);
+  box-shadow:0 0 12px 2px rgba(226,72,61,.7); margin:2px auto 18px;
+  animation:blink 1.6s steps(1) infinite;
+}
+.gate-unit.ok .gate-led{background:#4ade80;box-shadow:0 0 12px 2px rgba(74,222,128,.7);animation:none}
+@keyframes blink{50%{opacity:.25}}
+.gate-brand{font-family:"Space Grotesk";font-size:22px;font-weight:600;letter-spacing:-.01em}
+.gate-sub{font-family:"IBM Plex Mono";font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-top:8px}
+.gate-form{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+.gate-input{
+  width:100%; background:#08080a; border:1px solid var(--line);
+  color:var(--ink); font-family:"IBM Plex Mono"; font-size:15px; letter-spacing:.08em;
+  padding:14px 16px; border-radius:var(--r-md); text-align:center; outline:none;
+  transition:border-color .2s, box-shadow .2s;
+}
+.gate-input:focus{border-color:var(--orange);box-shadow:var(--glow-orange)}
+.gate-input.err{border-color:var(--red);animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.gate-btn{
+  width:100%; background:linear-gradient(180deg,var(--orange),var(--orange-deep));
+  color:#1a0d05; font-family:"Space Grotesk"; font-weight:600; font-size:15px;
+  border:none; padding:14px; border-radius:var(--r-md); cursor:pointer;
+  letter-spacing:.02em; transition:transform .1s, filter .2s;
+}
+.gate-btn:hover{filter:brightness(1.08)}
+.gate-btn:active{transform:translateY(1px)}
+.gate-hint{margin-top:16px;font-size:12px;color:var(--ink-faint)}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+header.nav{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 28px;
+  transition:background .3s, border-color .3s, backdrop-filter .3s;
+  border-bottom:1px solid transparent;
+}
+header.nav.scrolled{
+  background:rgba(10,10,12,.72); backdrop-filter:blur(14px) saturate(1.2);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:11px;font-family:"Space Grotesk";font-weight:600;font-size:16px;letter-spacing:-.01em}
+.brand .dot{width:9px;height:9px;border-radius:2px;background:var(--orange);box-shadow:0 0 10px rgba(255,106,43,.6)}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links a{
+  font-family:"IBM Plex Mono"; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-muted); padding:8px 12px; border-radius:var(--r-sm);
+  transition:color .2s, background .2s;
+}
+.nav-links a:hover{color:var(--ink);background:var(--panel-2)}
+.nav-cta{color:var(--orange)!important;border:1px solid rgba(255,106,43,.3)}
+.nav-cta:hover{background:rgba(255,106,43,.1)!important}
+.nav-burger{display:none}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+#hero::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg, rgba(10,10,12,.82) 0%, rgba(10,10,12,.45) 34%, transparent 62%),
+             linear-gradient(0deg, rgba(10,10,12,.55) 0%, transparent 38%)}
+#scene{position:absolute;inset:0;z-index:1}
+#scene canvas{display:block}
+.hero-fallback{position:absolute;inset:0;z-index:0;background:
+  radial-gradient(60% 50% at 70% 40%, rgba(255,106,43,.14), transparent 70%),
+  radial-gradient(50% 60% at 20% 80%, rgba(56,198,217,.08), transparent 70%);}
+.hero-inner{position:relative;z-index:3;pointer-events:none}
+.hero-inner .wrap{padding-top:14vh}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px}
+.hero-tag .pulse{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 10px var(--orange);animation:blink 1.6s steps(1) infinite}
+h1.hero-title{
+  font-size:clamp(44px,8.5vw,104px); font-weight:700; letter-spacing:-.035em; line-height:.94;
+}
+h1.hero-title .l2{color:var(--ink-muted)}
+.hero-sub{
+  margin-top:26px; max-width:540px; font-size:clamp(16px,2vw,20px); color:var(--ink-muted);
+  line-height:1.5;
+}
+.hero-sub b{color:var(--ink);font-weight:600}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:30px;pointer-events:auto}
+.hero-stat{display:flex;flex-direction:column}
+.hero-stat .n{font-family:"Space Grotesk";font-size:26px;font-weight:600;color:var(--ink)}
+.hero-stat .n .u{color:var(--orange)}
+.hero-stat .k{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-top:3px}
+.scroll-cue{
+  position:absolute; bottom:28px; left:50%; transform:translateX(-50%); z-index:3;
+  font-family:"IBM Plex Mono"; font-size:10px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--ink-faint); display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.scroll-cue .bar{width:1px;height:34px;background:linear-gradient(var(--orange),transparent);animation:drop 2s ease-in-out infinite}
+@keyframes drop{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+.webgl-badge{
+  position:absolute; top:calc(50% ); right:28px; z-index:3; display:none;
+}
+
+/* ============================================================
+   SECTION SCAFFOLD
+   ============================================================ */
+section{position:relative;padding:clamp(90px,12vh,150px) 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:56px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(30px,5vw,52px);letter-spacing:-.03em}
+.sec-head .idx{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-faint);letter-spacing:.2em}
+.sec-lead{max-width:560px;color:var(--ink-muted);font-size:17px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============================================================
+   ABOUT / VISION
+   ============================================================ */
+#about{background:linear-gradient(180deg,var(--bg),var(--bg-2))}
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:start}
+.about-lead{font-family:"Space Grotesk";font-weight:500;font-size:clamp(22px,3vw,32px);line-height:1.28;letter-spacing:-.02em}
+.about-lead .hl{color:var(--orange)}
+.about-body{margin-top:26px;color:var(--ink-muted);font-size:16.5px}
+.about-body p{margin:0 0 16px}
+.about-body b{color:var(--ink);font-weight:600}
+.about-card{
+  background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  border:1px solid var(--line); border-radius:var(--r-lg); padding:28px;
+  box-shadow:var(--shadow-lift);
+}
+.about-card h3{font-size:14px;font-family:"IBM Plex Mono";text-transform:uppercase;letter-spacing:.18em;color:var(--ink-faint);font-weight:500;margin-bottom:20px}
+.fact{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--line)}
+.fact:first-of-type{border-top:none}
+.fact .k{color:var(--ink-muted);font-size:14.5px}
+.fact .v{font-family:"Space Grotesk";font-weight:500;text-align:right}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tag{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.06em;color:var(--ink-muted);
+  border:1px solid var(--line);padding:6px 11px;border-radius:100px;background:var(--bg)}
+/* track-record timeline */
+.timeline{margin-top:72px}
+.tl-head{margin-bottom:26px}
+.tl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.tl-item{position:relative;padding:26px 22px 8px;border-top:2px solid var(--line)}
+.tl-item::before{content:"";position:absolute;top:-6px;left:0;width:10px;height:10px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px rgba(255,106,43,.6)}
+.tl-item:not(:last-child){border-right:1px solid var(--line-soft)}
+.tl-when{font-size:11px;letter-spacing:.14em;color:var(--orange);margin-bottom:10px}
+.tl-role{font-family:"Space Grotesk";font-weight:600;font-size:17px;line-height:1.2;letter-spacing:-.01em}
+.tl-org{font-size:13px;color:var(--ink-muted);margin-top:5px}
+.tl-note{font-size:13.5px;color:var(--ink-faint);margin-top:12px;line-height:1.5}
+@media (max-width:900px){.tl-grid{grid-template-columns:1fr;gap:0}.tl-item{padding-left:0}}
+
+/* ============================================================
+   RECORDED WORKS (music grid)
+   ============================================================ */
+#works{background:var(--bg-2)}
+.works-grid{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+  grid-auto-flow:dense;
+}
+.tile{
+  position:relative; border-radius:var(--r-md); overflow:hidden; aspect-ratio:1;
+  background:var(--panel-2); border:1px solid var(--line); cursor:pointer;
+  box-shadow:0 10px 30px -14px rgba(0,0,0,.7);
+  transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .35s;
+}
+.tile.big{grid-column:span 2;grid-row:span 2}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease, filter .4s}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(6,6,8,.92));opacity:.85;transition:opacity .35s}
+.tile:hover{transform:translateY(-4px);box-shadow:0 26px 50px -18px rgba(0,0,0,.85),var(--glow-orange);border-color:rgba(255,106,43,.4);z-index:2}
+.tile:hover img{transform:scale(1.06)}
+.tile .meta{position:absolute;left:0;right:0;bottom:0;padding:16px;z-index:2;display:flex;flex-direction:column;transform:translateY(6px);opacity:.92;transition:transform .35s, opacity .35s}
+.tile:hover .meta{transform:none;opacity:1}
+.tile .t{display:block;font-family:"Space Grotesk";font-weight:600;font-size:15px;line-height:1.15;letter-spacing:-.01em}
+.tile.big .t{font-size:22px}
+.tile .a{display:block;font-size:12.5px;color:var(--ink-muted);margin-top:4px}
+.tile .role{
+  position:absolute;top:12px;left:12px;z-index:2;font-family:"IBM Plex Mono";font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:rgba(10,10,12,.6);
+  border:1px solid rgba(255,255,255,.12);padding:4px 8px;border-radius:100px;backdrop-filter:blur(6px)
+}
+.tile .star{position:absolute;top:11px;right:12px;z-index:2;color:var(--orange);filter:drop-shadow(0 0 6px rgba(255,106,43,.7))}
+.works-note{margin-top:34px;display:flex;gap:10px;align-items:center;color:var(--ink-faint);font-family:"IBM Plex Mono";font-size:12px;letter-spacing:.04em}
+.works-note a{color:var(--orange);border-bottom:1px solid rgba(255,106,43,.4)}
+
+/* ============================================================
+   BUILDER
+   ============================================================ */
+#builder{background:linear-gradient(180deg,var(--bg-2),var(--bg))}
+.build-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.build-card{
+  position:relative; background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  border:1px solid var(--line); border-radius:var(--r-lg); padding:30px;
+  overflow:hidden; transition:transform .35s, border-color .35s, box-shadow .35s;
+  box-shadow:var(--shadow-lift);
+}
+.build-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--orange);opacity:0;transition:opacity .35s}
+.build-card:hover{transform:translateY(-4px);border-color:rgba(255,106,43,.35)}
+.build-card:hover::before{opacity:1}
+.build-card.feature{grid-column:span 2;background:
+  radial-gradient(120% 140% at 100% 0%, rgba(255,106,43,.12), transparent 55%),
+  linear-gradient(180deg,var(--panel),var(--panel-2))}
+.build-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.build-name{font-family:"Space Grotesk";font-weight:600;font-size:24px;letter-spacing:-.01em;display:flex;align-items:center;gap:12px}
+.build-logo{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;font-size:18px;color:#160b04;background:linear-gradient(180deg,var(--orange),var(--orange-deep));box-shadow:0 6px 18px -6px rgba(255,106,43,.6)}
+.build-logo.alt{background:linear-gradient(180deg,#2c2c34,#1c1c22);color:var(--ink);border:1px solid var(--line)}
+.build-status{font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);border:1px solid var(--line);padding:5px 10px;border-radius:100px}
+.build-status.live{color:#4ade80;border-color:rgba(74,222,128,.3)}
+.build-desc{color:var(--ink-muted);font-size:15.5px}
+.build-desc b{color:var(--ink);font-weight:600}
+.feature .build-name{font-size:30px}
+.build-highlight{
+  margin-top:20px;padding:18px 20px;border-radius:var(--r-md);
+  background:rgba(255,106,43,.07);border:1px solid rgba(255,106,43,.22);
+}
+.build-highlight .lbl{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.build-highlight p{margin:0;color:var(--ink);font-size:15px}
+.build-stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.chip{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--ink-muted);border:1px solid var(--line);padding:5px 9px;border-radius:6px;background:var(--bg)}
+
+/* ============================================================
+   HOBBIES / OFF THE CLOCK
+   ============================================================ */
+#hobbies{background:var(--bg)}
+.hob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.hob{border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;background:var(--panel);transition:transform .3s,border-color .3s}
+.hob:hover{transform:translateY(-3px);border-color:rgba(255,106,43,.3)}
+.hob .ic{width:40px;height:40px;border-radius:10px;background:var(--panel-3);display:grid;place-items:center;margin-bottom:16px;color:var(--orange)}
+.hob h3{font-size:19px;margin-bottom:8px}
+.hob p{color:var(--ink-muted);font-size:14.5px;margin:0}
+
+/* ============================================================
+   CONTACT / FOOTER
+   ============================================================ */
+#contact{background:linear-gradient(180deg,var(--bg),#08080a);text-align:center}
+.contact-big{font-size:clamp(34px,6vw,68px);letter-spacing:-.03em;line-height:1}
+.contact-big a{color:var(--orange);transition:opacity .2s}
+.contact-big a:hover{opacity:.75}
+.contact-sub{margin:24px auto 0;max-width:480px;color:var(--ink-muted)}
+.contact-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px}
+.contact-btn{
+  font-family:"IBM Plex Mono";font-size:13px;letter-spacing:.06em;
+  border:1px solid var(--line);padding:13px 22px;border-radius:100px;
+  color:var(--ink);transition:border-color .2s,background .2s,color .2s;display:inline-flex;gap:9px;align-items:center
+}
+.contact-btn:hover{border-color:var(--orange);color:var(--orange);background:rgba(255,106,43,.06)}
+.contact-btn.primary{background:var(--orange);color:#160b04;border-color:var(--orange);font-weight:600}
+.contact-btn.primary:hover{filter:brightness(1.08);color:#160b04}
+footer{padding:40px 0;border-top:1px solid var(--line)}
+.foot-in{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--ink-faint);font-family:"IBM Plex Mono";font-size:11.5px;letter-spacing:.06em}
+
+/* ============================================================
+   PLACEHOLDER FLAG (remove once real copy is in)
+   ============================================================ */
+.ph{outline:1px dashed rgba(255,106,43,.5);outline-offset:3px;border-radius:3px}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .about-grid{grid-template-columns:1fr;gap:36px}
+  .build-grid{grid-template-columns:1fr}
+  .build-card.feature{grid-column:span 1}
+  .works-grid{grid-template-columns:repeat(2,1fr)}
+  .hob-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+@media (max-width:560px){
+  .wrap{padding:0 18px}
+  header.nav{padding:14px 18px}
+  .tile.big{grid-column:span 2;grid-row:span 1;aspect-ratio:2}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.15s!important}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- ============================= GATE ============================= -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-unit" id="gateUnit">
+      <div class="gate-led"></div>
+      <div class="gate-brand">Connor Panayi</div>
+      <div class="gate-sub">Private · By invitation</div>
+      <form class="gate-form" id="gateForm" autocomplete="off">
+        <input class="gate-input" id="gateInput" type="password" placeholder="Enter password" aria-label="Password" />
+        <button class="gate-btn" type="submit">Unlock</button>
+      </form>
+      <div class="gate-hint">Ask Connor for the password.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= NAV ============================= -->
+<header class="nav" id="nav">
+  <a class="brand" href="#hero"><span class="dot"></span> Connor&nbsp;Panayi</a>
+  <nav class="nav-links">
+    <a href="#about">About</a>
+    <a href="#works">Recorded Works</a>
+    <a href="#builder">Builder</a>
+    <a href="#hobbies">Off the Clock</a>
+    <a class="nav-cta" href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ============================= HERO ============================= -->
+<section id="hero">
+  <div class="hero-fallback"></div>
+  <div id="scene"></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <div class="hero-tag">
+        <span class="pulse"></span>
+        <span class="eyebrow">Record Producer · Engineer · Building AI</span>
+      </div>
+      <h1 class="hero-title">Connor Panayi<br><span class="l2">sound &amp; systems.</span></h1>
+      <p class="hero-sub">
+        13 years making records with <b>Coldplay</b>, <b>BTS</b>, <b>The Rolling Stones</b>,
+        <b>Florence + The Machine</b> and <b>Mark Ronson</b> — chasing the details most people
+        never hear. Now I build <b>AI products</b> with the same obsession for craft.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-stat"><div class="n">16B<span class="u">+</span></div><div class="k">Cumulative streams</div></div>
+        <div class="hero-stat"><div class="n">Top&nbsp;1<span class="u">%</span></div><div class="k">Engineers · muso.ai</div></div>
+        <div class="hero-stat"><div class="n">Grammy</div><div class="k">Nods · Academy voter</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="bar"></span></div>
+</section>
+
+<!-- ============================= ABOUT ============================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">01 — Background &amp; Vision</div>
+        <h2>From the control room<br>to the command line.</h2>
+      </div>
+      <div class="idx mono">/ ABOUT</div>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p class="about-lead">
+          Great records and great products are built the same way — <span class="hl">relentless attention
+          to the thing people can't quite name</span> but always feel.
+        </p>
+        <div class="about-body">
+          <p>
+            I'm a London-based <b>record producer and engineer</b> with 13 years in the industry and
+            <b>16 billion+ cumulative streams</b>. My work spans some of the defining records of the last
+            decade — Coldplay, BTS, The Rolling Stones, Florence + The Machine, Mark Ronson, Little Simz,
+            Michael Kiwanuka and The xx — earning <b>multiple Grammy nods</b> and a place as a
+            <b>voting member of the Recording Academy</b> and its Producers &amp; Engineers Wing.
+          </p>
+          <p>
+            That craft became a launchpad. I moved from the control room into <b>building companies</b> —
+            co-founding a music-discovery platform as Co-CEO, leading A&amp;R and artist partnerships, and
+            running product and ecosystem strategy at scale. The common thread is taste: knowing what to
+            keep, what to cut, and how to make something feel inevitable.
+          </p>
+          <p>
+            Today I build <b>AI products</b> end-to-end — from concept to shipped. My vision is simple:
+            <b>bring a producer's ear to software</b>. The best tools, like the best records, disappear.
+            You just feel the result.
+          </p>
+        </div>
+      </div>
+      <aside class="about-card reveal">
+        <h3>At a glance</h3>
+        <div class="fact"><span class="k">Based in</span><span class="v">London, England</span></div>
+        <div class="fact"><span class="k">Discipline</span><span class="v">Producer · Engineer</span></div>
+        <div class="fact"><span class="k">Streams</span><span class="v">16B+ cumulative</span></div>
+        <div class="fact"><span class="k">Recognition</span><span class="v">Grammy nods · Academy voter</span></div>
+        <div class="fact"><span class="k">muso.ai rank</span><span class="v">Top 1% Engineers</span></div>
+        <div class="fact"><span class="k">Now building</span><span class="v">AI products, 0→1</span></div>
+        <div class="tags">
+          <span class="tag">Production</span><span class="tag">Engineering</span><span class="tag">Mixing</span>
+          <span class="tag">Product Strategy</span><span class="tag">Partnerships</span><span class="tag">Company Building</span>
+          <span class="tag">AI / LLMs</span><span class="tag">Full-stack</span>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Track record timeline -->
+    <div class="timeline reveal">
+      <div class="tl-head"><span class="eyebrow">Track record</span></div>
+      <div class="tl-grid">
+        <div class="tl-item">
+          <div class="tl-when mono">2013 — Now</div>
+          <div class="tl-role">Record Producer &amp; Engineer</div>
+          <div class="tl-org">Independent · Worldwide</div>
+          <div class="tl-note">16B+ streams · multiple Grammy nods · Recording Academy voting member across the P&amp;E Wing.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when mono">2022 — 2024</div>
+          <div class="tl-role">Head of A&amp;R &amp; Artist Partnerships</div>
+          <div class="tl-org">Sonu Stream · Artist-first streaming</div>
+          <div class="tl-note">Led partnerships across artists, labels &amp; distributors; onboarded millions of catalog tracks.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when mono">2024 — Now</div>
+          <div class="tl-role">Co-Founder &amp; Co-CEO</div>
+          <div class="tl-org">MineFM · Social music discovery</div>
+          <div class="tl-note">Took a creator-first discovery platform from concept to live launch; raised early funding &amp; led the team.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when mono">2025 — 2026</div>
+          <div class="tl-role">Head of Music, AI &amp; Infrastructure</div>
+          <div class="tl-org">Camp Network · AI-native IP platform</div>
+          <div class="tl-note">Senior operator across product, AI integrations &amp; partnerships; scaled the ecosystem to a $2.5B valuation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================= RECORDED WORKS ============================= -->
+<section id="works">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">02 — Discography</div>
+        <h2>Recorded Works</h2>
+      </div>
+      <div class="idx mono">/ MUSIC</div>
+    </div>
+    <p class="sec-lead reveal" style="margin-bottom:44px">
+      A selection from 346 credits. The bigger the tile, the bigger the record.
+    </p>
+    <div class="works-grid" id="worksGrid"><!-- injected by JS --></div>
+    <div class="works-note reveal">
+      <span>Full discography &amp; streams:</span>
+      <a href="https://credits.muso.ai/profile/f3640e46-5c5f-4219-8095-ce9b3e725c8e" target="_blank" rel="noopener">muso.ai/connor-panayi ↗</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================= BUILDER ============================= -->
+<section id="builder">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">03 — What I've shipped in 6 months</div>
+        <h2>Builder</h2>
+      </div>
+      <div class="idx mono">/ AI PRODUCTS</div>
+    </div>
+    <div class="build-grid" id="buildGrid"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================= HOBBIES ============================= -->
+<section id="hobbies">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">04 — Off the clock</div>
+        <h2>When I'm not in<br>a session or the terminal.</h2>
+      </div>
+      <div class="idx mono">/ LIFE</div>
+    </div>
+    <div class="hob-grid" id="hobGrid"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================= CONTACT ============================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="margin-bottom:22px">05 — Let's talk</div>
+    <h2 class="contact-big reveal">Building something that<br>needs taste? <a href="mailto:connor.panayi@gmail.com">Say hello.</a></h2>
+    <p class="contact-sub reveal">
+      Open to roles and collaborations where music-grade craft meets AI. Product, engineering, or the weird space in between.
+    </p>
+    <div class="contact-row reveal">
+      <a class="contact-btn primary" href="mailto:connor.panayi@gmail.com">✉&nbsp; connor.panayi@gmail.com</a>
+      <a class="contact-btn" href="tel:+447805406043">☏&nbsp; +44 7805 406043</a>
+      <a class="contact-btn" href="https://credits.muso.ai/profile/f3640e46-5c5f-4219-8095-ce9b3e725c8e" target="_blank" rel="noopener">♪&nbsp; muso.ai</a>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap foot-in">
+      <span>© <span id="yr"></span> Connor Panayi</span>
+      <span>Engineered in London · Built with obsession</span>
+    </div>
+  </footer>
+</section>
+
+<!-- ============================= THREE.JS 808 HERO ============================= -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+/* ---------------- DATA ---------------- */
+// Recorded works — pulled from muso.ai, curated by popularity. `big:true` => featured/large tile.
+// Every artwork is unique (no repeats). Hover reveals title + artist.
+const WORKS = [
+  {t:"My Universe", a:"Coldplay, BTS", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b273ec10f247b100da1ce0d80b6d", big:true, star:true},
+  {t:"Nothing Breaks Like a Heart", a:"Mark Ronson, Miley Cyrus", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b273de087ae2924d2c1654f60d74", big:true, star:true},
+  {t:"Higher Power", a:"Coldplay", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b2738af1d785b38ed4b769c24659", big:true, star:true},
+  {t:"Solo", a:"Clean Bandit, Demi Lovato", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b27367eda217860e86c43481a5cb", star:true},
+  {t:"Dream Girl Evil", a:"Florence + The Machine", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b2735fd9e21618182df7d70b2186", big:true, star:true},
+  {t:"Start Me Up", a:"The Rolling Stones", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b27308fc42e575043a753f60d675"},
+  {t:"Leave a Light On", a:"Tom Walker", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b27322cf06089dc7304bb41b7217"},
+  {t:"Lost Without You", a:"Freya Ridings", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b273692701741cd800811b944be9", star:true},
+  {t:"GOOD FEELiNGS", a:"Coldplay, Ayra Starr", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b27309ba52a5116e0c3e8461f58b"},
+  {t:"Point and Kill", a:"Little Simz, Obongjayar", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b273aede85ed28c2237a33b63dba", star:true},
+  {t:"Solid Ground", a:"Michael Kiwanuka", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b27360ada139840fb439d6750f27"},
+  {t:"mother tongue", a:"Bring Me The Horizon", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b27349e3b7e85829da2fbc68bc46"},
+  {t:"Futureproof", a:"Nothing But Thieves", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b273e0efd8bb1f9943c40a6e5897"},
+  {t:"Quietly Yours", a:"Birdy", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b273d62ae1ab3d346b3c2f093fb1"},
+  {t:"Sweetest Human Being Alive", a:"George Ezra", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b2739dd1a35ada9870dc879dfb9e"},
+  {t:"Dance All Over Me — Jax Jones Remix", a:"George Ezra, Jax Jones", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b273af989be58951dc1d60efe7e2"},
+  {t:"On Hold — Jamie xx Remix", a:"The xx, Jamie xx", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b27380ddfb1877a52549d5ee1ff6"},
+  {t:"道 (Michi)", a:"Hikaru Utada", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b2739f5c5e06d31160668cd48c22"},
+  {t:"My Universe — SUGA's Remix", a:"Coldplay, BTS, SUGA", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b27326319baecaca27532b413001"},
+];
+
+// Builder — 6 months of AI products.
+const BUILDS = [
+  {
+    name:"BetMe", logo:"B", feature:true, status:"Live", statusClass:"live",
+    desc:"A social challenge app where friends put stakes on real-world dares — run a 10k, nail a trick shot, finish the plate. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>.",
+    highlight:{lbl:"The AI Video Judge", text:"I built a multimodal pipeline that watches the video evidence a user submits and rules on whether the challenge was genuinely completed — reading the action, the context and the outcome frame-by-frame. It replaces slow, argument-prone human verification with an instant, consistent, tamper-resistant verdict. No refs, no disputes."},
+    stack:["Multimodal LLM","Video understanding","React Native","Serverless"]
+  },
+  {
+    name:"GasBuddy", logo:"G", logoAlt:true, status:"Beta", statusClass:"",
+    desc:"<b>[CONFIRM DESCRIPTION]</b> A companion tool that takes the guesswork out of timing and cost — surfacing the right moment to act and what it'll really run you, in plain language.",
+    stack:["Real-time data","Alerts","TypeScript"]
+  },
+  {
+    name:"LockedIn", logo:"L", logoAlt:true, status:"Live", statusClass:"live",
+    desc:"<b>[CONFIRM DESCRIPTION]</b> A focus product that turns intention into follow-through — commit to a goal, stay accountable, and actually finish the thing you sat down to do.",
+    stack:["Product","Mobile","AI"]
+  },
+  {
+    name:"Stella Says", logo:"S", logoAlt:true, status:"Building", statusClass:"",
+    desc:"An AI agent platform that lets non-engineers direct real software work in natural language — planning, building and shipping alongside a coding agent. Design-obsessed, opinionated, and built to make powerful tooling feel effortless.",
+    stack:["AI agents","LLM orchestration","Full-stack","Design systems"]
+  },
+];
+
+const HOBBIES = [
+  {ic:"♫", h:"Crate digging", p:"Forever hunting the sample, the break, the record that reframes what a song can be. My ear for music is the same one I bring to product."},
+  {ic:"▤", h:"Synths & gear", p:"An unreasonable love of analog hardware — the 808, the Juno, the Prophet. If it has knobs and glows in the dark, I want to understand it."},
+  {ic:"◈", h:"Building for fun", p:"Most weekends there's a half-finished side project open in another tab. Building is how I think — and how I keep learning fast."},
+];
+
+/* ---------------- RENDER CONTENT ---------------- */
+const worksGrid = document.getElementById('worksGrid');
+worksGrid.innerHTML = WORKS.map(w=>`
+  <a class="tile ${w.big?'big':''}" href="https://credits.muso.ai/profile/f3640e46-5c5f-4219-8095-ce9b3e725c8e" target="_blank" rel="noopener">
+    <img src="${w.img}" alt="${w.t} — ${w.a}" loading="lazy" />
+    <span class="role">${w.role}</span>
+    ${w.star?'<span class="star" title="Standout">★</span>':''}
+    <span class="meta"><span class="t">${w.t}</span><span class="a">${w.a}</span></span>
+  </a>`).join('');
+
+const buildGrid = document.getElementById('buildGrid');
+buildGrid.innerHTML = BUILDS.map(b=>`
+  <div class="build-card ${b.feature?'feature':''}">
+    <div class="build-top">
+      <div class="build-name"><span class="build-logo ${b.logoAlt?'alt':''}">${b.logo}</span>${b.name}</div>
+      <span class="build-status ${b.statusClass}">● ${b.status}</span>
+    </div>
+    <p class="build-desc">${b.desc}</p>
+    ${b.highlight?`<div class="build-highlight"><div class="lbl">${b.highlight.lbl}</div><p>${b.highlight.text}</p></div>`:''}
+    <div class="build-stack">${b.stack.map(s=>`<span class="chip">${s}</span>`).join('')}</div>
+  </div>`).join('');
+
+const hobGrid = document.getElementById('hobGrid');
+hobGrid.innerHTML = HOBBIES.map(h=>`
+  <div class="hob"><div class="ic">${h.ic}</div><h3>${h.h}</h3><p>${h.p}</p></div>`).join('');
+
+document.getElementById('yr').textContent = "2026";
+
+/* ---------------- NAV + REVEAL ---------------- */
+const nav = document.getElementById('nav');
+addEventListener('scroll', ()=>{ nav.classList.toggle('scrolled', scrollY>40); }, {passive:true});
+const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} }),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------------- PASSWORD GATE ---------------- */
+// Change the password by replacing PASS_HASH with the SHA-256 hex of your new password.
+// Current password: "studio-2026"
+const PASS_HASH = "bf4f1cd9c4d5c4ae5725dd264c3262b2151fdd794419365b260b091ca8a41f75";
+const gate = document.getElementById('gate');
+const gateForm = document.getElementById('gateForm');
+const gateInput = document.getElementById('gateInput');
+const gateUnit = document.getElementById('gateUnit');
+
+async function sha256(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function unlock(){
+  gateUnit.classList.add('ok');
+  document.body.classList.remove('locked');
+  setTimeout(()=>{ gate.classList.add('hidden'); initScene(); }, 450);
+  try{ sessionStorage.setItem('cp_unlocked','1'); }catch(e){}
+}
+gateForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const h = await sha256(gateInput.value.trim());
+  if(h===PASS_HASH){ unlock(); }
+  else {
+    gateInput.classList.add('err'); gateInput.value=''; gateInput.placeholder="Wrong password";
+    setTimeout(()=>gateInput.classList.remove('err'),400);
+  }
+});
+if(sessionStorage.getItem('cp_unlocked')==='1'){ gate.classList.add('hidden'); document.body.classList.remove('locked'); }
+
+/* ============================================================
+   THREE.JS — TR-808 inspired drum machine hero
+   ============================================================ */
+let sceneStarted = false;
+async function initScene(){
+  if(sceneStarted) return; sceneStarted = true;
+
+  let THREE, OrbitControls, EffectComposer, RenderPass, UnrealBloomPass, OutputPass, RoomEnvironment;
+  try{
+    THREE = await import('three');
+    ({ OrbitControls } = await import('three/addons/controls/OrbitControls.js'));
+    ({ EffectComposer } = await import('three/addons/postprocessing/EffectComposer.js'));
+    ({ RenderPass } = await import('three/addons/postprocessing/RenderPass.js'));
+    ({ UnrealBloomPass } = await import('three/addons/postprocessing/UnrealBloomPass.js'));
+    ({ OutputPass } = await import('three/addons/postprocessing/OutputPass.js'));
+    ({ RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js'));
+  }catch(err){
+    console.warn('WebGL/three failed to load — showing fallback.', err);
+    return; // CSS fallback stays visible
+  }
+
+  const host = document.getElementById('scene');
+  const scene = new THREE.Scene();
+
+  const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true, powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(innerWidth, innerHeight);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  host.appendChild(renderer.domElement);
+
+  // environment reflections
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+  const camera = new THREE.PerspectiveCamera(38, innerWidth/innerHeight, 0.1, 100);
+  camera.position.set(3.4, 4.4, 7.6);
+
+  // ---- lighting ----
+  scene.add(new THREE.AmbientLight(0x3a3a46, 0.6));
+  const key = new THREE.DirectionalLight(0xfff2e6, 2.1);
+  key.position.set(4, 9, 5); scene.add(key);
+  const warm = new THREE.PointLight(0xff7a3c, 40, 30); warm.position.set(-5, 3, 4); scene.add(warm);
+  const cool = new THREE.PointLight(0x3a6cff, 18, 30); cool.position.set(5, 2, -5); scene.add(cool);
+  const rim = new THREE.DirectionalLight(0xffffff, 1.1); rim.position.set(-3, 4, -6); scene.add(rim);
+
+  // ---- helpers ----
+  function roundedRectShape(w, h, r){
+    const s = new THREE.Shape();
+    const x=-w/2, y=-h/2;
+    s.moveTo(x+r, y);
+    s.lineTo(x+w-r, y); s.quadraticCurveTo(x+w, y, x+w, y+r);
+    s.lineTo(x+w, y+h-r); s.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+    s.lineTo(x+r, y+h); s.quadraticCurveTo(x, y+h, x, y+h-r);
+    s.lineTo(x, y+r); s.quadraticCurveTo(x, y, x+r, y);
+    return s;
+  }
+  function panel(w, h, depth, r, mat){
+    const geo = new THREE.ExtrudeGeometry(roundedRectShape(w,h,r), {depth, bevelEnabled:true, bevelThickness:0.05, bevelSize:0.05, bevelSegments:3, steps:1});
+    geo.center();
+    const m = new THREE.Mesh(geo, mat);
+    m.rotation.x = -Math.PI/2; // lie flat
+    return m;
+  }
+
+  // ---- materials ----
+  const bodyMat  = new THREE.MeshStandardMaterial({color:0x1c1c22, roughness:0.55, metalness:0.35});
+  const plateMat = new THREE.MeshStandardMaterial({color:0x26262e, roughness:0.4,  metalness:0.5});
+  const knobMat  = new THREE.MeshStandardMaterial({color:0x14141a, roughness:0.35, metalness:0.7});
+  const stripeMat= new THREE.MeshStandardMaterial({color:0xff6a2b, roughness:0.4,  metalness:0.2, emissive:0xff5a1e, emissiveIntensity:0.25});
+
+  const unit = new THREE.Group();
+
+  // main body
+  const body = panel(9, 5.2, 1.0, 0.28, bodyMat);
+  unit.add(body);
+  // top plate (slightly raised, lighter)
+  const plate = panel(8.4, 4.6, 0.35, 0.22, plateMat);
+  plate.position.y = 0.62;
+  unit.add(plate);
+  // orange accent stripe near top of plate
+  const stripe = new THREE.Mesh(new THREE.BoxGeometry(8.4, 0.06, 0.28), stripeMat);
+  stripe.position.set(0, 0.82, -1.55);
+  unit.add(stripe);
+
+  // ---- knobs row (top section) ----
+  const knobColors = [0xe2483d, 0xf2b63c, 0xefe6d0, 0xff6a2b, 0x8a8a92, 0xefe6d0];
+  for(let i=0;i<6;i++){
+    const g = new THREE.Group();
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.34,0.36,0.34,32), knobMat);
+    const cap  = new THREE.Mesh(new THREE.CylinderGeometry(0.30,0.30,0.10,32),
+      new THREE.MeshStandardMaterial({color:knobColors[i], roughness:0.5, metalness:0.2}));
+    cap.position.y = 0.2;
+    // indicator notch
+    const notch = new THREE.Mesh(new THREE.BoxGeometry(0.05,0.12,0.20), new THREE.MeshStandardMaterial({color:0x0a0a0c,roughness:.6}));
+    notch.position.set(0,0.26,0.10); notch.rotation.y = (i*0.7);
+    g.add(base,cap,notch);
+    g.position.set(-3.4 + i*1.36, 0.94, -1.0);
+    unit.add(g);
+  }
+
+  // ---- small LED display ----
+  const disp = new THREE.Mesh(new THREE.BoxGeometry(1.7,0.5,0.06),
+    new THREE.MeshStandardMaterial({color:0x061014, roughness:0.3, metalness:0.3, emissive:0x0a2a2f, emissiveIntensity:0.6}));
+  disp.position.set(-2.6, 0.9, 0.15); disp.rotation.x = -Math.PI/2; disp.rotation.z = 0;
+  disp.rotation.x = -Math.PI/2;
+  // digits (emissive cyan bars)
+  const digitMat = new THREE.MeshStandardMaterial({color:0x38c6d9, emissive:0x38c6d9, emissiveIntensity:2.2, roughness:0.3});
+  for(let d=0; d<3; d++){
+    const seg = new THREE.Mesh(new THREE.BoxGeometry(0.32,0.42,0.03), digitMat);
+    seg.position.set(-3.1 + d*0.48, 0.94, 0.15);
+    seg.rotation.x = -Math.PI/2;
+    unit.add(seg);
+  }
+  unit.add(disp);
+
+  // ---- 16 step buttons (the sequencer) ----
+  // classic grouping: 4 red, 4 orange, 4 amber, 4 cream
+  const groupColors = [0xe2483d, 0xff6a2b, 0xf2b63c, 0xefe6d0];
+  const steps = [];
+  const pattern = [1,0,0,0, 1,0,1,0, 1,0,0,0, 1,0,1,0]; // programmed hits
+  const startX = -3.9, gapX = 0.52;
+  for(let i=0;i<16;i++){
+    const col = groupColors[Math.floor(i/4)];
+    const mat = new THREE.MeshStandardMaterial({color:col, roughness:0.45, metalness:0.15, emissive:col, emissiveIntensity:0.0});
+    const btn = new THREE.Mesh(new THREE.BoxGeometry(0.42,0.16,0.42), mat);
+    // slight rounding illusion via bevel not needed; keep crisp
+    btn.position.set(startX + i*gapX, 0.86, 1.55);
+    unit.add(btn);
+    steps.push({mesh:btn, mat, on:pattern[i], base:col});
+  }
+
+  // ---- big trigger pads (2 accent pads, right of sequencer feel) ----
+  // (kept subtle — two illuminated pads)
+  [[3.4,0xff6a2b],[3.4,0xe2483d]].forEach(([x,c],i)=>{
+    const m = new THREE.MeshStandardMaterial({color:c, roughness:.4, metalness:.1, emissive:c, emissiveIntensity:0.35});
+    const pad = new THREE.Mesh(new THREE.BoxGeometry(0.9,0.2,0.9), m);
+    pad.position.set(x, 0.9, -0.3 + i*1.15);
+    unit.add(pad);
+  });
+
+  unit.rotation.y = -0.35;
+  unit.position.y = 0.2;
+  scene.add(unit);
+
+  // ---- controls ----
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.target.set(0, 0.4, 0);
+  controls.enableDamping = true; controls.dampingFactor = 0.06;
+  controls.enablePan = false; controls.enableZoom = false;
+  controls.autoRotate = true; controls.autoRotateSpeed = 0.6;
+  controls.minPolarAngle = 0.6; controls.maxPolarAngle = 1.35;
+
+  // ---- postprocessing (bloom for LED glow) ----
+  const composer = new EffectComposer(renderer);
+  composer.addPass(new RenderPass(scene, camera));
+  const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.9, 0.55, 0.2);
+  composer.addPass(bloom);
+  composer.addPass(new OutputPass());
+
+  // ---- mouse parallax ----
+  let mx=0,my=0;
+  addEventListener('pointermove', e=>{
+    mx = (e.clientX/innerWidth - 0.5);
+    my = (e.clientY/innerHeight - 0.5);
+  }, {passive:true});
+
+  // ---- sequencer animation ----
+  const clock = new THREE.Clock();
+  let acc = 0, cur = 0;
+  const stepDur = 0.16; // 16th-note feel
+
+  function tick(){
+    const dt = clock.getDelta();
+    acc += dt;
+    if(acc >= stepDur){
+      acc -= stepDur;
+      cur = (cur+1) % 16;
+    }
+    // update pad glow: programmed hits glow dim; playhead pulses bright
+    steps.forEach((s,i)=>{
+      let target = s.on ? 0.22 : 0.02;
+      if(i===cur) target = s.on ? 1.6 : 0.5;
+      s.mat.emissiveIntensity += (target - s.mat.emissiveIntensity) * Math.min(1, dt*14);
+    });
+
+    // gentle float + parallax
+    const t = clock.elapsedTime;
+    unit.position.y = 0.2 + Math.sin(t*0.8)*0.05;
+    camera.position.x += ((3.4 + mx*1.6) - camera.position.x) * 0.03;
+    camera.position.y += ((4.4 - my*1.0) - camera.position.y) * 0.03;
+
+    controls.update();
+    composer.render();
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  // ---- resize ----
+  addEventListener('resize', ()=>{
+    camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+    composer.setSize(innerWidth, innerHeight);
+  }, {passive:true});
+}
+
+// If already unlocked from a previous visit, start scene immediately.
+if(sessionStorage.getItem('cp_unlocked')==='1'){ initScene(); }
+</script>
+</body>
+</html>
