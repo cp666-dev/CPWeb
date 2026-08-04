@@ -137,11 +137,21 @@ header.nav{
   position:fixed; top:0; left:0; right:0; z-index:50;
   display:flex; align-items:center; justify-content:space-between;
   padding:16px 28px;
-  transition:background .3s, border-color .3s, backdrop-filter .3s;
+  transition:border-color .3s;
   border-bottom:1px solid transparent;
 }
-header.nav.scrolled{
+/* backdrop-filter lives on a pseudo-element, not header.nav itself, so header
+   never becomes a CSS containing block (that would break position:fixed on
+   the mobile nav-links drawer nested inside it) */
+header.nav::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:transparent; backdrop-filter:none;
+  transition:background .3s, backdrop-filter .3s;
+}
+header.nav.scrolled::before{
   background:rgba(10,10,12,.72); backdrop-filter:blur(14px) saturate(1.2);
+}
+header.nav.scrolled{
   border-bottom:1px solid var(--line);
 }
 .brand{display:flex;align-items:center;gap:11px;font-family:"Space Grotesk";font-weight:600;font-size:16px;letter-spacing:-.01em}
@@ -783,7 +793,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* ---------------- PASSWORD GATE ---------------- */
 // Change the password by replacing PASS_HASH with the SHA-256 hex of your new password.
-// Current password: "studio-2026"
+// (Don't put the plaintext password in this file - it's served publicly as-is.)
 const PASS_HASH = "bf4f1cd9c4d5c4ae5725dd264c3262b2151fdd794419365b260b091ca8a41f75";
 const gate = document.getElementById('gate');
 const gateForm = document.getElementById('gateForm');
