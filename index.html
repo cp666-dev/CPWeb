@@ -208,7 +208,7 @@ section{position:relative;padding:clamp(90px,12vh,150px) 0}
    ============================================================ */
 #about{background:var(--bg-2)}
 .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:start}
-.about-left{padding-top:29px}
+.about-left{padding-top:0}
 .about-lead{margin:0;font-family:"Space Grotesk";font-weight:500;font-size:clamp(22px,3vw,32px);line-height:1.28;letter-spacing:-.02em}
 .about-lead .hl{color:var(--orange)}
 .about-body{margin-top:26px;color:var(--ink-muted);font-size:16.5px}
@@ -258,7 +258,6 @@ section{position:relative;padding:clamp(90px,12vh,150px) 0}
 .tile .t{display:block;font-family:"Space Grotesk";font-weight:600;font-size:15px;line-height:1.15;letter-spacing:-.01em}
 .tile.big .t{font-size:22px}
 .tile .a{display:block;font-size:12.5px;color:var(--ink-muted);margin-top:4px}
-.tile .star{position:absolute;top:11px;right:12px;z-index:2;color:var(--ink-muted)}
 .works-note{margin-top:34px;display:flex;gap:10px;align-items:center;color:var(--ink-faint);font-family:"IBM Plex Mono";font-size:12px;letter-spacing:.04em}
 .works-note a{color:var(--ink);border-bottom:1px solid var(--line)}
 
@@ -637,16 +636,16 @@ body.nav-open{overflow:hidden}
 // Recorded works - curated selection by popularity. `big:true` => featured/large tile.
 // Every artwork is unique (no repeats). Hover reveals title + artist.
 const WORKS = [
-  {t:"My Universe", a:"Coldplay, BTS", img:"https://i.scdn.co/image/ab67616d0000b273ec10f247b100da1ce0d80b6d", big:true, star:true},
-  {t:"Nothing Breaks Like a Heart", a:"Mark Ronson, Miley Cyrus", img:"https://i.scdn.co/image/ab67616d0000b273de087ae2924d2c1654f60d74", big:true, star:true},
-  {t:"Higher Power", a:"Coldplay", img:"https://i.scdn.co/image/ab67616d0000b2738af1d785b38ed4b769c24659", star:true},
-  {t:"Solo", a:"Clean Bandit, Demi Lovato", img:"https://i.scdn.co/image/ab67616d0000b27367eda217860e86c43481a5cb", star:true},
-  {t:"Dream Girl Evil", a:"Florence + The Machine", img:"https://i.scdn.co/image/ab67616d0000b2735fd9e21618182df7d70b2186", big:true, star:true},
+  {t:"My Universe", a:"Coldplay, BTS", img:"https://i.scdn.co/image/ab67616d0000b273ec10f247b100da1ce0d80b6d", big:true},
+  {t:"Nothing Breaks Like a Heart", a:"Mark Ronson, Miley Cyrus", img:"https://i.scdn.co/image/ab67616d0000b273de087ae2924d2c1654f60d74", big:true},
+  {t:"Higher Power", a:"Coldplay", img:"https://i.scdn.co/image/ab67616d0000b2738af1d785b38ed4b769c24659"},
+  {t:"Solo", a:"Clean Bandit, Demi Lovato", img:"https://i.scdn.co/image/ab67616d0000b27367eda217860e86c43481a5cb"},
+  {t:"Dream Girl Evil", a:"Florence + The Machine", img:"https://i.scdn.co/image/ab67616d0000b2735fd9e21618182df7d70b2186", big:true},
   {t:"Hackney Diamonds", a:"The Rolling Stones", img:"https://i.scdn.co/image/ab67616d0000b273683680975bf153c97ea8ad8d"},
   {t:"Leave a Light On", a:"Tom Walker", img:"https://i.scdn.co/image/ab67616d0000b27322cf06089dc7304bb41b7217"},
-  {t:"Lost Without You", a:"Freya Ridings", img:"https://i.scdn.co/image/ab67616d0000b273692701741cd800811b944be9", star:true},
+  {t:"Lost Without You", a:"Freya Ridings", img:"https://i.scdn.co/image/ab67616d0000b273692701741cd800811b944be9"},
   {t:"GOOD FEELiNGS", a:"Coldplay, Ayra Starr", img:"https://i.scdn.co/image/ab67616d0000b27309ba52a5116e0c3e8461f58b"},
-  {t:"Point and Kill", a:"Little Simz, Obongjayar", img:"https://i.scdn.co/image/ab67616d0000b273aede85ed28c2237a33b63dba", star:true},
+  {t:"Point and Kill", a:"Little Simz, Obongjayar", img:"https://i.scdn.co/image/ab67616d0000b273aede85ed28c2237a33b63dba"},
   {t:"Solid Ground", a:"Michael Kiwanuka", img:"https://i.scdn.co/image/ab67616d0000b27360ada139840fb439d6750f27"},
   {t:"mother tongue", a:"Bring Me The Horizon", img:"https://i.scdn.co/image/ab67616d0000b27349e3b7e85829da2fbc68bc46"},
   {t:"Futureproof", a:"Nothing But Thieves", img:"https://i.scdn.co/image/ab67616d0000b273e0efd8bb1f9943c40a6e5897"},
@@ -699,7 +698,6 @@ const worksGrid = document.getElementById('worksGrid');
 worksGrid.innerHTML = WORKS.map(w=>`
   <div class="tile ${w.big?'big':''}">
     <img src="${w.img}" alt="${w.t} - ${w.a}" loading="lazy" />
-    ${w.star?'<span class="star" title="Standout">★</span>':''}
     <span class="meta"><span class="t">${w.t}</span><span class="a">${w.a}</span></span>
   </div>`).join('');
 
