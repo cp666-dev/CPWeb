@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Connor Panayi — Recording Engineer · Producer · Building AI</title>
+<title>Connor Panayi - Recording Engineer · Producer · Building AI</title>
 <meta name="description" content="Recording engineer and producer (Coldplay, BTS, The Rolling Stones, Mark Ronson) now building AI products. Portfolio & recorded works." />
 <meta name="robots" content="noindex, nofollow" />
 
@@ -13,7 +13,7 @@
 
 <style>
 /* ============================================================
-   CONNOR PANAYI — portfolio
+   CONNOR PANAYI - portfolio
    Dark studio-hardware aesthetic. One accent: 808 orange.
    ============================================================ */
 :root{
@@ -24,9 +24,9 @@
   --panel-3:#232329;
   --line:#2a2a32;
   --line-soft:#20202700;
-  --ink:#f3f0e9;          /* warm off-white */
-  --ink-muted:#a3a3ad;
-  --ink-faint:#6d6d78;
+  --ink:#f5f2ec;          /* warm off-white */
+  --ink-muted:#c6c6cf;
+  --ink-faint:#9a9aa6;
 
   /* 808 hardware palette */
   --orange:#ff6a2b;       /* THE accent */
@@ -162,8 +162,8 @@ header.nav.scrolled{
    ============================================================ */
 #hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
 #hero::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:linear-gradient(90deg, rgba(10,10,12,.82) 0%, rgba(10,10,12,.45) 34%, transparent 62%),
-             linear-gradient(0deg, rgba(10,10,12,.55) 0%, transparent 38%)}
+  background:linear-gradient(90deg, rgba(9,9,11,.92) 0%, rgba(9,9,11,.78) 30%, rgba(9,9,11,.5) 55%, rgba(9,9,11,.22) 78%, transparent 100%),
+             linear-gradient(0deg, rgba(9,9,11,.7) 0%, rgba(9,9,11,.15) 30%, transparent 50%)}
 #scene{position:absolute;inset:0;z-index:1}
 #scene canvas{display:block}
 .hero-fallback{position:absolute;inset:0;z-index:0;background:
@@ -175,11 +175,12 @@ header.nav.scrolled{
 .hero-tag .pulse{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 10px var(--orange);animation:blink 1.6s steps(1) infinite}
 h1.hero-title{
   font-size:clamp(44px,8.5vw,104px); font-weight:700; letter-spacing:-.035em; line-height:.94;
+  text-shadow:0 2px 30px rgba(9,9,11,.85), 0 1px 4px rgba(9,9,11,.6);
 }
-h1.hero-title .l2{color:var(--ink-muted)}
+h1.hero-title .l2{color:#c9c6cf}
 .hero-sub{
-  margin-top:26px; max-width:540px; font-size:clamp(16px,2vw,20px); color:var(--ink-muted);
-  line-height:1.5;
+  margin-top:26px; max-width:540px; font-size:clamp(16px,2vw,20px); color:#c2c2cc;
+  line-height:1.5; text-shadow:0 1px 14px rgba(9,9,11,.8);
 }
 .hero-sub b{color:var(--ink);font-weight:600}
 .hero-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:30px;pointer-events:auto}
@@ -205,7 +206,6 @@ section{position:relative;padding:clamp(90px,12vh,150px) 0}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:56px;flex-wrap:wrap}
 .sec-head h2{font-size:clamp(30px,5vw,52px);letter-spacing:-.03em}
 .sec-head .idx{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-faint);letter-spacing:.2em}
-.sec-lead{max-width:560px;color:var(--ink-muted);font-size:17px}
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
 
 /* reveal on scroll */
@@ -243,9 +243,9 @@ section{position:relative;padding:clamp(90px,12vh,150px) 0}
 .tl-item::before{content:"";position:absolute;top:-6px;left:0;width:10px;height:10px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px rgba(255,106,43,.6)}
 .tl-item:not(:last-child){border-right:1px solid var(--line-soft)}
 .tl-when{font-size:11px;letter-spacing:.14em;color:var(--orange);margin-bottom:10px}
-.tl-role{font-family:"Space Grotesk";font-weight:600;font-size:17px;line-height:1.2;letter-spacing:-.01em}
-.tl-org{font-size:13px;color:var(--ink-muted);margin-top:5px}
-.tl-note{font-size:13.5px;color:var(--ink-faint);margin-top:12px;line-height:1.5}
+.tl-role{font-family:"Space Grotesk";font-weight:600;font-size:17px;line-height:1.2;letter-spacing:-.01em;min-height:2.4em}
+.tl-org{font-size:13px;color:var(--ink-muted);margin-top:5px;min-height:2.6em}
+.tl-note{font-size:13.5px;color:var(--ink-muted);margin-top:12px;line-height:1.5}
 @media (max-width:900px){.tl-grid{grid-template-columns:1fr;gap:0}.tl-item{padding-left:0}}
 
 /* ============================================================
@@ -272,11 +272,6 @@ section{position:relative;padding:clamp(90px,12vh,150px) 0}
 .tile .t{display:block;font-family:"Space Grotesk";font-weight:600;font-size:15px;line-height:1.15;letter-spacing:-.01em}
 .tile.big .t{font-size:22px}
 .tile .a{display:block;font-size:12.5px;color:var(--ink-muted);margin-top:4px}
-.tile .role{
-  position:absolute;top:12px;left:12px;z-index:2;font-family:"IBM Plex Mono";font-size:9.5px;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:rgba(10,10,12,.6);
-  border:1px solid rgba(255,255,255,.12);padding:4px 8px;border-radius:100px;backdrop-filter:blur(6px)
-}
 .tile .star{position:absolute;top:11px;right:12px;z-index:2;color:var(--orange);filter:drop-shadow(0 0 6px rgba(255,106,43,.7))}
 .works-note{margin-top:34px;display:flex;gap:10px;align-items:center;color:var(--ink-faint);font-family:"IBM Plex Mono";font-size:12px;letter-spacing:.04em}
 .works-note a{color:var(--orange);border-bottom:1px solid rgba(255,106,43,.4)}
@@ -416,13 +411,13 @@ footer{padding:40px 0;border-top:1px solid var(--line)}
       <h1 class="hero-title">Connor Panayi<br><span class="l2">sound &amp; systems.</span></h1>
       <p class="hero-sub">
         13 years making records with <b>Coldplay</b>, <b>BTS</b>, <b>The Rolling Stones</b>,
-        <b>Florence + The Machine</b> and <b>Mark Ronson</b> — chasing the details most people
+        <b>Florence + The Machine</b> and <b>Mark Ronson</b> - chasing the details most people
         never hear. Now I build <b>AI products</b> with the same obsession for craft.
       </p>
       <div class="hero-meta">
         <div class="hero-stat"><div class="n">16B<span class="u">+</span></div><div class="k">Cumulative streams</div></div>
-        <div class="hero-stat"><div class="n">Top&nbsp;1<span class="u">%</span></div><div class="k">Engineers · muso.ai</div></div>
-        <div class="hero-stat"><div class="n">Grammy</div><div class="k">Nods · Academy voter</div></div>
+        <div class="hero-stat"><div class="n">Top&nbsp;1<span class="u">%</span></div><div class="k">Engineers worldwide</div></div>
+        <div class="hero-stat"><div class="n">Grammy</div><div class="k">Winner · Academy voter</div></div>
       </div>
     </div>
   </div>
@@ -434,7 +429,7 @@ footer{padding:40px 0;border-top:1px solid var(--line)}
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <div class="eyebrow">01 — Background &amp; Vision</div>
+        <div class="eyebrow">01 - Background &amp; Vision</div>
         <h2>From the control room<br>to the command line.</h2>
       </div>
       <div class="idx mono">/ ABOUT</div>
@@ -442,37 +437,36 @@ footer{padding:40px 0;border-top:1px solid var(--line)}
     <div class="about-grid">
       <div class="reveal">
         <p class="about-lead">
-          Great records and great products are built the same way — <span class="hl">relentless attention
+          Great records and great products are built the same way - <span class="hl">relentless attention
           to the thing people can't quite name</span> but always feel.
         </p>
         <div class="about-body">
           <p>
             I'm a London-based <b>record producer and engineer</b> with 13 years in the industry and
             <b>16 billion+ cumulative streams</b>. My work spans some of the defining records of the last
-            decade — Coldplay, BTS, The Rolling Stones, Florence + The Machine, Mark Ronson, Little Simz,
-            Michael Kiwanuka and The xx — earning <b>multiple Grammy nods</b> and a place as a
+            decade - Coldplay, BTS, The Rolling Stones, Florence + The Machine, Mark Ronson, Little Simz,
+            Michael Kiwanuka and The xx - earning <b>Grammy recognition</b> and a place as a
             <b>voting member of the Recording Academy</b> and its Producers &amp; Engineers Wing.
           </p>
           <p>
-            That craft became a launchpad. I moved from the control room into <b>building companies</b> —
+            That craft became a launchpad. I moved from the control room into <b>building companies</b>  -
             co-founding a music-discovery platform as Co-CEO, leading A&amp;R and artist partnerships, and
             running product and ecosystem strategy at scale. The common thread is taste: knowing what to
             keep, what to cut, and how to make something feel inevitable.
           </p>
           <p>
-            Today I build <b>AI products</b> end-to-end — from concept to shipped. My vision is simple:
-            <b>bring a producer's ear to software</b>. The best tools, like the best records, disappear.
-            You just feel the result.
+            Today I build <b>AI products</b> end-to-end - from concept to shipped. My vision is simple:
+            <b>bring a producer's ear to software</b>.
           </p>
         </div>
       </div>
       <aside class="about-card reveal">
         <h3>At a glance</h3>
-        <div class="fact"><span class="k">Based in</span><span class="v">London, England</span></div>
+        <div class="fact"><span class="k">Based in</span><span class="v">London &amp; San Francisco</span></div>
         <div class="fact"><span class="k">Discipline</span><span class="v">Producer · Engineer</span></div>
         <div class="fact"><span class="k">Streams</span><span class="v">16B+ cumulative</span></div>
-        <div class="fact"><span class="k">Recognition</span><span class="v">Grammy nods · Academy voter</span></div>
-        <div class="fact"><span class="k">muso.ai rank</span><span class="v">Top 1% Engineers</span></div>
+        <div class="fact"><span class="k">Recognition</span><span class="v">Grammy winner · Academy voter</span></div>
+        <div class="fact"><span class="k">Ranking</span><span class="v">Top 1% Engineers</span></div>
         <div class="fact"><span class="k">Now building</span><span class="v">AI products, 0→1</span></div>
         <div class="tags">
           <span class="tag">Production</span><span class="tag">Engineering</span><span class="tag">Mixing</span>
@@ -487,25 +481,25 @@ footer{padding:40px 0;border-top:1px solid var(--line)}
       <div class="tl-head"><span class="eyebrow">Track record</span></div>
       <div class="tl-grid">
         <div class="tl-item">
-          <div class="tl-when mono">2013 — Now</div>
+          <div class="tl-when mono">2013 - Now</div>
           <div class="tl-role">Record Producer &amp; Engineer</div>
           <div class="tl-org">Independent · Worldwide</div>
-          <div class="tl-note">16B+ streams · multiple Grammy nods · Recording Academy voting member across the P&amp;E Wing.</div>
+          <div class="tl-note">16B+ streams · Grammy winner · Recording Academy voting member across the P&amp;E Wing.</div>
         </div>
         <div class="tl-item">
-          <div class="tl-when mono">2022 — 2024</div>
+          <div class="tl-when mono">2022 - 2024</div>
           <div class="tl-role">Head of A&amp;R &amp; Artist Partnerships</div>
           <div class="tl-org">Sonu Stream · Artist-first streaming</div>
           <div class="tl-note">Led partnerships across artists, labels &amp; distributors; onboarded millions of catalog tracks.</div>
         </div>
         <div class="tl-item">
-          <div class="tl-when mono">2024 — Now</div>
+          <div class="tl-when mono">2024 - Now</div>
           <div class="tl-role">Co-Founder &amp; Co-CEO</div>
           <div class="tl-org">MineFM · Social music discovery</div>
           <div class="tl-note">Took a creator-first discovery platform from concept to live launch; raised early funding &amp; led the team.</div>
         </div>
         <div class="tl-item">
-          <div class="tl-when mono">2025 — 2026</div>
+          <div class="tl-when mono">2025 - 2026</div>
           <div class="tl-role">Head of Music, AI &amp; Infrastructure</div>
           <div class="tl-org">Camp Network · AI-native IP platform</div>
           <div class="tl-note">Senior operator across product, AI integrations &amp; partnerships; scaled the ecosystem to a $2.5B valuation.</div>
@@ -522,19 +516,12 @@ footer{padding:40px 0;border-top:1px solid var(--line)}
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <div class="eyebrow">02 — Discography</div>
+        <div class="eyebrow">02 - Discography</div>
         <h2>Recorded Works</h2>
       </div>
       <div class="idx mono">/ MUSIC</div>
     </div>
-    <p class="sec-lead reveal" style="margin-bottom:44px">
-      A selection from 346 credits. The bigger the tile, the bigger the record.
-    </p>
-    <div class="works-grid" id="worksGrid"><!-- injected by JS --></div>
-    <div class="works-note reveal">
-      <span>Full discography &amp; streams:</span>
-      <a href="https://credits.muso.ai/profile/f3640e46-5c5f-4219-8095-ce9b3e725c8e" target="_blank" rel="noopener">muso.ai/connor-panayi ↗</a>
-    </div>
+    <div class="works-grid" id="worksGrid" style="margin-top:44px"><!-- injected by JS --></div>
   </div>
 </section>
 
@@ -545,7 +532,7 @@ footer{padding:40px 0;border-top:1px solid var(--line)}
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <div class="eyebrow">03 — What I've shipped in 6 months</div>
+        <div class="eyebrow">03 - What I've shipped in 6 months</div>
         <h2>Builder</h2>
       </div>
       <div class="idx mono">/ AI PRODUCTS</div>
@@ -561,7 +548,7 @@ footer{padding:40px 0;border-top:1px solid var(--line)}
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <div class="eyebrow">04 — Off the clock</div>
+        <div class="eyebrow">04 - Off the clock</div>
         <h2>When I'm not in<br>a session or the terminal.</h2>
       </div>
       <div class="idx mono">/ LIFE</div>
@@ -575,15 +562,14 @@ footer{padding:40px 0;border-top:1px solid var(--line)}
 <!-- ============================= CONTACT ============================= -->
 <section id="contact">
   <div class="wrap">
-    <div class="eyebrow reveal" style="margin-bottom:22px">05 — Let's talk</div>
-    <h2 class="contact-big reveal">Building something that<br>needs taste? <a href="mailto:connor.panayi@gmail.com">Say hello.</a></h2>
+    <div class="eyebrow reveal" style="margin-bottom:22px">05 - Let's talk</div>
+    <h2 class="contact-big reveal"><a href="mailto:connor.panayi@gmail.com">Say hello.</a></h2>
     <p class="contact-sub reveal">
       Open to roles and collaborations where music-grade craft meets AI. Product, engineering, or the weird space in between.
     </p>
     <div class="contact-row reveal">
       <a class="contact-btn primary" href="mailto:connor.panayi@gmail.com">✉&nbsp; connor.panayi@gmail.com</a>
       <a class="contact-btn" href="tel:+447805406043">☏&nbsp; +44 7805 406043</a>
-      <a class="contact-btn" href="https://credits.muso.ai/profile/f3640e46-5c5f-4219-8095-ce9b3e725c8e" target="_blank" rel="noopener">♪&nbsp; muso.ai</a>
     </div>
   </div>
   <footer>
@@ -606,77 +592,75 @@ footer{padding:40px 0;border-top:1px solid var(--line)}
 
 <script type="module">
 /* ---------------- DATA ---------------- */
-// Recorded works — pulled from muso.ai, curated by popularity. `big:true` => featured/large tile.
+// Recorded works - curated selection by popularity. `big:true` => featured/large tile.
 // Every artwork is unique (no repeats). Hover reveals title + artist.
 const WORKS = [
-  {t:"My Universe", a:"Coldplay, BTS", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b273ec10f247b100da1ce0d80b6d", big:true, star:true},
-  {t:"Nothing Breaks Like a Heart", a:"Mark Ronson, Miley Cyrus", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b273de087ae2924d2c1654f60d74", big:true, star:true},
-  {t:"Higher Power", a:"Coldplay", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b2738af1d785b38ed4b769c24659", big:true, star:true},
-  {t:"Solo", a:"Clean Bandit, Demi Lovato", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b27367eda217860e86c43481a5cb", star:true},
-  {t:"Dream Girl Evil", a:"Florence + The Machine", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b2735fd9e21618182df7d70b2186", big:true, star:true},
-  {t:"Start Me Up", a:"The Rolling Stones", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b27308fc42e575043a753f60d675"},
-  {t:"Leave a Light On", a:"Tom Walker", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b27322cf06089dc7304bb41b7217"},
-  {t:"Lost Without You", a:"Freya Ridings", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b273692701741cd800811b944be9", star:true},
-  {t:"GOOD FEELiNGS", a:"Coldplay, Ayra Starr", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b27309ba52a5116e0c3e8461f58b"},
-  {t:"Point and Kill", a:"Little Simz, Obongjayar", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b273aede85ed28c2237a33b63dba", star:true},
-  {t:"Solid Ground", a:"Michael Kiwanuka", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b27360ada139840fb439d6750f27"},
-  {t:"mother tongue", a:"Bring Me The Horizon", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b27349e3b7e85829da2fbc68bc46"},
-  {t:"Futureproof", a:"Nothing But Thieves", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b273e0efd8bb1f9943c40a6e5897"},
-  {t:"Quietly Yours", a:"Birdy", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b273d62ae1ab3d346b3c2f093fb1"},
-  {t:"Sweetest Human Being Alive", a:"George Ezra", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b2739dd1a35ada9870dc879dfb9e"},
-  {t:"Dance All Over Me — Jax Jones Remix", a:"George Ezra, Jax Jones", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b273af989be58951dc1d60efe7e2"},
-  {t:"On Hold — Jamie xx Remix", a:"The xx, Jamie xx", role:"Engineer", img:"https://i.scdn.co/image/ab67616d0000b27380ddfb1877a52549d5ee1ff6"},
-  {t:"道 (Michi)", a:"Hikaru Utada", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b2739f5c5e06d31160668cd48c22"},
-  {t:"My Universe — SUGA's Remix", a:"Coldplay, BTS, SUGA", role:"Assistant Eng.", img:"https://i.scdn.co/image/ab67616d0000b27326319baecaca27532b413001"},
+  {t:"My Universe", a:"Coldplay, BTS", img:"https://i.scdn.co/image/ab67616d0000b273ec10f247b100da1ce0d80b6d", big:true, star:true},
+  {t:"Nothing Breaks Like a Heart", a:"Mark Ronson, Miley Cyrus", img:"https://i.scdn.co/image/ab67616d0000b273de087ae2924d2c1654f60d74", big:true, star:true},
+  {t:"Higher Power", a:"Coldplay", img:"https://i.scdn.co/image/ab67616d0000b2738af1d785b38ed4b769c24659", star:true},
+  {t:"Solo", a:"Clean Bandit, Demi Lovato", img:"https://i.scdn.co/image/ab67616d0000b27367eda217860e86c43481a5cb", star:true},
+  {t:"Dream Girl Evil", a:"Florence + The Machine", img:"https://i.scdn.co/image/ab67616d0000b2735fd9e21618182df7d70b2186", big:true, star:true},
+  {t:"Hackney Diamonds", a:"The Rolling Stones", img:"https://i.scdn.co/image/ab67616d0000b273683680975bf153c97ea8ad8d"},
+  {t:"Leave a Light On", a:"Tom Walker", img:"https://i.scdn.co/image/ab67616d0000b27322cf06089dc7304bb41b7217"},
+  {t:"Lost Without You", a:"Freya Ridings", img:"https://i.scdn.co/image/ab67616d0000b273692701741cd800811b944be9", star:true},
+  {t:"GOOD FEELiNGS", a:"Coldplay, Ayra Starr", img:"https://i.scdn.co/image/ab67616d0000b27309ba52a5116e0c3e8461f58b"},
+  {t:"Point and Kill", a:"Little Simz, Obongjayar", img:"https://i.scdn.co/image/ab67616d0000b273aede85ed28c2237a33b63dba", star:true},
+  {t:"Solid Ground", a:"Michael Kiwanuka", img:"https://i.scdn.co/image/ab67616d0000b27360ada139840fb439d6750f27"},
+  {t:"mother tongue", a:"Bring Me The Horizon", img:"https://i.scdn.co/image/ab67616d0000b27349e3b7e85829da2fbc68bc46"},
+  {t:"Futureproof", a:"Nothing But Thieves", img:"https://i.scdn.co/image/ab67616d0000b273e0efd8bb1f9943c40a6e5897"},
+  {t:"Quietly Yours", a:"Birdy", img:"https://i.scdn.co/image/ab67616d0000b273d62ae1ab3d346b3c2f093fb1"},
+  {t:"Sweetest Human Being Alive", a:"George Ezra", img:"https://i.scdn.co/image/ab67616d0000b2739dd1a35ada9870dc879dfb9e"},
+  {t:"My Love", a:"Florence + The Machine", img:"https://i.scdn.co/image/ab67616d0000b2738f8a358161593abe6f717bba"},
+  {t:"How Did We Get So Dark?", a:"Royal Blood", img:"https://i.scdn.co/image/ab67616d0000b27394b63000190c83e4dc4ea064"},
+  {t:"道 (Michi)", a:"Hikaru Utada", img:"https://i.scdn.co/image/ab67616d0000b2739f5c5e06d31160668cd48c22"},
+  {t:"I See You", a:"The xx", img:"https://i.scdn.co/image/ab67616d0000b273fa132d6237850ac3f29e3af3"},
 ];
 
-// Builder — 6 months of AI products.
+// Builder - 6 months of AI products.
 const BUILDS = [
   {
     name:"BetMe", logo:"B", feature:true, status:"Live", statusClass:"live",
-    desc:"A social challenge app where friends put stakes on real-world dares — run a 10k, nail a trick shot, finish the plate. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>.",
-    highlight:{lbl:"The AI Video Judge", text:"I built a multimodal pipeline that watches the video evidence a user submits and rules on whether the challenge was genuinely completed — reading the action, the context and the outcome frame-by-frame. It replaces slow, argument-prone human verification with an instant, consistent, tamper-resistant verdict. No refs, no disputes."},
+    desc:"A social challenge app where friends put stakes on real-world dares - run a 10k, nail a trick shot, finish the plate. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>.",
+    highlight:{lbl:"The AI Video Judge", text:"I built a multimodal pipeline that watches the video evidence a user submits and rules on whether the challenge was genuinely completed - reading the action, the context and the outcome frame-by-frame. It replaces slow, argument-prone human verification with an instant, consistent, tamper-resistant verdict. No refs, no disputes."},
     stack:["Multimodal LLM","Video understanding","React Native","Serverless"]
   },
   {
-    name:"GasBuddy", logo:"G", logoAlt:true, status:"Beta", statusClass:"",
-    desc:"<b>[CONFIRM DESCRIPTION]</b> A companion tool that takes the guesswork out of timing and cost — surfacing the right moment to act and what it'll really run you, in plain language.",
-    stack:["Real-time data","Alerts","TypeScript"]
+    name:"GasBuddy", logo:"G", logoAlt:true,
+    desc:"A UK fuel-price iOS app that shows drivers the <b>cheapest nearby petrol, diesel or premium</b>, sourced live from CMA-mandated retailer feeds. It ranks stations by price or distance on a map, with a smart default radius and a homescreen widget for glanceable prices.",
+    stack:["SwiftUI · iOS","MapKit","Live CMA feeds","Homescreen widget"]
   },
   {
-    name:"LockedIn", logo:"L", logoAlt:true, status:"Live", statusClass:"live",
-    desc:"<b>[CONFIRM DESCRIPTION]</b> A focus product that turns intention into follow-through — commit to a goal, stay accountable, and actually finish the thing you sat down to do.",
-    stack:["Product","Mobile","AI"]
+    name:"LockedIn", logo:"L", logoAlt:true,
+    desc:"A job marketplace where employers deposit real stablecoins into escrow before a listing goes live. Job seekers apply knowing <b>every posting is backed by actual money</b>, and funds release automatically once a hire is verified. It runs on Base and covers employers, job seekers and recruiters, with AI screening and multi-signal hire verification built in. No more applying for jobs that may not even exist.",
+    stack:["Stablecoin escrow","Base","AI screening","Hire verification"]
   },
   {
-    name:"Stella Says", logo:"S", logoAlt:true, status:"Building", statusClass:"",
-    desc:"An AI agent platform that lets non-engineers direct real software work in natural language — planning, building and shipping alongside a coding agent. Design-obsessed, opinionated, and built to make powerful tooling feel effortless.",
+    name:"Stella Says", logo:"S", logoAlt:true,
+    desc:"An AI agent platform that lets non-engineers direct real software work in natural language - planning, building and shipping alongside a coding agent. Design-obsessed, opinionated, and built to make powerful tooling feel effortless.",
     stack:["AI agents","LLM orchestration","Full-stack","Design systems"]
   },
 ];
 
 const HOBBIES = [
   {ic:"♫", h:"Crate digging", p:"Forever hunting the sample, the break, the record that reframes what a song can be. My ear for music is the same one I bring to product."},
-  {ic:"▤", h:"Synths & gear", p:"An unreasonable love of analog hardware — the 808, the Juno, the Prophet. If it has knobs and glows in the dark, I want to understand it."},
-  {ic:"◈", h:"Building for fun", p:"Most weekends there's a half-finished side project open in another tab. Building is how I think — and how I keep learning fast."},
+  {ic:"▤", h:"Synths & gear", p:"An unreasonable love of analog hardware - the 808, the Juno, the Prophet. If it has knobs and glows in the dark, I want to understand it."},
+  {ic:"◈", h:"Building for fun", p:"Most weekends there's a half-finished side project open in another tab. Building is how I think - and how I keep learning fast."},
 ];
 
 /* ---------------- RENDER CONTENT ---------------- */
 const worksGrid = document.getElementById('worksGrid');
 worksGrid.innerHTML = WORKS.map(w=>`
-  <a class="tile ${w.big?'big':''}" href="https://credits.muso.ai/profile/f3640e46-5c5f-4219-8095-ce9b3e725c8e" target="_blank" rel="noopener">
-    <img src="${w.img}" alt="${w.t} — ${w.a}" loading="lazy" />
-    <span class="role">${w.role}</span>
+  <div class="tile ${w.big?'big':''}">
+    <img src="${w.img}" alt="${w.t} - ${w.a}" loading="lazy" />
     ${w.star?'<span class="star" title="Standout">★</span>':''}
     <span class="meta"><span class="t">${w.t}</span><span class="a">${w.a}</span></span>
-  </a>`).join('');
+  </div>`).join('');
 
 const buildGrid = document.getElementById('buildGrid');
 buildGrid.innerHTML = BUILDS.map(b=>`
   <div class="build-card ${b.feature?'feature':''}">
     <div class="build-top">
       <div class="build-name"><span class="build-logo ${b.logoAlt?'alt':''}">${b.logo}</span>${b.name}</div>
-      <span class="build-status ${b.statusClass}">● ${b.status}</span>
     </div>
     <p class="build-desc">${b.desc}</p>
     ${b.highlight?`<div class="build-highlight"><div class="lbl">${b.highlight.lbl}</div><p>${b.highlight.text}</p></div>`:''}
@@ -726,7 +710,7 @@ gateForm.addEventListener('submit', async (e)=>{
 if(sessionStorage.getItem('cp_unlocked')==='1'){ gate.classList.add('hidden'); document.body.classList.remove('locked'); }
 
 /* ============================================================
-   THREE.JS — TR-808 inspired drum machine hero
+   THREE.JS - TR-808 inspired drum machine hero
    ============================================================ */
 let sceneStarted = false;
 async function initScene(){
@@ -742,7 +726,7 @@ async function initScene(){
     ({ OutputPass } = await import('three/addons/postprocessing/OutputPass.js'));
     ({ RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js'));
   }catch(err){
-    console.warn('WebGL/three failed to load — showing fallback.', err);
+    console.warn('WebGL/three failed to load - showing fallback.', err);
     return; // CSS fallback stays visible
   }
 
@@ -753,7 +737,7 @@ async function initScene(){
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setSize(innerWidth, innerHeight);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = 0.82;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   host.appendChild(renderer.domElement);
 
@@ -766,9 +750,9 @@ async function initScene(){
 
   // ---- lighting ----
   scene.add(new THREE.AmbientLight(0x3a3a46, 0.6));
-  const key = new THREE.DirectionalLight(0xfff2e6, 2.1);
+  const key = new THREE.DirectionalLight(0xfff2e6, 1.5);
   key.position.set(4, 9, 5); scene.add(key);
-  const warm = new THREE.PointLight(0xff7a3c, 40, 30); warm.position.set(-5, 3, 4); scene.add(warm);
+  const warm = new THREE.PointLight(0xff7a3c, 22, 30); warm.position.set(-5, 3, 4); scene.add(warm);
   const cool = new THREE.PointLight(0x3a6cff, 18, 30); cool.position.set(5, 2, -5); scene.add(cool);
   const rim = new THREE.DirectionalLight(0xffffff, 1.1); rim.position.set(-3, 4, -6); scene.add(rim);
 
@@ -859,7 +843,7 @@ async function initScene(){
   }
 
   // ---- big trigger pads (2 accent pads, right of sequencer feel) ----
-  // (kept subtle — two illuminated pads)
+  // (kept subtle - two illuminated pads)
   [[3.4,0xff6a2b],[3.4,0xe2483d]].forEach(([x,c],i)=>{
     const m = new THREE.MeshStandardMaterial({color:c, roughness:.4, metalness:.1, emissive:c, emissiveIntensity:0.35});
     const pad = new THREE.Mesh(new THREE.BoxGeometry(0.9,0.2,0.9), m);
@@ -882,7 +866,7 @@ async function initScene(){
   // ---- postprocessing (bloom for LED glow) ----
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.9, 0.55, 0.2);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.55, 0.5, 0.28);
   composer.addPass(bloom);
   composer.addPass(new OutputPass());
 
