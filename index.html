@@ -661,6 +661,12 @@ const WORKS = [
 // Builder - 6 months of shipped products.
 const BUILDS = [
   {
+    name:"ElevenIdeas",
+    desc:"ElevenIdeas, built using ElevenAPI, lives inside your DAW and turns a single clip into eleven finished, song-aware ideas. Select an element, for example a lead vocal, and get new melodies, rewritten hooks, alternate deliveries, harmonies - even the same line re-sung in the artist's own cloned voice. Every idea comes back in the song's key, locked to the grid, and drags straight onto your timeline.<br><br>It stays relevant because it understands the whole track. A companion plugin, ElevenBrain, sits on your master bus and listens - key, tempo, energy, tone - then feeds that context to every ElevenIdeas instance on the tracks you're working on. Add a plain-language note like \"more energy going into the chorus,\" and it shapes the results.",
+    highlight:{lbl:"Built On", text:"ElevenLabs Music v2 and Voice Changer via ElevenAPI."},
+    stack:["ElevenAPI","DAW plugin","Music generation","Voice cloning"]
+  },
+  {
     name:"BetMe", feature:true,
     desc:"A social challenge app where friends put stakes on real-world dares - run a 10k, nail a trick shot, finish the plate. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>.",
     highlight:{lbl:"The Video Judge", text:"I built a multimodal pipeline that watches the video evidence a user submits and rules on whether the challenge was genuinely completed - reading the action, the context and the outcome frame-by-frame. It replaces slow, argument-prone human verification with an instant, consistent, tamper-resistant verdict. No refs, no disputes."},
@@ -678,7 +684,7 @@ const BUILDS = [
   },
   {
     name:"Stella Says",
-    desc:"An agent platform, powered by LLMs, that lets non-engineers direct real software work in natural language - planning, building and shipping alongside a coding agent. Design-obsessed, opinionated, and built to make powerful tooling feel effortless.",
+    desc:"Stella Says is a local-first desktop app that lets anyone direct AI coding agents without ever touching a terminal. It wraps Claude (plus optional providers like Codex and OpenRouter) in a plain-language interface, running real Plan and Agent sessions against your actual project files with live tool execution you can watch and steer. Multiple workspaces run in parallel, each isolated in its own git workspace, so you can juggle several tasks without them colliding. Built for people who want the leverage of an AI engineer without needing to know what a terminal, branch, or commit even is.",
     stack:["Agent orchestration","LLM tooling","Full-stack","Design systems"]
   },
   {
