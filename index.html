@@ -279,6 +279,10 @@ section{position:relative;padding:clamp(90px,12vh,150px) 0}
 .build-desc{color:var(--ink-muted);font-size:15.5px}
 .build-desc b{color:var(--ink);font-weight:600}
 .feature .build-name{font-size:30px}
+.build-body{display:flex;gap:28px}
+.build-text{flex:1 1 0;min-width:0}
+.build-media{flex:1 1 0;min-width:0}
+.build-media video{width:100%;height:100%;display:block;border-radius:var(--r-md);border:1px solid var(--line);background:var(--panel-2);object-fit:cover}
 .build-highlight{
   margin-top:20px;padding:18px 20px;border-radius:var(--r-md);
   background:var(--panel-2);border:1px solid var(--line);
@@ -385,6 +389,7 @@ body.nav-open{overflow:hidden}
   .build-card.feature{grid-column:span 1}
   .build-card{padding:24px}
   .feature .build-name{font-size:24px}
+  .build-body{flex-direction:column}
 
   /* --- selected works --- */
   .works-grid{grid-template-columns:repeat(2,1fr);gap:10px}
@@ -681,7 +686,8 @@ const BUILDS = [
     name:"In Development - ElevenIdeas", feature:true,
     desc:"ElevenIdeas, built using ElevenAPI, lives inside your DAW and turns a single clip into eleven finished, song-aware ideas. Select an element, for example a lead vocal, and get new melodies, rewritten hooks, alternate deliveries, harmonies - even the same line re-sung in the artist's own cloned voice. Every idea comes back in the song's key, locked to the grid, and drags straight onto your timeline.<br><br>It stays relevant because it understands the whole track. A companion plugin, ElevenBrain, sits on your master bus and listens - key, tempo, energy, tone - then feeds that context to every ElevenIdeas instance on the tracks you're working on. Add a plain-language note like \"more energy going into the chorus,\" and it shapes the results.",
     highlight:{lbl:"Built On", text:"ElevenLabs Music v2 and Voice Changer via ElevenAPI."},
-    stack:["ElevenAPI","DAW plugin","Music generation","Voice cloning","In Development"]
+    stack:["ElevenAPI","DAW plugin","Music generation","Voice cloning","In Development"],
+    video:"assets/elevenideas-demo.mp4"
   },
   {
     name:"BetMe", feature:true,
@@ -732,8 +738,13 @@ buildGrid.innerHTML = BUILDS.map(b=>`
       <div class="build-name">${b.name}</div>
       ${b.status?`<span class="build-status ${b.statusClass||''}">${b.status}</span>`:''}
     </div>
-    <p class="build-desc">${b.desc}</p>
-    ${b.highlight?`<div class="build-highlight"><div class="lbl">${b.highlight.lbl}</div><p>${b.highlight.text}</p></div>`:''}
+    <div class="build-body">
+      <div class="build-text">
+        <p class="build-desc">${b.desc}</p>
+        ${b.highlight?`<div class="build-highlight"><div class="lbl">${b.highlight.lbl}</div><p>${b.highlight.text}</p></div>`:''}
+      </div>
+      ${b.video?`<div class="build-media"><video src="${b.video}" controls playsinline preload="metadata"></video></div>`:''}
+    </div>
     <div class="build-stack">${b.stack.map(s=>`<span class="chip">${s}</span>`).join('')}</div>
   </div>`).join('');
 
