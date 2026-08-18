@@ -683,6 +683,12 @@ const WORKS = [
 // Builder - 6 months of shipped products.
 const BUILDS = [
   {
+    name:"Patch", feature:true,
+    desc:"Patch turns any sound into a real, editable synth patch.<br><br>Describe what you're after. \"Synth lead from Darude Sandstorm\" and Patch reasons its way to a matching patch, built from synths you already own.<br><br>Or drop in a sample straight from your library. Patch analyzes its actual character (brightness, harmonics, attack, stereo width) and reconstructs it as a live instrument shaped to match, instead of a frozen loop you're stuck with. From there it's yours: turn the filter, push the drive, automate it, make it your own.<br><br>Every patch is a real, hosted synth with real parameters (not a rendered sample) and drops straight onto a genuine Logic Pro channel strip, ready to keep working with.",
+    stack:["FFT","Logic Pro","Claude","JUCE","Spectral Analysis Agent"],
+    video:"assets/patch-demo.mp4"
+  },
+  {
     name:"In Development - ElevenIdeas", feature:true,
     desc:"ElevenIdeas, built using ElevenAPI, lives inside your DAW and turns a single clip into eleven finished, song-aware ideas. Select an element, for example a lead vocal, and get new melodies, rewritten hooks, alternate deliveries, harmonies - even the same line re-sung in the artist's own cloned voice. Every idea comes back in the song's key, locked to the grid, and drags straight onto your timeline.<br><br>It stays relevant because it understands the whole track. A companion plugin, ElevenBrain, sits on your master bus and listens - key, tempo, energy, tone - then feeds that context to every ElevenIdeas instance on the tracks you're working on. Add a plain-language note like \"more energy going into the chorus,\" and it shapes the results.",
     highlight:{lbl:"Built On", text:"ElevenLabs Music v2 and Voice Changer via ElevenAPI."},
