@@ -2,3 +2,6 @@
 # Regenerated on demand, referenced from plans/chats, not source. Safe to delete.
 .tatastu-sketches/
 *.tatastu-cache.json
+
+# Local secrets (read by the Overflow gateway at runtime, never committed)
+.env
