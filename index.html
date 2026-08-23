@@ -704,8 +704,8 @@ const BUILDS = [
   {
     name:"BetMe", feature:true,
     desc:"A social challenge app where friends put stakes on real-world dares - run a 10k, nail a trick shot, finish the plate. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>.",
-    highlight:{lbl:"The Video Judge", text:"I built a multimodal pipeline that watches the video evidence a user submits and rules on whether the challenge was genuinely completed - reading the action, the context and the outcome frame-by-frame. It replaces slow, argument-prone human verification with an instant, consistent, tamper-resistant verdict. No refs, no disputes."},
-    stack:["Multimodal LLM","Video understanding","React Native","Serverless"]
+    highlight:{lbl:"The Video Judge", text:"The video judge is Google Gemini's native video API (gemini-2.5-flash by default, gemini-2.5 pro for crossmodel reruns), fed the uploaded video(s), a category-specific rubric prompt, and any structured bet criteria (target value, time cap, disqualifiers). It returns schema-enforced JSON - observation, reasoning, and extracted criteria before a final decision (A/B/draw/inconclusive/needs_human) plus a 0-100 confidence score, to prevent reasoning from drifting to fit a pre-picked verdict. Bet resolution auto-accepts the verdict if confidence clears a per-bet threshold"},
+    stack:["Gemini 2.5 Flash/Pro","Native video API","Schema-enforced JSON","React Native","Serverless"]
   },
   {
     name:"GasBuddy",
