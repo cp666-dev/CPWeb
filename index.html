@@ -696,6 +696,12 @@ const BUILDS = [
     video:"assets/elevenideas-demo.mp4"
   },
   {
+    name:"Blueprint", feature:true,
+    desc:"Blueprint Studio: Arrangement Intelligence for your DAW.<br><br>Drop in any track and Blueprint analyzes the audio (section structure, key, tempo, dynamics, and instrumentation), then drafts a session-ready arrangement scaffold.<br><br>Perfect for producers who want to deconstruct a reference track, sketch a remix, or break through arrangement block: skip hours of manual mapping and start from a structured session instead of a blank one.<br><br>Export the blueprint as a standard MIDI marker file (tempo, time signature, and section markers) that drops straight into Logic, Cubase, Studio One, or Reaper, or as text for Ableton Live and FL Studio.<br><br>Under the hood: Google's YAMNet neural network and a custom spectral DSP analyzer identify the instrumentation, Anthropic's Claude writes the arrangement, all in a native C++ / JUCE 8 macOS engine with a dependency-free web UI.",
+    stack:["C++ / JUCE 8","YAMNet","Spectral DSP","Claude","MIDI markers","macOS"],
+    video:"assets/blueprint-demo.mp4"
+  },
+  {
     name:"BetMe", feature:true,
     desc:"A social challenge app where friends put stakes on real-world dares - run a 10k, nail a trick shot, finish the plate. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>.",
     highlight:{lbl:"The Video Judge", text:"I built a multimodal pipeline that watches the video evidence a user submits and rules on whether the challenge was genuinely completed - reading the action, the context and the outcome frame-by-frame. It replaces slow, argument-prone human verification with an instant, consistent, tamper-resistant verdict. No refs, no disputes."},
