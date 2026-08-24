@@ -282,7 +282,7 @@ section{position:relative;padding:clamp(90px,12vh,150px) 0}
 .build-body{display:flex;gap:28px}
 .build-text{flex:1 1 0;min-width:0}
 .build-media{flex:1 1 0;min-width:0}
-.build-media video{width:100%;height:100%;display:block;border-radius:var(--r-md);border:1px solid var(--line);background:var(--panel-2);object-fit:cover}
+.build-media video,.build-media img{width:100%;height:100%;display:block;border-radius:var(--r-md);border:1px solid var(--line);background:var(--panel-2);object-fit:cover}
 .build-highlight{
   margin-top:20px;padding:18px 20px;border-radius:var(--r-md);
   background:var(--panel-2);border:1px solid var(--line);
@@ -702,6 +702,12 @@ const BUILDS = [
     video:"assets/blueprint-demo.mp4"
   },
   {
+    name:"slopworthy.xyz", feature:true,
+    desc:"A tool that tells vibecoders whether their genius idea already exists. It used to run on a fixed database of 12 categories, now it's an LLM, because apparently even the judgment needed an upgrade. Paste in your idea and get an honest read on whether it's a breakthrough or the fortieth to-do app in a trench coat. It won't stop you from building it, just quietly note that 500 people beat you there. Some things never change, mainly the ideas people think are original. <a href=\"https://slopworthy.xyz\" target=\"_blank\" rel=\"noopener\">https://slopworthy.xyz</a> - Try it out for your next idea.",
+    stack:["LLM judgment","Idea validation","Web app","Claude"],
+    image:"assets/slopworthy-demo.png"
+  },
+  {
     name:"BetMe", feature:true,
     desc:"A social challenge app where friends put stakes on real-world dares - run a 10k, nail a trick shot, finish the plate. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>.",
     highlight:{lbl:"The Video Judge", text:"The video judge is Google Gemini's native video API (gemini-2.5-flash by default, gemini-2.5 pro for crossmodel reruns), fed the uploaded video(s), a category-specific rubric prompt, and any structured bet criteria (target value, time cap, disqualifiers). It returns schema-enforced JSON - observation, reasoning, and extracted criteria before a final decision (A/B/draw/inconclusive/needs_human) plus a 0-100 confidence score, to prevent reasoning from drifting to fit a pre-picked verdict. Bet resolution auto-accepts the verdict if confidence clears a per-bet threshold"},
@@ -756,6 +762,7 @@ buildGrid.innerHTML = BUILDS.map(b=>`
         ${b.highlight?`<div class="build-highlight"><div class="lbl">${b.highlight.lbl}</div><p>${b.highlight.text}</p></div>`:''}
       </div>
       ${b.video?`<div class="build-media"><video src="${b.video}" controls playsinline preload="metadata"></video></div>`:''}
+      ${b.image?`<div class="build-media"><img src="${b.image}" alt="${b.name} screenshot" loading="lazy" /></div>`:''}
     </div>
     <div class="build-stack">${b.stack.map(s=>`<span class="chip">${s}</span>`).join('')}</div>
   </div>`).join('');
