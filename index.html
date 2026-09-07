@@ -283,6 +283,19 @@ section{position:relative;padding:clamp(90px,12vh,150px) 0}
 .build-text{flex:1 1 0;min-width:0}
 .build-media{flex:1 1 0;min-width:0}
 .build-media video,.build-media img{width:100%;height:100%;display:block;border-radius:var(--r-md);border:1px solid var(--line);background:var(--panel-2);object-fit:cover}
+.carousel{position:relative;width:100%;height:100%;border-radius:var(--r-md);border:1px solid var(--line);background:var(--panel-2);overflow:hidden}
+.carousel-track{display:flex;height:100%;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.carousel-track img{flex:0 0 100%;width:100%;height:100%;border:none;border-radius:0;object-fit:cover}
+.carousel-nav{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;
+  background:rgba(10,10,12,.6);border:1px solid var(--line);color:var(--ink);font-size:20px;line-height:1;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,opacity .2s;opacity:0;backdrop-filter:blur(4px)}
+.carousel:hover .carousel-nav{opacity:1}
+.carousel-nav:hover{background:var(--orange);color:var(--bg)}
+.carousel-nav.prev{left:10px}
+.carousel-nav.next{right:10px}
+.carousel-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;gap:7px;justify-content:center}
+.carousel-dots .dot{width:6px;height:6px;border-radius:50%;background:rgba(240,237,230,.35);cursor:pointer;transition:background .2s}
+.carousel-dots .dot.on{background:var(--orange)}
 .build-highlight{
   margin-top:20px;padding:18px 20px;border-radius:var(--r-md);
   background:var(--panel-2);border:1px solid var(--line);
@@ -684,6 +697,12 @@ const WORKS = [
 // Builder - 6 months of shipped products.
 const BUILDS = [
   {
+    name:"GrooveDNA", feature:true,
+    desc:"GrooveDNA - an AU/VST3 drum sampler plugin that curates its own kits. Type a drummer's name or a vibe (\"Questlove but tighter,\" \"sloppy garage rock\") and Claude reasons out the swing, ghost-note placement, and kit balance that phrase actually implies. That reasoning drives a live search against Splice's MCP server for one-shot samples matching the character of each drum voice - kick, snare, hats, toms, clap, perc, individually sourced and loaded.<br><br>Not happy with a hit? Argue with it in plain text and it refines the search instead of starting over. Built in JUCE on the same real-API-with-offline-fallback architecture as Patch.",
+    stack:["AU / VST3","JUCE","Claude","Splice MCP","Sample curation","macOS"],
+    images:["assets/groovedna-1.jpg","assets/groovedna-2.jpg","assets/groovedna-3.jpg","assets/groovedna-4.jpg"]
+  },
+  {
     name:"Patch", feature:true,
     desc:"Patch turns any sound into a real, editable synth patch.<br><br>Describe what you're after. \"Synth lead from Darude Sandstorm\" and Patch reasons its way to a matching patch, built from synths you already own.<br><br>Or drop in a sample straight from your library. Patch analyzes its actual character (brightness, harmonics, attack, stereo width) and reconstructs it as a live instrument shaped to match, instead of a frozen loop you're stuck with. From there it's yours: turn the filter, push the drive, automate it, make it your own.<br><br>Every patch is a real, hosted synth with real parameters (not a rendered sample) and drops straight onto a genuine Logic Pro channel strip, ready to keep working with.",
     stack:["FFT","Logic Pro","Claude","JUCE","Spectral Analysis Agent"],
@@ -763,9 +782,26 @@ buildGrid.innerHTML = BUILDS.map(b=>`
       </div>
       ${b.video?`<div class="build-media"><video src="${b.video}" controls playsinline preload="metadata"></video></div>`:''}
       ${b.image?`<div class="build-media"><img src="${b.image}" alt="${b.name} screenshot" loading="lazy" /></div>`:''}
+      ${b.images?`<div class="build-media"><div class="carousel" data-idx="0">
+        <div class="carousel-track">${b.images.map((src,i)=>`<img src="${src}" alt="${b.name} screenshot ${i+1}" loading="lazy" />`).join('')}</div>
+        <button class="carousel-nav prev" aria-label="Previous">&#8249;</button>
+        <button class="carousel-nav next" aria-label="Next">&#8250;</button>
+        <div class="carousel-dots">${b.images.map((_,i)=>`<span class="dot${i===0?' on':''}"></span>`).join('')}</div>
+      </div></div>`:''}
     </div>
     <div class="build-stack">${b.stack.map(s=>`<span class="chip">${s}</span>`).join('')}</div>
   </div>`).join('');
+
+/* ---------------- BUILD CAROUSELS ---------------- */
+buildGrid.querySelectorAll('.carousel').forEach(c=>{
+  const track=c.querySelector('.carousel-track');
+  const dots=[...c.querySelectorAll('.dot')];
+  const n=track.children.length;
+  const go=i=>{const idx=(i+n)%n;c.dataset.idx=idx;track.style.transform=`translateX(-${idx*100}%)`;dots.forEach((d,j)=>d.classList.toggle('on',j===idx));};
+  c.querySelector('.next').addEventListener('click',()=>go(+c.dataset.idx+1));
+  c.querySelector('.prev').addEventListener('click',()=>go(+c.dataset.idx-1));
+  dots.forEach((d,j)=>d.addEventListener('click',()=>go(j)));
+});
 
 const hobGrid = document.getElementById('hobGrid');
 hobGrid.innerHTML = HOBBIES.map(h=>`
