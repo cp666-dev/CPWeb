@@ -467,7 +467,6 @@ body.nav-open{overflow:hidden}
         <div class="fact"><span class="k">Based in</span><span class="v">London &amp; San Francisco</span></div>
         <div class="fact"><span class="k">Discipline</span><span class="v">AI/Audio Specialist</span></div>
         <div class="fact"><span class="k">Streams</span><span class="v">16B+ cumulative</span></div>
-        <div class="fact"><span class="k">Recognition</span><span class="v">Grammy winner · Academy voter</span></div>
         <div class="fact"><span class="k">Ranking</span><span class="v">Top 1% Engineers</span></div>
         <div class="tags">
           <span class="tag">Production</span><span class="tag">Engineering</span><span class="tag">Mixing</span>
@@ -778,8 +777,6 @@ document.addEventListener('click', (e)=>{
 addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMobileNav(); });
 addEventListener('resize', ()=>{ if(innerWidth>900) closeMobileNav(); }, {passive:true});
 
-initScene();
-
 /* ============================================================
    THREE.JS - TR-808 inspired drum machine hero
    ============================================================ */
@@ -987,6 +984,7 @@ async function initScene(){
   }, {passive:true});
 }
 
+initScene();
 </script>
 </body>
 </html>
