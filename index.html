@@ -59,7 +59,6 @@ body{
   text-rendering:optimizeLegibility;
   overflow-x:hidden;
 }
-body.locked{overflow:hidden;height:100vh}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:600;line-height:1.05;margin:0;letter-spacing:-.02em}
@@ -79,47 +78,6 @@ body::after{
 
 /* ---------- GLOBAL RAILS / GRID DECOR ---------- */
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative}
-
-/* ============================================================
-   PASSWORD GATE
-   ============================================================ */
-#gate{
-  position:fixed; inset:0; z-index:100;
-  background:var(--bg);
-  display:flex; align-items:center; justify-content:center;
-}
-#gate.hidden{display:none}
-.gate-card{
-  width:min(420px,90vw); text-align:center; padding:12px;
-}
-.gate-unit{
-  background:var(--panel);
-  border:1px solid var(--line); border-radius:var(--r-lg);
-  padding:34px 30px 30px;
-  position:relative;
-}
-.gate-led{
-  width:8px;height:8px;border-radius:50%;background:var(--red);
-  margin:2px auto 18px;
-}
-.gate-unit.ok .gate-led{background:var(--green)}
-.gate-brand{font-family:"Space Grotesk";font-size:22px;font-weight:600;letter-spacing:-.01em}
-.gate-sub{font-family:"IBM Plex Mono";font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-top:8px}
-.gate-form{margin-top:26px;display:flex;flex-direction:column;gap:12px}
-.gate-input{
-  width:100%; background:var(--bg); border:1px solid var(--line);
-  color:var(--ink); font-family:"IBM Plex Mono"; font-size:15px; letter-spacing:.08em;
-  padding:14px 16px; border-radius:var(--r-md); text-align:center; outline:none;
-}
-.gate-input:focus{border-color:var(--orange)}
-.gate-input.err{border-color:var(--red)}
-.gate-btn{
-  width:100%; background:var(--orange);
-  color:var(--bg); font-family:"Space Grotesk"; font-weight:600; font-size:15px;
-  border:none; padding:14px; border-radius:var(--r-md); cursor:pointer;
-  letter-spacing:.02em;
-}
-.gate-hint{margin-top:16px;font-size:12px;color:var(--ink-faint)}
 
 /* ============================================================
    NAV
@@ -422,30 +380,13 @@ body.nav-open{overflow:hidden}
 @media (max-width:560px){
   .wrap{padding:0 18px}
   header.nav{padding:14px 18px}
-  .gate-input{font-size:16px}
   .tile.big{grid-column:span 2;grid-row:span 1;aspect-ratio:2}
   .works-grid{gap:8px}
 }
 </style>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d25675f66fb24237903a30f64fa8f0ed"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
-<body class="locked">
-
-<!-- ============================= GATE ============================= -->
-<div id="gate">
-  <div class="gate-card">
-    <div class="gate-unit" id="gateUnit">
-      <div class="gate-led"></div>
-      <div class="gate-brand">Connor Panayi</div>
-      <div class="gate-sub">Private · By invitation</div>
-      <form class="gate-form" id="gateForm" autocomplete="off">
-        <input class="gate-input" id="gateInput" type="password" placeholder="Enter password" aria-label="Password" />
-        <button class="gate-btn" type="submit">Unlock</button>
-      </form>
-      <div class="gate-hint">Ask Connor for the password.</div>
-    </div>
-  </div>
-</div>
+<body>
 
 <!-- ============================= NAV ============================= -->
 <header class="nav" id="nav">
@@ -837,35 +778,7 @@ document.addEventListener('click', (e)=>{
 addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMobileNav(); });
 addEventListener('resize', ()=>{ if(innerWidth>900) closeMobileNav(); }, {passive:true});
 
-/* ---------------- PASSWORD GATE ---------------- */
-// Change the password by replacing PASS_HASH with the SHA-256 hex of your new password.
-// (Don't put the plaintext password in this file - it's served publicly as-is.)
-const PASS_HASH = "c6f00b283d63d54f819f4c3d8d23badd85873d7692b2e3e032a45ed5851d6825";
-const gate = document.getElementById('gate');
-const gateForm = document.getElementById('gateForm');
-const gateInput = document.getElementById('gateInput');
-const gateUnit = document.getElementById('gateUnit');
-
-async function sha256(str){
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
-}
-function unlock(){
-  gateUnit.classList.add('ok');
-  document.body.classList.remove('locked');
-  setTimeout(()=>{ gate.classList.add('hidden'); initScene(); }, 450);
-  try{ sessionStorage.setItem('cp_unlocked','1'); }catch(e){}
-}
-gateForm.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const h = await sha256(gateInput.value.trim());
-  if(h===PASS_HASH){ unlock(); }
-  else {
-    gateInput.classList.add('err'); gateInput.value=''; gateInput.placeholder="Wrong password";
-    setTimeout(()=>gateInput.classList.remove('err'),400);
-  }
-});
-if(sessionStorage.getItem('cp_unlocked')==='1'){ gate.classList.add('hidden'); document.body.classList.remove('locked'); }
+initScene();
 
 /* ============================================================
    THREE.JS - TR-808 inspired drum machine hero
@@ -1074,8 +987,6 @@ async function initScene(){
   }, {passive:true});
 }
 
-// If already unlocked from a previous visit, start scene immediately.
-if(sessionStorage.getItem('cp_unlocked')==='1'){ initScene(); }
 </script>
 </body>
 </html>
