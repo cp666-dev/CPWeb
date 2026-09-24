@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Connor Panayi · Forward Deployed Creative & Technologist</title>
+<meta name="description" content="Forward deployed creative and technologist. I embed with teams, wire APIs and models into shipped products, and sit between what builders can make and what users actually need. 20+ products shipped. Previously a record producer with 16B+ streams." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌘</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   CONNOR PANAYI — Forward Deployed Creative / Technologist
+   Light, editorial, uniform. Near-monochrome + one restrained accent.
+   ============================================================ */
+:root{
+  --bg:#f4f3ef;
+  --surface:#ffffff;
+  --panel:#faf9f6;
+  --line:#e5e3dc;
+  --line-2:#d6d3ca;
+  --ink:#15161a;
+  --ink-2:#3a3c42;
+  --ink-muted:#5b5e66;
+  --ink-faint:#8f9199;
+  --acc:#2f52e0;
+  --ok:#1f9d57;
+  --r:8px; --r-lg:14px;
+  --maxw:1280px;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.025em;line-height:1.03}
+.mono{font-family:var(--mono)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 34px;position:relative}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* ---------- NAV ---------- */
+header{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;
+  padding:15px 34px;background:rgba(244,243,239,.78);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-bottom-color:var(--line)}
+.brand{display:flex;align-items:center;gap:11px;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.brand .sq{width:9px;height:9px;background:var(--ink);border-radius:2px}
+.navl{display:flex;gap:2px;align-items:center}
+.navl a{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);padding:8px 13px;border-radius:var(--r)}
+.navl a:hover{color:var(--ink);background:rgba(0,0,0,.04)}
+.navl a.cta{color:var(--surface);background:var(--ink);margin-left:6px}
+.navl a.cta:hover{background:#000}
+.burger{display:none;flex-direction:column;gap:5px;width:38px;height:38px;align-items:center;justify-content:center;background:none;border:none;cursor:pointer}
+.burger span{width:20px;height:2px;background:var(--ink);display:block;transition:.25s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+#hero{padding:64px 0 84px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.22fr;gap:56px;align-items:center}
+h1.title{font-size:clamp(42px,5.6vw,72px);font-weight:700;letter-spacing:-.038em;line-height:.97}
+.title .and{color:var(--ink-faint);font-weight:500}
+.hero-sub{margin-top:26px;max-width:540px;font-size:18.5px;color:var(--ink-2);line-height:1.55}
+.hero-sub b{color:var(--ink);font-weight:600}
+.hero-avail{margin-top:18px;max-width:540px;font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;color:var(--ink-muted);display:flex;align-items:center;gap:9px}
+.hero-avail .d{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
+.hero-cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;padding:12px 20px;border-radius:100px;border:1px solid var(--line-2);color:var(--ink);transition:.2s;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.btn.pri:hover{background:#000}
+.hero-stats{margin-top:38px;display:flex;gap:44px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--line)}
+.stat .n{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.stat .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px}
+
+/* hero flagship viewer (real product footage) */
+.viewer{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-lg);
+  box-shadow:0 1px 0 #fff inset,0 30px 60px -34px rgba(20,20,20,.32);overflow:hidden}
+.viewer-media{position:relative;aspect-ratio:16/10;background:#0c0d10}
+.viewer-media video{width:100%;height:100%;object-fit:contain}
+.viewer-cap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 18px;border-top:1px solid var(--line)}
+.viewer-cap .nm{font-weight:600;font-size:15px}
+.viewer-cap .st{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);letter-spacing:.04em}
+
+/* ---------- SECTION SCAFFOLD ---------- */
+section{padding:92px 0}
+.divider{height:1px;background:var(--line)}
+.sec-head{margin-bottom:44px}
+.sec-head h2{font-size:clamp(28px,4.4vw,44px);letter-spacing:-.03em}
+.sec-head .eyebrow{margin-bottom:14px;display:block}
+.sec-head .sub{margin-top:16px;max-width:640px;color:var(--ink-muted);font-size:15.5px}
+
+/* ---------- APPROACH ---------- */
+#approach{background:var(--panel)}
+.lead{font-size:clamp(23px,3.1vw,34px);font-weight:500;letter-spacing:-.02em;line-height:1.3;max-width:940px}
+.lead .mut{color:var(--ink-faint)}
+.approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;margin-top:56px}
+.ap{background:var(--panel);padding:32px}
+.ap .num{font-family:var(--mono);font-size:12px;color:var(--acc);letter-spacing:.1em}
+.ap h3{font-size:19px;margin:14px 0 9px}
+.ap p{margin:0;color:var(--ink-muted);font-size:14.5px}
+
+/* ---------- BUILDER ---------- */
+#builder{background:var(--bg)}
+.build-item{display:grid;grid-template-columns:0.82fr 1.18fr;gap:60px;align-items:center;padding:60px 0;border-top:1px solid var(--line)}
+.build-item:first-of-type{border-top:none}
+.build-item.rev .build-media{order:2}
+.build-name{font-size:clamp(28px,3.4vw,40px);letter-spacing:-.03em;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.build-name .live{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);border:1px solid var(--line-2);border-radius:100px;padding:4px 10px;font-weight:400}
+.build-desc{margin-top:18px;color:var(--ink-2);font-size:15.5px;line-height:1.62}
+.build-desc b{color:var(--ink);font-weight:600}
+.build-desc a{color:var(--acc);border-bottom:1px solid rgba(47,82,224,.3)}
+.build-stack{margin-top:22px;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--ink-faint);line-height:1.9}
+.build-stack .k{color:var(--ink-2)}
+/* media frame */
+.build-media{position:relative}
+.frame{border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;background:#0c0d10;
+  box-shadow:0 24px 50px -30px rgba(20,20,20,.3)}
+.frame video,.frame img{width:100%;display:block;aspect-ratio:16/10;object-fit:contain;background:#0c0d10}
+/* carousel */
+.carousel{position:relative;border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;background:#0c0d10;box-shadow:0 24px 50px -30px rgba(20,20,20,.3)}
+.carousel-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.carousel-track img{flex:0 0 100%;width:100%;aspect-ratio:16/10;object-fit:contain;background:#0c0d10}
+.cn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.9);border:1px solid var(--line-2);color:var(--ink);font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;opacity:0;transition:.2s}
+.carousel:hover .cn{opacity:1}
+.cn.prev{left:12px}.cn.next{right:12px}
+.cd{position:absolute;bottom:12px;left:0;right:0;display:flex;gap:6px;justify-content:center}
+.cd .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer}
+.cd .dot.on{background:#fff}
+/* text-only builds */
+.build-more{margin-top:44px;border-top:1px solid var(--line);padding-top:48px}
+.build-more h3.mh{font-size:20px;margin-bottom:26px;letter-spacing:-.02em}
+.more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.more-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px}
+.more-card .mn{font-size:19px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
+.more-card p{margin:0;color:var(--ink-muted);font-size:14.5px}
+.more-card p b{color:var(--ink);font-weight:600}
+.more-card p a{color:var(--acc)}
+.more-card .build-stack{margin-top:16px}
+
+/* ---------- EXPERIENCE ---------- */
+#exp{background:var(--panel)}
+.tl-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.tl{padding:26px 22px 0;border-top:2px solid var(--line-2);position:relative}
+.tl::before{content:"";position:absolute;top:-6px;left:0;width:9px;height:9px;border-radius:50%;background:var(--ink)}
+.tl .when{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-faint);margin-bottom:12px}
+.tl .role{font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.2;min-height:2.3em}
+.tl .org{font-size:13.5px;color:var(--ink-muted);margin-top:6px;min-height:2.4em}
+.tl .note{font-size:13.5px;color:var(--ink-muted);margin-top:12px;line-height:1.5}
+
+/* ---------- SELECTED WORKS (music, supporting) ---------- */
+#works{background:var(--bg)}
+.works-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.tile{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:1;background:var(--panel);border:1px solid var(--line);cursor:default}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.tile:hover img{transform:scale(1.04)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(0,0,0,.82));opacity:0;transition:opacity .25s}
+.tile:hover::after{opacity:1}
+.tile .meta{position:absolute;left:0;right:0;bottom:0;padding:12px;z-index:2;opacity:0;transform:translateY(6px);transition:.25s}
+.tile:hover .meta{opacity:1;transform:none}
+.tile .t{display:block;color:#fff;font-weight:600;font-size:13px;line-height:1.15}
+.tile .a{display:block;color:rgba(255,255,255,.75);font-size:11.5px;margin-top:3px}
+.works-note{margin-top:30px;font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:.03em}
+
+/* ---------- CONTACT ---------- */
+#contact{background:var(--panel);text-align:center}
+.contact-big{font-size:clamp(34px,6vw,64px);letter-spacing:-.03em;line-height:1}
+.contact-big a{color:var(--ink);border-bottom:3px solid var(--acc)}
+.contact-sub{margin:24px auto 0;max-width:520px;color:var(--ink-muted)}
+.contact-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+footer{padding:34px 0}
+.foot-social{display:flex;gap:18px;align-items:center;justify-content:center}
+.foot-social a{color:var(--ink-faint);display:flex}
+.foot-social svg{width:17px;height:17px}
+.foot-social a:hover{color:var(--ink)}
+
+/* ---------- RESPONSIVE ---------- */
+body.nav-open{overflow:hidden}
+@media(max-width:900px){
+  .navl{position:fixed;inset:0 0 0 auto;width:min(78vw,320px);height:100svh;flex-direction:column;align-items:stretch;justify-content:center;
+    background:var(--surface);border-left:1px solid var(--line);padding:30px;gap:2px;display:none;z-index:35}
+  .navl.open{display:flex}
+  .navl a{padding:16px 6px;font-size:14px;border-bottom:1px solid var(--line)}
+  .navl a.cta{margin:14px 0 0;text-align:center;border-radius:var(--r)}
+  .burger{display:flex;position:relative;z-index:36}
+  section{padding:64px 0}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .build-item{grid-template-columns:1fr;gap:28px;padding:44px 0}
+  .build-item.rev .build-media{order:0}
+  .approach-grid{grid-template-columns:1fr}
+  .tl-grid{grid-template-columns:1fr}
+  .tl{border-top:none;border-left:2px solid var(--line-2);padding:0 0 28px 22px}
+  .tl::before{top:2px;left:-6px}
+  .tl .role,.tl .org{min-height:auto}
+  .more-grid{grid-template-columns:1fr}
+  .works-grid{grid-template-columns:repeat(3,1fr)}
+  .sec-head{margin-bottom:34px}
+}
+@media(max-width:560px){.wrap{padding:0 22px}.works-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- PASSWORD GATE (client-side preview lock) ---------- */
+body.locked{overflow:hidden}
+#gate{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;
+  background:var(--bg);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:56px 56px}
+#gate.hide{display:none}
+.gate-box{width:100%;max-width:380px;background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-lg);
+  padding:34px 30px;box-shadow:0 30px 60px -34px rgba(20,20,20,.32);text-align:left}
+.gate-box .sq{width:10px;height:10px;background:var(--ink);border-radius:2px;display:inline-block;margin-bottom:22px}
+.gate-title{font-size:22px;font-weight:600;letter-spacing:-.02em}
+.gate-sub{margin:10px 0 22px;color:var(--ink-muted);font-size:14.5px;line-height:1.5}
+.gate-box input{width:100%;font-family:var(--mono);font-size:14px;padding:13px 15px;border:1px solid var(--line-2);
+  border-radius:var(--r);background:var(--panel);color:var(--ink);outline:none}
+.gate-box input:focus{border-color:var(--ink)}
+.gate-box button{width:100%;margin-top:12px;font-family:var(--mono);font-size:13px;letter-spacing:.04em;padding:13px 15px;
+  border:1px solid var(--ink);border-radius:var(--r);background:var(--ink);color:var(--surface);cursor:pointer}
+.gate-box button:hover{background:#000}
+.gate-err{min-height:18px;margin-top:12px;font-family:var(--mono);font-size:12px;color:#c0392b}
+</style>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d25675f66fb24237903a30f64fa8f0ed"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body class="locked">
+
+<div id="gate">
+  <form class="gate-box" id="gateForm">
+    <span class="sq"></span>
+    <div class="gate-title">Private preview</div>
+    <p class="gate-sub">This is a work-in-progress version of the site, shared for review. Enter the password to continue.</p>
+    <input id="gatePw" type="password" placeholder="Password" autocomplete="off" autofocus />
+    <button type="submit">Enter →</button>
+    <div class="gate-err" id="gateErr"></div>
+  </form>
+</div>
+
+<header id="nav">
+  <a class="brand" href="#hero"><span class="sq"></span> Connor&nbsp;Panayi</a>
+  <nav class="navl" id="navl">
+    <a href="#approach">Approach</a>
+    <a href="#builder">Builder</a>
+    <a href="#exp">Experience</a>
+    <a href="#works">Music</a>
+    <a href="#contact">Contact</a>
+    <a class="cta" href="assets/Connor-Panayi-CV.pdf" download>Resume ↗</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 class="title">Forward Deployed<br>Creative <span class="and">/</span> Technologist</h1>
+      <p class="hero-sub">
+        I embed with teams, learn the domain fast, and <b>ship the product</b>, wiring APIs, models and
+        interfaces into things people actually use. The connective tissue between what builders can make
+        and what users actually need.
+      </p>
+      <p class="hero-avail">Currently available for forward deployed, product and creative-technologist roles.</p>
+      <div class="hero-cta">
+        <a class="btn pri" href="#builder">See the work →</a>
+        <a class="btn" href="https://calendly.com/connor-panayi/30min" target="_blank" rel="noopener">Book a call</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="n">20+</div><div class="k">Products shipped</div></div>
+        <div class="stat"><div class="n">16B+</div><div class="k">Music streams</div></div>
+        <div class="stat"><div class="n">Full-stack</div><div class="k">Design to API to ship</div></div>
+      </div>
+    </div>
+
+    <div class="viewer">
+      <div class="viewer-media">
+        <video src="assets/chops-demo.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="viewer-cap">
+        <span class="nm">Chops</span>
+        <span class="st">Audio DSP · CLAP · LALAL.AI API · macOS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== APPROACH ===================== -->
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Approach</span><h2>How I work</h2></div>
+    <p class="lead">
+      Great products get built the way great records do. Relentless attention to the thing people can't
+      quite name but always feel. <span class="mut">I sit between builders and users, translate between them,
+      and turn hard problems into product that ships.</span>
+    </p>
+    <div class="approach-grid">
+      <div class="ap"><div class="num">01</div><h3>Embed &amp; learn the domain</h3><p>Drop into the problem, talk to the people living it, and get fluent fast. The same ear I built for a mix, aimed at a workflow.</p></div>
+      <div class="ap"><div class="num">02</div><h3>Wire the hard parts</h3><p>APIs, models, DSP, agents. I integrate the whole stack so the clever bit actually runs, not just demos.</p></div>
+      <div class="ap"><div class="num">03</div><h3>Ship something people use</h3><p>Design, build and release a real product, then sit with the users and iterate until it feels inevitable.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== BUILDER ===================== -->
+<section id="builder">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Continuously shipping</span>
+      <h2>Builder</h2>
+      <p class="sub">Every product below was designed, engineered and shipped by me, end to end. APIs, models, DSP, interface, the lot.</p>
+    </div>
+    <div id="buildList"></div>
+
+    <div class="build-more">
+      <h3 class="mh">More shipped</h3>
+      <div class="more-grid" id="moreList"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="exp">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Track record</span><h2>Where I've operated</h2></div>
+    <div class="tl-grid">
+      <div class="tl">
+        <div class="when">2024 – Now</div>
+        <div class="role">Co-Founder &amp; Co-CEO</div>
+        <div class="org">MineFM · Social music discovery</div>
+        <div class="note">Concept to live launch: product, team and early funding. Building end to end.</div>
+      </div>
+      <div class="tl">
+        <div class="when">2025 – 2026</div>
+        <div class="role">Head of Music, AI &amp; Infrastructure</div>
+        <div class="org">Camp Network · IP platform</div>
+        <div class="note">Senior operator across product, technical integrations and partnerships.</div>
+      </div>
+      <div class="tl">
+        <div class="when">2022 – 2024</div>
+        <div class="role">Head of A&amp;R &amp; Artist Partnerships</div>
+        <div class="org">Sonu Stream · Artist-first streaming</div>
+        <div class="note">Partnerships across artists, labels and distributors; onboarded millions of catalog tracks.</div>
+      </div>
+      <div class="tl">
+        <div class="when">2013 – Now</div>
+        <div class="role">Record Producer &amp; Engineer</div>
+        <div class="org">Independent · Worldwide</div>
+        <div class="note">16B+ streams, Grammy recognition, Recording Academy voting member. The craft everything else is built on.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== MUSIC (supporting) ===================== -->
+<section id="works">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Prior craft</span>
+      <h2>The ear behind the work</h2>
+      <p class="sub">Thirteen years and 16B+ streams engineering and producing records for Coldplay, BTS, The Rolling Stones, Florence + The Machine, Mark Ronson and more. It's where the obsession with detail, and the taste I bring to product, comes from.</p>
+    </div>
+    <div class="works-grid" id="worksGrid"></div>
+    <div class="works-note">Selected discography · full credits on request</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
+  <div class="wrap">
+    <span class="eyebrow" style="display:block;margin-bottom:22px">Let's talk</span>
+    <h2 class="contact-big"><a href="mailto:connor.panayi@gmail.com">Say hello.</a></h2>
+    <p class="contact-sub">Open to forward deployed, product and creative-technologist roles where craft meets shipping. Or the weird space in between.</p>
+    <div class="contact-row">
+      <a class="btn pri" href="mailto:connor.panayi@gmail.com">connor.panayi@gmail.com</a>
+      <a class="btn" href="https://calendly.com/connor-panayi/30min" target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap foot-social">
+      <a href="https://x.com/itsCP666" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.instagram.com/connorpanayi" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.linkedin.com/in/connor-panayi-40a3913ab/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.65c0-1.35-.02-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98V21H9z"/></svg></a>
+    </div>
+  </footer>
+</section>
+
+<script>
+/* ---------------- BUILDER DATA ---------------- */
+const BUILDS = [
+  { name:"Chops", media:"video", src:"assets/chops-demo.mp4", live:true,
+    desc:"A desktop sampler that listens before you do. Drop in a folder of audio and it analyzes onset, BPM, key and loudness, then auto-chops it into transients, beat-grid loops and phrases. Type a vibe and local <b>CLAP</b> embeddings re-rank every pad by semantic match, no cloud required. Send any chop to <b>LALAL.AI</b> to split into stems on demand.",
+    stack:"Audio DSP · Onset detection · CLAP · Local embeddings · LALAL.AI API · macOS" },
+
+  { name:"Sumi", media:"video", src:"assets/sumi-demo.mp4", live:true,
+    desc:"A reverb you paint, not dial in. Brush ink onto a canvas and the stroke becomes the impulse response, fast and dry for a tight room, slow and heavy for a cathedral tail. A live fluid simulation drives real convolution, synthesized and rendered in real time. Five masterworks ship built in as playable spaces.",
+    stack:"Convolution · Fluid simulation · IR synthesis · JUCE 8 · VST3 / AU · Standalone" },
+
+  { name:"RADA/R", media:"image", src:"assets/radar-demo.png", live:true,
+    desc:"Sound-first trend detection for A&amp;R. Ingests emerging tracks daily from Deezer charts, editorial playlists, iTunes and Reddit, then embeds each 30-second preview with <b>CLAP</b>, listening to the sound itself rather than metadata. Clusters surface which sonic styles are rising from the ground up, with per-sound share velocity and <b>Claude</b> analyst notes, regenerated every day.",
+    stack:"CLAP · Semantic embeddings · Claude · Deezer / Apple / Reddit APIs · Trend detection" },
+
+  { name:"UnderTone", media:"image", src:"assets/undertone-demo.png", live:true,
+    desc:"Listens to every take of your vocal and hears what you're actually going for. Pick a feeling from 21 options like desperate, tender or triumphant, and it lights up which take nailed it, phrase by phrase, down to a single word. No cloud, no lyrics required. Click a waveform to hear it, drag to comp straight onto the timeline.",
+    stack:"Vocal comping · Emotional analysis · Local processing · Claude · DAW plugin · macOS" },
+
+  { name:"GrooveDNA", media:"images", src:["assets/groovedna-1.jpg","assets/groovedna-2.jpg","assets/groovedna-3.jpg","assets/groovedna-4.jpg"], live:true,
+    desc:"An AU/VST3 drum sampler that curates its own kits. Type a drummer or a vibe (\"Questlove but tighter\") and <b>Claude</b> reasons out the swing, ghost-note placement and kit balance that phrase implies, then drives a live search against <b>Splice's MCP server</b> for one-shots matching each drum voice. Not happy? Argue with it in plain text and it refines the search instead of restarting.",
+    stack:"AU / VST3 · JUCE · Claude · Splice MCP · Sample curation · macOS" },
+
+  { name:"Patch", media:"video", src:"assets/patch-demo.mp4", live:true,
+    desc:"Turns any sound into a real, editable synth patch. Describe what you're after, say \"synth lead from Sandstorm\", and Patch reasons its way to a matching patch from synths you already own. Or drop in a sample: it analyzes the actual character (brightness, harmonics, attack, width) and reconstructs it as a live instrument that drops straight onto a Logic Pro channel strip.",
+    stack:"FFT · Spectral analysis agent · Claude · JUCE · Logic Pro" },
+
+  { name:"ElevenIdeas", media:"video", src:"assets/elevenideas-demo.mp4", live:true,
+    desc:"Lives inside your DAW and turns a single clip into eleven finished, song-aware ideas: new melodies, rewritten hooks, alternate deliveries, harmonies, the same line re-sung in a cloned voice. A companion plugin, ElevenBrain, sits on your master bus listening to key, tempo, energy and tone, and shapes every result. Built on <b>ElevenLabs</b> Music v2, Voice Changer, Voice Design and Audio Isolation.",
+    stack:"ElevenLabs API · DAW plugin · Music generation · Voice cloning · Sound effects" },
+
+  { name:"Blueprint", media:"video", src:"assets/blueprint-demo.mp4", live:true,
+    desc:"Arrangement intelligence for your DAW. Drop in any track and Blueprint analyzes section structure, key, tempo, dynamics and instrumentation, then drafts a session-ready arrangement scaffold. Export as a standard MIDI marker file into Logic, Cubase, Studio One or Reaper. Under the hood: Google's <b>YAMNet</b> and a custom spectral analyzer identify instrumentation, <b>Claude</b> writes the arrangement.",
+    stack:"C++ / JUCE 8 · YAMNet · Spectral DSP · Claude · MIDI markers · macOS" },
+
+  { name:"slopworthy.xyz", media:"image", src:"assets/slopworthy-demo.png", live:true, url:"https://slopworthy.xyz",
+    desc:"Tells vibecoders whether their genius idea already exists. Paste in your idea and get an honest read on whether it's a breakthrough or the fortieth to-do app in a trench coat. It won't stop you building it, just quietly note that 500 people beat you there. <a href=\"https://slopworthy.xyz\" target=\"_blank\" rel=\"noopener\">slopworthy.xyz →</a>",
+    stack:"LLM judgment · Idea validation · Web app · Claude" },
+];
+
+const MORE = [
+  { name:"BetMe",
+    desc:"A social challenge app where friends stake real money on real-world dares. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>. The video judge is Gemini's native video API, fed the clips plus a category rubric, returning schema-enforced JSON (observation, then reasoning, then verdict and confidence) so reasoning can't drift to fit a pre-picked outcome.",
+    stack:"Gemini 2.5 Flash/Pro · Native video API · Schema-enforced JSON · React Native" },
+  { name:"Stella Says",
+    desc:"A local-first desktop app that lets anyone direct AI coding agents <b>without touching a terminal</b>. Wraps Claude (plus optional providers) in a plain-language interface, running real Plan and Agent sessions against your files with live tool execution you can watch and steer. Parallel isolated git workspaces.",
+    stack:"Agent orchestration · LLM tooling · Full-stack · Design systems" },
+  { name:"LockedIn",
+    desc:"A job marketplace where employers deposit real stablecoins into escrow before a listing goes live. Seekers apply knowing <b>every posting is backed by actual money</b>; funds release automatically once a hire is verified. Runs on Base with automated screening and multi-signal hire verification.",
+    stack:"Stablecoin escrow · Base · Automated screening · Hire verification" },
+  { name:"GasBuddy",
+    desc:"A UK fuel-price iOS app showing drivers the <b>cheapest nearby petrol, diesel or premium</b>, sourced live from CMA-mandated retailer feeds. Ranks stations by price or distance on a map, with a homescreen widget for glanceable prices.",
+    stack:"SwiftUI · iOS · MapKit · Live CMA feeds · Homescreen widget" },
+  { name:"Various Tools",
+    desc:"Purpose-built <b>internal tools</b> for GTM, BD, partnerships and strategy, plus creative audio plugins from distortion units to key-tracking modulated reverbs and delays. Available to demo on a call.",
+    stack:"GTM · BD · Partnerships · Strategy · Audio plugins" },
+];
+
+/* ---------------- RENDER BUILDER ---------------- */
+const buildList = document.getElementById('buildList');
+buildList.innerHTML = BUILDS.map((b,i)=>{
+  const rev = i % 2 === 1 ? 'rev' : '';
+  let media = '';
+  if(b.media==='video') media = `<div class="frame"><video src="${b.src}" ${i===0?'autoplay ':''}muted loop playsinline preload="metadata" controls></video></div>`;
+  else if(b.media==='image') media = `<div class="frame"><img src="${b.src}" alt="${b.name}" loading="lazy" /></div>`;
+  else if(b.media==='images') media = `<div class="carousel" data-i="0">
+      <div class="carousel-track">${b.src.map(s=>`<img src="${s}" alt="${b.name}" loading="lazy" />`).join('')}</div>
+      <button class="cn prev" aria-label="Prev">‹</button><button class="cn next" aria-label="Next">›</button>
+      <div class="cd">${b.src.map((_,j)=>`<span class="dot${j===0?' on':''}"></span>`).join('')}</div>
+    </div>`;
+  return `<div class="build-item ${rev}">
+    <div class="build-text">
+      <div class="build-name">${b.name} ${b.live?'<span class="live">Live</span>':'<span class="live" style="color:var(--ink-faint)">In dev</span>'}</div>
+      <p class="build-desc">${b.desc}</p>
+      <div class="build-stack"><span class="k">Stack</span> · ${b.stack}</div>
+    </div>
+    <div class="build-media">${media}</div>
+  </div>`;
+}).join('');
+
+/* carousels */
+buildList.querySelectorAll('.carousel').forEach(c=>{
+  const track=c.querySelector('.carousel-track'), dots=[...c.querySelectorAll('.dot')], n=track.children.length;
+  const go=i=>{const x=(i+n)%n;c.dataset.i=x;track.style.transform=`translateX(-${x*100}%)`;dots.forEach((d,j)=>d.classList.toggle('on',j===x));};
+  c.querySelector('.next').onclick=()=>go(+c.dataset.i+1);
+  c.querySelector('.prev').onclick=()=>go(+c.dataset.i-1);
+  dots.forEach((d,j)=>d.onclick=()=>go(j));
+});
+
+/* more grid */
+document.getElementById('moreList').innerHTML = MORE.map(m=>`
+  <div class="more-card">
+    <div class="mn">${m.name}</div>
+    <p>${m.desc}</p>
+    <div class="build-stack">${m.stack}</div>
+  </div>`).join('');
+
+/* ---------------- MUSIC GRID ---------------- */
+const WORKS = [
+  {t:"My Universe", a:"Coldplay, BTS", img:"https://i.scdn.co/image/ab67616d0000b273ec10f247b100da1ce0d80b6d"},
+  {t:"Nothing Breaks Like a Heart", a:"Mark Ronson, Miley Cyrus", img:"https://i.scdn.co/image/ab67616d0000b273de087ae2924d2c1654f60d74"},
+  {t:"Higher Power", a:"Coldplay", img:"https://i.scdn.co/image/ab67616d0000b2738af1d785b38ed4b769c24659"},
+  {t:"Hackney Diamonds", a:"The Rolling Stones", img:"https://i.scdn.co/image/ab67616d0000b273683680975bf153c97ea8ad8d"},
+  {t:"Dream Girl Evil", a:"Florence + The Machine", img:"https://i.scdn.co/image/ab67616d0000b2735fd9e21618182df7d70b2186"},
+  {t:"Solo", a:"Clean Bandit, Demi Lovato", img:"https://i.scdn.co/image/ab67616d0000b27367eda217860e86c43481a5cb"},
+  {t:"Point and Kill", a:"Little Simz", img:"https://i.scdn.co/image/ab67616d0000b273aede85ed28c2237a33b63dba"},
+  {t:"Solid Ground", a:"Michael Kiwanuka", img:"https://i.scdn.co/image/ab67616d0000b27360ada139840fb439d6750f27"},
+  {t:"I See You", a:"The xx", img:"https://i.scdn.co/image/ab67616d0000b273fa132d6237850ac3f29e3af3"},
+  {t:"Lost Without You", a:"Freya Ridings", img:"https://i.scdn.co/image/ab67616d0000b273692701741cd800811b944be9"},
+  {t:"mother tongue", a:"Bring Me The Horizon", img:"https://i.scdn.co/image/ab67616d0000b27349e3b7e85829da2fbc68bc46"},
+  {t:"Futureproof", a:"Nothing But Thieves", img:"https://i.scdn.co/image/ab67616d0000b273e0efd8bb1f9943c40a6e5897"},
+];
+document.getElementById('worksGrid').innerHTML = WORKS.map(w=>`
+  <div class="tile"><img src="${w.img}" alt="${w.t}, ${w.a}" loading="lazy" />
+    <span class="meta"><span class="t">${w.t}</span><span class="a">${w.a}</span></span></div>`).join('');
+
+/* ---------------- NAV ---------------- */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+const burger=document.getElementById('burger'), navl=document.getElementById('navl');
+burger.onclick=()=>{const o=navl.classList.toggle('open');burger.classList.toggle('open',o);document.body.classList.toggle('nav-open',o);};
+navl.querySelectorAll('a').forEach(a=>a.onclick=()=>{navl.classList.remove('open');burger.classList.remove('open');document.body.classList.remove('nav-open');});
+
+/* ---------------- PASSWORD GATE ---------------- */
+(function(){
+  const KEY='fdc-preview-ok', PW='FDC2026';
+  const gate=document.getElementById('gate');
+  function unlock(){document.body.classList.remove('locked');gate.classList.add('hide');}
+  if(sessionStorage.getItem(KEY)==='1'){unlock();}
+  document.getElementById('gateForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    if(document.getElementById('gatePw').value===PW){sessionStorage.setItem(KEY,'1');unlock();}
+    else{document.getElementById('gateErr').textContent='Incorrect password. Try again.';document.getElementById('gatePw').select();}
+  });
+})();
+</script>
+</body>
+</html>
