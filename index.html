@@ -3,508 +3,282 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Connor Panayi - Recording Engineer, Producer &amp; Builder</title>
-<meta name="description" content="Recording engineer and producer for Coldplay, BTS, The Rolling Stones and Mark Ronson. Also a builder, tech consultant, and AI x Music expert. Portfolio and recorded works." />
+<title>Connor Panayi · Forward Deployed Creative & Technologist</title>
+<meta name="description" content="Forward deployed creative and technologist. I embed with teams, wire APIs and models into shipped products, and sit between what builders can make and what users actually need. 20+ products shipped. Previously a record producer with 16B+ streams." />
 <meta name="robots" content="noindex, nofollow" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎧</text></svg>" />
-
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌘</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
-   CONNOR PANAYI - portfolio
-   Dark studio-hardware aesthetic. One accent: 808 orange.
+   CONNOR PANAYI — Forward Deployed Creative / Technologist
+   Light, editorial, uniform. Near-monochrome + one restrained accent.
    ============================================================ */
 :root{
-  /* ---- neutrals: ~70% of the UI ---- */
-  --bg:#0a0a0c;
-  --bg-2:#0e0e12;
-  --panel:#141419;
-  --panel-2:#1b1b21;
-  --panel-3:#202026;
-  --line:#28282f;
-  --ink:#f0ede6;
-  --ink-muted:#a6a3a0;
-  --ink-faint:#6c6a68;
-
-  /* ---- complementary: ~20%, secondary structure & labels ---- */
-  --stone:#8c8478;
-  --stone-dim:#5f5a52;
-
-  /* ---- accent: ~10%, CTAs and the one key highlight only ---- */
-  --orange:#c9622f;
-  --red:#b3453a;
-  --green:#5a9e6f;
-
-  /* used only inside the hero drum-machine scene */
-  --cyan:#38c6d9;
-  --amber:#f2b63c;
-  --cream:#efe6d0;
-
-  --r-sm:4px; --r-md:6px; --r-lg:8px;
-  --maxw:1180px;
-
-  --shadow-card:0 1px 0 rgba(255,255,255,.03) inset, 0 12px 28px -18px rgba(0,0,0,.6);
+  --bg:#f4f3ef;
+  --surface:#ffffff;
+  --panel:#faf9f6;
+  --line:#e5e3dc;
+  --line-2:#d6d3ca;
+  --ink:#15161a;
+  --ink-2:#3a3c42;
+  --ink-muted:#5b5e66;
+  --ink-faint:#8f9199;
+  --acc:#2f52e0;
+  --ok:#1f9d57;
+  --r:8px; --r-lg:14px;
+  --maxw:1280px;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
 }
-
 *{box-sizing:border-box}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--ink);
-  font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
-  font-size:16px; line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-  overflow-x:hidden;
-}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:600;line-height:1.05;margin:0;letter-spacing:-.02em}
-.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
-.eyebrow{
-  font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.28em;
-  text-transform:uppercase; color:var(--stone); font-weight:500;
-}
+img,video{display:block;max-width:100%}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.025em;line-height:1.03}
+.mono{font-family:var(--mono)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 34px;position:relative}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-faint)}
 
-/* subtle vignette over everything */
-body::after{
-  content:""; position:fixed; inset:0; pointer-events:none; z-index:60;
-  background:
-    radial-gradient(120% 90% at 50% 0%, transparent 55%, rgba(0,0,0,.45) 100%);
-  mix-blend-mode:multiply;
-}
+/* ---------- NAV ---------- */
+header{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;
+  padding:15px 34px;background:rgba(244,243,239,.78);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-bottom-color:var(--line)}
+.brand{display:flex;align-items:center;gap:11px;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.brand .sq{width:9px;height:9px;background:var(--ink);border-radius:2px}
+.navl{display:flex;gap:2px;align-items:center}
+.navl a{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);padding:8px 13px;border-radius:var(--r)}
+.navl a:hover{color:var(--ink);background:rgba(0,0,0,.04)}
+.navl a.cta{color:var(--surface);background:var(--ink);margin-left:6px}
+.navl a.cta:hover{background:#000}
+.burger{display:none;flex-direction:column;gap:5px;width:38px;height:38px;align-items:center;justify-content:center;background:none;border:none;cursor:pointer}
+.burger span{width:20px;height:2px;background:var(--ink);display:block;transition:.25s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-/* ---------- GLOBAL RAILS / GRID DECOR ---------- */
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative}
-
-/* ============================================================
-   NAV
-   ============================================================ */
-header.nav{
-  position:fixed; top:0; left:0; right:0; z-index:50;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:16px 28px;
-  background:transparent;
-  border-bottom:1px solid transparent;
-}
-header.nav.scrolled{
-  background:var(--bg);
-  border-bottom:1px solid var(--line);
-}
-.brand{display:flex;align-items:center;gap:11px;font-family:"Space Grotesk";font-weight:600;font-size:16px;letter-spacing:-.01em}
-.brand .dot{width:8px;height:8px;border-radius:2px;background:var(--orange)}
-.nav-links{display:flex;gap:6px;align-items:center}
-.nav-links a{
-  font-family:"IBM Plex Mono"; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
-  color:var(--ink-muted); padding:8px 12px; border-radius:var(--r-sm);
-}
-.nav-links a:hover{color:var(--ink);background:var(--panel-2)}
-.nav-cta{color:var(--orange)!important}
-.nav-burger{
-  display:none; position:relative; z-index:2; flex-direction:column; justify-content:center;
-  align-items:center; gap:5px; width:38px; height:38px; background:none; border:none;
-  cursor:pointer; padding:0;
-}
-.nav-burger span{display:block;width:20px;height:2px;background:var(--ink)}
-.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.nav-burger.open span:nth-child(2){opacity:0}
-.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-#hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-#hero::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:linear-gradient(90deg, rgba(9,9,11,.92) 0%, rgba(9,9,11,.78) 30%, rgba(9,9,11,.5) 55%, rgba(9,9,11,.22) 78%, transparent 100%),
-             linear-gradient(0deg, rgba(9,9,11,.7) 0%, rgba(9,9,11,.15) 30%, transparent 50%)}
-#scene{position:absolute;inset:0;z-index:1}
-#scene canvas{display:block}
-.hero-fallback{position:absolute;inset:0;z-index:0;background:var(--bg-2);}
-.hero-inner{position:relative;z-index:3;pointer-events:none}
-.hero-inner .wrap{padding-top:14vh}
-.hero-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px}
-.hero-tag .pulse{width:7px;height:7px;border-radius:50%;background:var(--orange)}
-h1.hero-title{
-  font-size:clamp(44px,8.5vw,104px); font-weight:700; letter-spacing:-.035em; line-height:.94;
-  text-shadow:0 2px 30px rgba(9,9,11,.85), 0 1px 4px rgba(9,9,11,.6);
-}
-h1.hero-title .l2{color:#c9c6cf}
-h1.hero-title .bracket{color:var(--orange)}
-.hero-sub{
-  margin-top:26px; max-width:540px; font-size:clamp(16px,2vw,20px); color:#c2c2cc;
-  line-height:1.5; text-shadow:0 1px 14px rgba(9,9,11,.8);
-}
+/* ---------- HERO ---------- */
+#hero{padding:64px 0 84px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.22fr;gap:56px;align-items:center}
+h1.title{font-size:clamp(42px,5.6vw,72px);font-weight:700;letter-spacing:-.038em;line-height:.97}
+.title .and{color:var(--ink-faint);font-weight:500}
+.hero-sub{margin-top:26px;max-width:540px;font-size:18.5px;color:var(--ink-2);line-height:1.55}
 .hero-sub b{color:var(--ink);font-weight:600}
-.hero-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:30px;pointer-events:auto}
-.hero-stat{display:flex;flex-direction:column}
-.hero-stat .n{font-family:"Space Grotesk";font-size:26px;font-weight:600;color:var(--ink)}
-.hero-stat .n .u{color:var(--orange)}
-.hero-stat .k{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-top:3px}
-.scroll-cue{
-  position:absolute; bottom:28px; left:50%; transform:translateX(-50%); z-index:3;
-  font-family:"IBM Plex Mono"; font-size:10px; letter-spacing:.24em; text-transform:uppercase;
-  color:var(--ink-faint); display:flex; flex-direction:column; align-items:center; gap:8px;
-}
-.scroll-cue .bar{width:1px;height:34px;background:var(--line)}
-.webgl-badge{
-  position:absolute; top:calc(50% ); right:28px; z-index:3; display:none;
-}
+.hero-avail{margin-top:18px;max-width:540px;font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;color:var(--ink-muted);display:flex;align-items:center;gap:9px}
+.hero-avail .d{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
+.hero-cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;padding:12px 20px;border-radius:100px;border:1px solid var(--line-2);color:var(--ink);transition:.2s;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.btn.pri:hover{background:#000}
+.hero-stats{margin-top:38px;display:flex;gap:44px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--line)}
+.stat .n{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.stat .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px}
 
-/* ============================================================
-   SECTION SCAFFOLD
-   ============================================================ */
-section{position:relative;padding:clamp(90px,12vh,150px) 0}
-.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:56px;flex-wrap:wrap}
-.sec-head h2{font-size:clamp(30px,5vw,52px);letter-spacing:-.03em}
-.sec-head .idx{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-faint);letter-spacing:.2em}
+/* hero flagship viewer (real product footage) */
+.viewer{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-lg);
+  box-shadow:0 1px 0 #fff inset,0 30px 60px -34px rgba(20,20,20,.32);overflow:hidden}
+.viewer-media{position:relative;aspect-ratio:16/10;background:#0c0d10}
+.viewer-media video{width:100%;height:100%;object-fit:contain}
+.viewer-cap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 18px;border-top:1px solid var(--line)}
+.viewer-cap .nm{font-weight:600;font-size:15px}
+.viewer-cap .st{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);letter-spacing:.04em}
+
+/* ---------- SECTION SCAFFOLD ---------- */
+section{padding:92px 0}
 .divider{height:1px;background:var(--line)}
+.sec-head{margin-bottom:44px}
+.sec-head h2{font-size:clamp(28px,4.4vw,44px);letter-spacing:-.03em}
+.sec-head .eyebrow{margin-bottom:14px;display:block}
+.sec-head .sub{margin-top:16px;max-width:640px;color:var(--ink-muted);font-size:15.5px}
 
-/* ============================================================
-   ABOUT / VISION
-   ============================================================ */
-#about{background:var(--bg-2)}
-.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:start}
-.about-left{padding-top:0}
-.about-lead{margin:0;font-family:"Space Grotesk";font-weight:500;font-size:clamp(22px,3vw,32px);line-height:1.28;letter-spacing:-.02em}
-.about-lead .hl{color:var(--orange)}
-.about-body{margin-top:26px;color:var(--ink-muted);font-size:16.5px}
-.about-body p{margin:0 0 16px}
-.about-body b{color:var(--ink);font-weight:600}
-.about-card{
-  background:var(--panel);
-  border:1px solid var(--line); border-radius:var(--r-lg); padding:28px;
-  box-shadow:var(--shadow-card);
-}
-.about-card h3{font-size:14px;font-family:"IBM Plex Mono";text-transform:uppercase;letter-spacing:.18em;color:var(--ink-faint);font-weight:500;margin-bottom:20px}
-.fact{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--line)}
-.fact:first-of-type{border-top:none}
-.fact .k{color:var(--ink-muted);font-size:14.5px}
-.fact .v{font-family:"Space Grotesk";font-weight:500;text-align:right}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-.tag{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.06em;color:var(--ink-muted);
-  border:1px solid var(--line);padding:6px 11px;border-radius:100px;background:var(--bg)}
-/* track-record timeline */
-.timeline{margin-top:72px}
-.tl-head{margin-bottom:26px}
-.tl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-.tl-item{position:relative;padding:26px 22px 8px;border-top:2px solid var(--line)}
-.tl-item::before{content:"";position:absolute;top:-6px;left:0;width:9px;height:9px;border-radius:50%;background:var(--stone)}
-.tl-when{font-size:11px;letter-spacing:.14em;color:var(--stone);margin-bottom:10px}
-.tl-role{font-family:"Space Grotesk";font-weight:600;font-size:17px;line-height:1.2;letter-spacing:-.01em;min-height:2.4em}
-.tl-org{font-size:13px;color:var(--ink-muted);margin-top:5px;min-height:2.6em}
-.tl-note{font-size:13.5px;color:var(--ink-muted);margin-top:12px;line-height:1.5}
+/* ---------- APPROACH ---------- */
+#approach{background:var(--panel)}
+.lead{font-size:clamp(23px,3.1vw,34px);font-weight:500;letter-spacing:-.02em;line-height:1.3;max-width:940px}
+.lead .mut{color:var(--ink-faint)}
+.approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;margin-top:56px}
+.ap{background:var(--panel);padding:32px}
+.ap .num{font-family:var(--mono);font-size:12px;color:var(--acc);letter-spacing:.1em}
+.ap h3{font-size:19px;margin:14px 0 9px}
+.ap p{margin:0;color:var(--ink-muted);font-size:14.5px}
 
-/* ============================================================
-   RECORDED WORKS (music grid)
-   ============================================================ */
-#works{background:var(--bg-2)}
-.works-grid{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
-  grid-auto-flow:dense;
-}
-.tile{
-  position:relative; border-radius:var(--r-md); overflow:hidden; aspect-ratio:1;
-  background:var(--panel-2); border:1px solid var(--line); cursor:pointer;
-}
-.tile.big{grid-column:span 2;grid-row:span 2}
-.tile img{width:100%;height:100%;object-fit:cover}
-.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(6,6,8,.92));opacity:.85}
-.tile:hover{border-color:var(--stone-dim);z-index:2}
-.tile .meta{position:absolute;left:0;right:0;bottom:0;padding:16px;z-index:2;display:flex;flex-direction:column}
-.tile .t{display:block;font-family:"Space Grotesk";font-weight:600;font-size:15px;line-height:1.15;letter-spacing:-.01em}
-.tile.big .t{font-size:22px}
-.tile .a{display:block;font-size:12.5px;color:var(--ink-muted);margin-top:4px}
-.works-note{margin-top:34px;display:flex;gap:10px;align-items:center;color:var(--ink-faint);font-family:"IBM Plex Mono";font-size:12px;letter-spacing:.04em}
-.works-note a{color:var(--ink);border-bottom:1px solid var(--line)}
-
-/* ============================================================
-   BUILDER
-   ============================================================ */
+/* ---------- BUILDER ---------- */
 #builder{background:var(--bg)}
-.build-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.build-card{
-  position:relative; background:var(--panel);
-  border:1px solid var(--line); border-radius:var(--r-lg); padding:30px;
-  display:flex; flex-direction:column; height:100%;
-}
-.build-card.feature{grid-column:span 2}
-.build-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.build-name{font-family:"Space Grotesk";font-weight:600;font-size:24px;letter-spacing:-.01em}
-.build-status{font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);border:1px solid var(--line);padding:5px 10px;border-radius:100px}
-.build-status.live{color:var(--green);border-color:var(--line)}
-.build-desc{color:var(--ink-muted);font-size:15.5px}
+.build-item{padding:60px 0;border-top:1px solid var(--line)}
+.build-item:first-of-type{border-top:none}
+.build-top{display:grid;grid-template-columns:0.82fr 1.18fr;gap:60px;align-items:center}
+.build-item.rev .build-top .build-text{order:2}
+.build-name{font-size:clamp(28px,3.4vw,40px);letter-spacing:-.03em;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.build-name .live{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);border:1px solid var(--line-2);border-radius:100px;padding:4px 10px;font-weight:400}
+.build-desc{margin-top:18px;color:var(--ink-2);font-size:15.5px;line-height:1.62}
 .build-desc b{color:var(--ink);font-weight:600}
-.feature .build-name{font-size:30px}
-.build-body{display:flex;gap:28px}
-.build-text{flex:1 1 0;min-width:0}
-.build-media{flex:1 1 0;min-width:0}
-.build-media video,.build-media img{width:100%;height:100%;display:block;border-radius:var(--r-md);border:1px solid var(--line);background:var(--panel-2);object-fit:cover}
-.carousel{position:relative;width:100%;height:100%;border-radius:var(--r-md);border:1px solid var(--line);background:var(--panel-2);overflow:hidden}
-.carousel-track{display:flex;height:100%;transition:transform .4s cubic-bezier(.4,0,.2,1)}
-.carousel-track img{flex:0 0 100%;width:100%;height:100%;border:none;border-radius:0;object-fit:cover}
-.carousel-nav{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;
-  background:rgba(10,10,12,.6);border:1px solid var(--line);color:var(--ink);font-size:20px;line-height:1;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,opacity .2s;opacity:0;backdrop-filter:blur(4px)}
-.carousel:hover .carousel-nav{opacity:1}
-.carousel-nav:hover{background:var(--orange);color:var(--bg)}
-.carousel-nav.prev{left:10px}
-.carousel-nav.next{right:10px}
-.carousel-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;gap:7px;justify-content:center}
-.carousel-dots .dot{width:6px;height:6px;border-radius:50%;background:rgba(240,237,230,.35);cursor:pointer;transition:background .2s}
-.carousel-dots .dot.on{background:var(--orange)}
-.build-highlight{
-  margin-top:20px;padding:18px 20px;border-radius:var(--r-md);
-  background:var(--panel-2);border:1px solid var(--line);
-}
-.build-highlight .lbl{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-bottom:8px}
-.build-highlight p{margin:0;color:var(--ink);font-size:15px}
-.build-stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:20px}
-.chip{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--ink-muted);border:1px solid var(--line);padding:5px 9px;border-radius:6px;background:var(--bg)}
+.build-desc a{color:var(--acc);border-bottom:1px solid rgba(47,82,224,.3)}
+.build-stack{margin-top:22px;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--ink-faint);line-height:1.9}
+.build-stack .k{color:var(--ink-2)}
+/* media frame */
+.build-media{position:relative}
+.frame{border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;background:#0c0d10;
+  box-shadow:0 24px 50px -30px rgba(20,20,20,.3)}
+.frame video,.frame img{width:100%;display:block;aspect-ratio:16/10;object-fit:contain;background:#0c0d10}
+/* case study panel — always a full-width block below build-top, never interleaved with media */
+.case{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.case-cell{background:var(--surface);padding:24px 26px}
+.case-cell .cl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);display:block;margin-bottom:11px}
+.case-cell p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.62}
+.case-cell p b{color:var(--ink);font-weight:600}
+.case-cell p a{color:var(--acc);border-bottom:1px solid rgba(47,82,224,.3)}
+.more-case{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.more-case .cl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);display:block;margin-bottom:8px}
+.more-case p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.6;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.more-case p b{color:var(--ink);font-weight:600}
+/* carousel */
+.carousel{position:relative;border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;background:#0c0d10;box-shadow:0 24px 50px -30px rgba(20,20,20,.3)}
+.carousel-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.carousel-track img{flex:0 0 100%;width:100%;aspect-ratio:16/10;object-fit:contain;background:#0c0d10}
+.cn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.9);border:1px solid var(--line-2);color:var(--ink);font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;opacity:0;transition:.2s}
+.carousel:hover .cn{opacity:1}
+.cn.prev{left:12px}.cn.next{right:12px}
+.cd{position:absolute;bottom:12px;left:0;right:0;display:flex;gap:6px;justify-content:center}
+.cd .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer}
+.cd .dot.on{background:#fff}
+/* text-only builds */
+.build-more{margin-top:44px;border-top:1px solid var(--line);padding-top:48px}
+.build-more h3.mh{font-size:20px;margin-bottom:26px;letter-spacing:-.02em;padding:0 42px}
+.more-wrap{position:relative;padding:0 42px}
+.more-grid{display:flex;align-items:stretch;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+.more-grid::-webkit-scrollbar{display:none}
+.more-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;
+  background:var(--surface);border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:18px;color:var(--ink);box-shadow:0 10px 24px -14px rgba(20,20,20,.35);z-index:2}
+.more-nav.prev{left:0}
+.more-nav.next{right:0}
+.more-nav:hover{border-color:var(--ink)}
+.more-card{flex:0 0 calc(50% - 9px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:28px;display:flex;flex-direction:column}
+.more-card .mn{font-size:19px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
+.more-card > p{margin:0;color:var(--ink-muted);font-size:14.5px;line-height:1.55;min-height:91px;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.more-card > p b{color:var(--ink);font-weight:600}
+.more-card > p a{color:var(--acc)}
+.more-card .build-stack{margin-top:16px;min-height:44px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
-/* ============================================================
-   HOBBIES / OFF THE CLOCK
-   ============================================================ */
-#hobbies{background:var(--bg)}
-.hob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.hob{border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;background:var(--panel)}
-.hob .ic{display:block;font-size:22px;line-height:1;margin-bottom:16px;color:var(--stone)}
-.hob h3{font-size:19px;margin-bottom:8px}
-.hob p{color:var(--ink-muted);font-size:14.5px;margin:0}
+/* ---------- EXPERIENCE ---------- */
+#exp{background:var(--panel)}
+.tl-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.tl{padding:26px 22px 0;border-top:2px solid var(--line-2);position:relative}
+.tl::before{content:"";position:absolute;top:-6px;left:0;width:9px;height:9px;border-radius:50%;background:var(--ink)}
+.tl .when{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-faint);margin-bottom:12px}
+.tl .role{font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.2;min-height:2.3em}
+.tl .org{font-size:13.5px;color:var(--ink-muted);margin-top:6px;min-height:2.4em}
+.tl .note{font-size:13.5px;color:var(--ink-muted);margin-top:12px;line-height:1.5}
 
-/* ============================================================
-   CONTACT / FOOTER
-   ============================================================ */
-#contact{background:var(--bg);text-align:center}
-.contact-big{font-size:clamp(34px,6vw,68px);letter-spacing:-.03em;line-height:1}
-.contact-big a{color:var(--orange)}
-.contact-sub{margin:24px auto 0;max-width:480px;color:var(--ink-muted)}
-.contact-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px}
-.contact-btn{
-  font-family:"IBM Plex Mono";font-size:13px;letter-spacing:.06em;
-  border:1px solid var(--line);padding:13px 22px;border-radius:100px;
-  color:var(--ink);display:inline-flex;gap:9px;align-items:center
-}
-.contact-btn svg{width:15px;height:15px;flex:none}
-.contact-btn:hover{border-color:var(--stone-dim)}
-.contact-btn.primary{background:var(--orange);color:var(--bg);border:none;font-weight:600}
-footer{padding:40px 0}
-.foot-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;color:var(--ink-faint);font-family:"IBM Plex Mono";font-size:11.5px;letter-spacing:.06em}
-.foot-in>span:last-child{text-align:right}
-.foot-social{display:flex;gap:14px;align-items:center;justify-content:center}
+/* ---------- SELECTED WORKS (music, supporting) ---------- */
+#works{background:var(--bg)}
+.works-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.tile{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:1;background:var(--panel);border:1px solid var(--line);cursor:default}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.tile:hover img{transform:scale(1.04)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(0,0,0,.82));opacity:0;transition:opacity .25s}
+.tile:hover::after{opacity:1}
+.tile .meta{position:absolute;left:0;right:0;bottom:0;padding:12px;z-index:2;opacity:0;transform:translateY(6px);transition:.25s}
+.tile:hover .meta{opacity:1;transform:none}
+.tile .t{display:block;color:#fff;font-weight:600;font-size:13px;line-height:1.15}
+.tile .a{display:block;color:rgba(255,255,255,.75);font-size:11.5px;margin-top:3px}
+.works-note{margin-top:30px;font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:.03em}
+
+/* ---------- CONTACT ---------- */
+#contact{background:var(--panel);text-align:center}
+.contact-big{font-size:clamp(34px,6vw,64px);letter-spacing:-.03em;line-height:1}
+.contact-big a{color:var(--ink);border-bottom:3px solid var(--acc)}
+.contact-sub{margin:24px auto 0;max-width:520px;color:var(--ink-muted)}
+.contact-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+footer{padding:34px 0}
+.foot-social{display:flex;gap:18px;align-items:center;justify-content:center}
 .foot-social a{color:var(--ink-faint);display:flex}
-.foot-social svg{width:16px;height:16px}
+.foot-social svg{width:17px;height:17px}
 .foot-social a:hover{color:var(--ink)}
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
+/* ---------- RESPONSIVE ---------- */
 body.nav-open{overflow:hidden}
-
-@media (max-width:900px){
-  /* --- hero: disable canvas interactivity on mobile for scroll --- */
-  #scene{pointer-events:none}
-
-  /* --- nav: burger + slide-in panel --- */
-  .nav-burger{display:flex}
-  .nav-links{
-    position:fixed; top:0; right:0; z-index:1; height:100svh; width:min(80vw,340px);
-    background:var(--bg);
-    flex-direction:column; align-items:stretch; justify-content:center; gap:2px;
-    padding:32px 30px; margin:0;
-    border-left:1px solid var(--line);
-    display:none;
-  }
-  .nav-links.open{display:flex}
-  .nav-links a{padding:17px 4px;font-size:14px;border-bottom:1px solid var(--line)}
-  .nav-links a:last-child{border-bottom:none}
-  .nav-cta{margin-top:16px;text-align:center;border-radius:var(--r-md)}
-
-  /* --- section rhythm --- */
-  section{padding:68px 0}
-  .sec-head{margin-bottom:36px}
-  .sec-head h2{font-size:clamp(28px,7.5vw,40px)}
-
-  /* --- hero --- */
-  #hero{justify-content:flex-start;min-height:100svh}
-  .hero-inner .wrap{padding-top:112px;padding-bottom:56px}
-  .hero-tag{flex-wrap:wrap;row-gap:8px}
-  .hero-tag .eyebrow{font-size:10px;letter-spacing:.16em}
-  h1.hero-title{font-size:clamp(36px,11vw,60px)}
-  .hero-sub{font-size:16px}
-  .hero-meta{gap:16px 24px;margin-top:26px}
-  .hero-stat .n{font-size:22px}
-  .scroll-cue{display:none}
-
-  /* --- about / vision --- */
-  .about-grid{grid-template-columns:1fr;gap:32px}
-  .about-left{padding-top:0}
-  .about-lead{font-size:clamp(20px,5.5vw,26px)}
-  .about-card{padding:24px}
-
-  /* --- track record timeline: vertical rail --- */
-  .timeline{margin-top:48px}
-  .tl-grid{grid-template-columns:1fr;gap:0}
-  .tl-item{
-    padding:0 0 30px 24px; margin-bottom:0;
-    border-top:none; border-left:2px solid var(--line); border-right:none;
-  }
-  .tl-item:not(:last-child){border-right:none}
-  .tl-item:last-child{padding-bottom:0}
-  .tl-item::before{top:1px;left:-7px}
-  .tl-role,.tl-org{min-height:auto}
-
-  /* --- builder --- */
-  .build-grid{grid-template-columns:1fr}
-  .build-card.feature{grid-column:span 1}
-  .build-card{padding:24px}
-  .feature .build-name{font-size:24px}
-  .build-body{flex-direction:column}
-
-  /* --- selected works --- */
-  .works-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .tile .t{font-size:14px}
-  .tile.big .t{font-size:18px}
-
-  /* --- off the clock --- */
-  .hob-grid{grid-template-columns:1fr}
-
-  /* --- contact --- */
-  .contact-row{flex-direction:column;align-items:stretch}
-  .contact-btn{justify-content:center}
-  .foot-in{grid-template-columns:1fr;text-align:center;gap:8px}
-  .foot-in>span:last-child{text-align:center}
+@media(max-width:900px){
+  .navl{position:fixed;inset:0 0 0 auto;width:min(78vw,320px);height:100svh;flex-direction:column;align-items:stretch;justify-content:center;
+    background:var(--surface);border-left:1px solid var(--line);padding:30px;gap:2px;display:none;z-index:35}
+  .navl.open{display:flex}
+  .navl a{padding:16px 6px;font-size:14px;border-bottom:1px solid var(--line)}
+  .navl a.cta{margin:14px 0 0;text-align:center;border-radius:var(--r)}
+  .burger{display:flex;position:relative;z-index:36}
+  section{padding:64px 0}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .build-item{padding:44px 0}
+  .build-top{grid-template-columns:1fr;gap:28px}
+  .build-item.rev .build-top .build-text{order:0}
+  .case{grid-template-columns:1fr;margin-top:24px}
+  .approach-grid{grid-template-columns:1fr}
+  .tl-grid{grid-template-columns:1fr}
+  .tl{border-top:none;border-left:2px solid var(--line-2);padding:0 0 28px 22px}
+  .tl::before{top:2px;left:-6px}
+  .tl .role,.tl .org{min-height:auto}
+  .more-wrap{padding:0}
+  .build-more h3.mh{padding:0}
+  .more-card{flex-basis:84vw}
+  .more-nav{display:none}
+  .works-grid{grid-template-columns:repeat(3,1fr)}
+  .sec-head{margin-bottom:34px}
 }
-
-@media (max-width:560px){
-  .wrap{padding:0 18px}
-  header.nav{padding:14px 18px}
-  .tile.big{grid-column:span 2;grid-row:span 1;aspect-ratio:2}
-  .works-grid{gap:8px}
-}
+@media(max-width:560px){.wrap{padding:0 22px}.works-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d25675f66fb24237903a30f64fa8f0ed"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
 <body>
 
-<!-- ============================= NAV ============================= -->
-<header class="nav" id="nav">
-  <a class="brand" href="#hero"><span class="dot"></span> Connor&nbsp;Panayi</a>
-  <nav class="nav-links" id="navLinks">
-    <a href="#about">About</a>
+<header id="nav">
+  <a class="brand" href="#hero"><span class="sq"></span> Connor&nbsp;Panayi</a>
+  <nav class="navl" id="navl">
+    <a href="#approach">Approach</a>
     <a href="#builder">Builder</a>
-    <a href="#works">Selected Works</a>
-    <a href="#hobbies">Off the Clock</a>
+    <a href="#exp">Experience</a>
+    <a href="#works">Music</a>
     <a href="#contact">Contact</a>
-    <a class="nav-cta" href="assets/Connor-Panayi-CV.pdf" download>Resume</a>
+    <a class="cta" href="assets/Connor-Panayi-CV.pdf" download>Resume ↗</a>
   </nav>
-  <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
 
-<!-- ============================= HERO ============================= -->
+<!-- ===================== HERO ===================== -->
 <section id="hero">
-  <div class="hero-fallback"></div>
-  <div id="scene"></div>
-  <div class="hero-inner">
-    <div class="wrap">
-      <div class="hero-tag">
-        <span class="pulse"></span>
-        <span class="eyebrow">Record Producer · Engineer · Builder</span>
-      </div>
-      <h1 class="hero-title">Connor Panayi<br><span class="l2"><span class="bracket">[</span>sound &amp; systems<span class="bracket">]</span></span></h1>
+  <div class="wrap hero-grid">
+    <div>
+      <h1 class="title">Forward Deployed<br>Creative <span class="and">/</span> Technologist</h1>
       <p class="hero-sub">
-        13 years making records with <b>Coldplay</b>, <b>BTS</b>, <b>The Rolling Stones</b>,
-        <b>Florence + The Machine</b> and <b>Mark Ronson</b> - chasing the details most people
-        never hear. Now I build products with the same obsession for craft.
+        I embed with teams, learn the domain fast, and <b>ship the product</b>, wiring APIs, models and
+        interfaces into things people actually use. The connective tissue between what builders can make
+        and what users actually need.
       </p>
-      <div class="hero-meta">
-        <div class="hero-stat"><div class="n">16B<span class="u">+</span></div><div class="k">Cumulative streams</div></div>
-        <div class="hero-stat"><div class="n">Top&nbsp;1<span class="u">%</span></div><div class="k">Engineers worldwide</div></div>
+      <p class="hero-avail">Currently available for forward deployed, product and creative-technologist roles.</p>
+      <div class="hero-cta">
+        <a class="btn pri" href="#builder">See the work →</a>
+        <a class="btn" href="https://calendly.com/connor-panayi/30min" target="_blank" rel="noopener">Book a call</a>
       </div>
-    </div>
-  </div>
-  <div class="scroll-cue"><span>Scroll</span><span class="bar"></span></div>
-</section>
-
-<!-- ============================= ABOUT ============================= -->
-<section id="about">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <div class="eyebrow">Background &amp; Vision</div>
-        <h2>From the control room<br>to the command line.</h2>
+      <div class="hero-stats">
+        <div class="stat"><div class="n">20+</div><div class="k">Products shipped</div></div>
+        <div class="stat"><div class="n">16B+</div><div class="k">Music streams</div></div>
+        <div class="stat"><div class="n">Full-stack</div><div class="k">Design to API to ship</div></div>
       </div>
-      <div class="idx mono">/ ABOUT</div>
-    </div>
-    <div class="about-grid">
-      <div class="reveal about-left">
-        <p class="about-lead">
-          Great records and great products are built the same way - <span class="hl">relentless attention
-          to the thing people can't quite name</span> but always feel.
-        </p>
-        <div class="about-body">
-          <p>
-            I'm a London-based <b>record producer and engineer</b> with 13 years in the industry and
-            <b>16 billion+ cumulative streams</b>. My work spans some of the defining records of the last
-            decade - Coldplay, BTS, The Rolling Stones, Florence + The Machine, Mark Ronson, Little Simz,
-            Michael Kiwanuka and The xx - earning <b>Grammy recognition</b> and a place as a
-            <b>voting member of the Recording Academy</b> and its Producers &amp; Engineers Wing.
-          </p>
-          <p>
-            That craft became a launchpad. I moved from the control room into <b>building companies</b>  -
-            co-founding a music-discovery platform as Co-CEO, leading A&amp;R and artist partnerships, and
-            running product and ecosystem strategy at scale. The common thread is taste: knowing what to
-            keep, what to cut, and how to make something feel inevitable.
-          </p>
-          <p>
-            Today I build products end-to-end and specialise in matters of business development, partnerships and strategy.
-          </p>
-        </div>
-      </div>
-      <aside class="about-card reveal">
-        <h3>At a glance</h3>
-        <div class="fact"><span class="k">Based in</span><span class="v">London &amp; San Francisco</span></div>
-        <div class="fact"><span class="k">Discipline</span><span class="v">AI/Audio Specialist</span></div>
-        <div class="fact"><span class="k">Streams</span><span class="v">16B+ cumulative</span></div>
-        <div class="fact"><span class="k">Ranking</span><span class="v">Top 1% Engineers</span></div>
-        <div class="tags">
-          <span class="tag">Production</span><span class="tag">Engineering</span><span class="tag">Mixing</span>
-          <span class="tag">Product Strategy</span><span class="tag">Partnerships</span><span class="tag">Company Building</span>
-          <span class="tag">LLMs</span><span class="tag">Full-stack</span>
-        </div>
-      </aside>
     </div>
 
-    <!-- Track record timeline -->
-    <div class="timeline reveal">
-      <div class="tl-head"><span class="eyebrow">Track record</span></div>
-      <div class="tl-grid">
-        <div class="tl-item">
-          <div class="tl-when mono">2013 - Now</div>
-          <div class="tl-role">Record Producer &amp; Engineer</div>
-          <div class="tl-org">Independent · Worldwide</div>
-          <div class="tl-note">16B+ streams · Grammy winner · Recording Academy voting member across the P&amp;E Wing.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-when mono">2022 - 2024</div>
-          <div class="tl-role">Head of A&amp;R &amp; Artist Partnerships</div>
-          <div class="tl-org">Sonu Stream · Artist-first streaming</div>
-          <div class="tl-note">Led partnerships across artists, labels &amp; distributors; onboarded millions of catalog tracks.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-when mono">2024 - Now</div>
-          <div class="tl-role">Co-Founder &amp; Co-CEO</div>
-          <div class="tl-org">MineFM · Social music discovery</div>
-          <div class="tl-note">Took a creator-first discovery platform from concept to live launch; raised early funding &amp; led the team.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-when mono">2025 - 2026</div>
-          <div class="tl-role">Head of Music, AI &amp; Infrastructure</div>
-          <div class="tl-org">Camp Network · IP platform</div>
-          <div class="tl-note">Senior operator across product, technical integrations &amp; partnerships; scaled the ecosystem to a $2.5B valuation.</div>
-        </div>
+    <div class="viewer">
+      <div class="viewer-media">
+        <video src="assets/chops-demo.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="viewer-cap">
+        <span class="nm">Chops</span>
+        <span class="st">Audio DSP · CLAP · LALAL.AI API · macOS</span>
       </div>
     </div>
   </div>
@@ -512,498 +286,302 @@ body.nav-open{overflow:hidden}
 
 <div class="divider"></div>
 
-<!-- ============================= BUILDER ============================= -->
+<!-- ===================== APPROACH ===================== -->
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Approach</span><h2>How I work</h2></div>
+    <p class="lead">
+      Great products get built the way great records do. Relentless attention to the thing people can't
+      quite name but always feel. <span class="mut">I sit between builders and users, translate between them,
+      and turn hard problems into product that ships.</span>
+    </p>
+    <div class="approach-grid">
+      <div class="ap"><div class="num">01</div><h3>Embed &amp; learn the domain</h3><p>Drop into the problem, talk to the people living it, and get fluent fast. The same ear I built for a mix, aimed at a workflow.</p></div>
+      <div class="ap"><div class="num">02</div><h3>Wire the hard parts</h3><p>APIs, models, DSP, agents. I integrate the whole stack so the clever bit actually runs, not just demos.</p></div>
+      <div class="ap"><div class="num">03</div><h3>Ship something people use</h3><p>Design, build and release a real product, then sit with the users and iterate until it feels inevitable.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== BUILDER ===================== -->
 <section id="builder">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <div class="eyebrow">Continuously shipping</div>
-        <h2>Builder</h2>
-      </div>
-      <div class="idx mono">/ PRODUCTS</div>
+    <div class="sec-head">
+      <span class="eyebrow">Continuously shipping</span>
+      <h2>Builder</h2>
+      <p class="sub">Every product below was designed, engineered and shipped by me, end to end. APIs, models, DSP, interface, the lot.</p>
     </div>
-    <div class="build-grid" id="buildGrid"><!-- injected by JS --></div>
+    <div id="buildList"></div>
+
+    <div class="build-more">
+      <h3 class="mh">More shipped</h3>
+      <div class="more-wrap">
+        <div class="more-grid" id="moreList"></div>
+        <button class="more-nav prev" id="morePrev" aria-label="Previous">‹</button>
+        <button class="more-nav next" id="moreNext" aria-label="Next">›</button>
+      </div>
+    </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ============================= RECORDED WORKS ============================= -->
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="exp">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Track record</span><h2>Where I've operated</h2></div>
+    <div class="tl-grid">
+      <div class="tl">
+        <div class="when">2024 – Now</div>
+        <div class="role">Co-Founder &amp; Co-CEO</div>
+        <div class="org">MineFM · Social music discovery</div>
+        <div class="note">Concept to live launch: product, team and early funding. Building end to end.</div>
+      </div>
+      <div class="tl">
+        <div class="when">2025 – 2026</div>
+        <div class="role">Head of Music, AI &amp; Infrastructure</div>
+        <div class="org">Camp Network · IP platform</div>
+        <div class="note">Senior operator across product, technical integrations and partnerships.</div>
+      </div>
+      <div class="tl">
+        <div class="when">2022 – 2024</div>
+        <div class="role">Head of A&amp;R &amp; Artist Partnerships</div>
+        <div class="org">Sonu Stream · Artist-first streaming</div>
+        <div class="note">Partnerships across artists, labels and distributors; onboarded millions of catalog tracks.</div>
+      </div>
+      <div class="tl">
+        <div class="when">2013 – Now</div>
+        <div class="role">Record Producer &amp; Engineer</div>
+        <div class="org">Independent · Worldwide</div>
+        <div class="note">16B+ streams, Grammy recognition, Recording Academy voting member. The craft everything else is built on.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== MUSIC (supporting) ===================== -->
 <section id="works">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <div class="eyebrow">Discography</div>
-        <h2>Selected Works</h2>
-      </div>
-      <div class="idx mono">/ MUSIC</div>
+    <div class="sec-head">
+      <span class="eyebrow">Prior craft</span>
+      <h2>The ear behind the work</h2>
+      <p class="sub">Thirteen years and 16B+ streams engineering and producing records for Coldplay, BTS, The Rolling Stones, Florence + The Machine, Mark Ronson and more. It's where the obsession with detail, and the taste I bring to product, comes from.</p>
     </div>
-    <div class="works-grid" id="worksGrid" style="margin-top:44px"><!-- injected by JS --></div>
+    <div class="works-grid" id="worksGrid"></div>
+    <div class="works-note">Selected discography · full credits on request</div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ============================= HOBBIES ============================= -->
-<section id="hobbies">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <div class="eyebrow">IRL</div>
-        <h2>Off the clock.</h2>
-      </div>
-      <div class="idx mono">/ LIFE</div>
-    </div>
-    <div class="hob-grid" id="hobGrid"><!-- injected by JS --></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ============================= CONTACT ============================= -->
+<!-- ===================== CONTACT ===================== -->
 <section id="contact">
   <div class="wrap">
-    <div class="eyebrow reveal" style="margin-bottom:22px">Let's talk</div>
-    <h2 class="contact-big reveal"><a href="mailto:connor.panayi@gmail.com">Say hello.</a></h2>
-    <p class="contact-sub reveal">
-      Open to roles and collaborations where music-grade craft meets software. Product, engineering, or the weird space in between.
-    </p>
-    <div class="contact-row reveal">
-      <a class="contact-btn primary" href="mailto:connor.panayi@gmail.com">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
-        connor.panayi@gmail.com
-      </a>
-      <a class="contact-btn" href="https://calendly.com/connor-panayi/30min" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16v14H4z"/><path d="M4 10h16"/><path d="M8 3v5"/><path d="M16 3v5"/></svg>
-        Book a call
-      </a>
+    <span class="eyebrow" style="display:block;margin-bottom:22px">Let's talk</span>
+    <h2 class="contact-big"><a href="mailto:connor.panayi@gmail.com">Say hello.</a></h2>
+    <p class="contact-sub">Open to forward deployed, product and creative-technologist roles where craft meets shipping. Or the weird space in between.</p>
+    <div class="contact-row">
+      <a class="btn pri" href="mailto:connor.panayi@gmail.com">connor.panayi@gmail.com</a>
+      <a class="btn" href="https://calendly.com/connor-panayi/30min" target="_blank" rel="noopener">Book a call</a>
     </div>
   </div>
   <footer>
-    <div class="wrap foot-in">
-      <span>© <span id="yr"></span> Connor Panayi</span>
-      <div class="foot-social">
-        <a href="https://x.com/itsCP666" target="_blank" rel="noopener" aria-label="X">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/connorpanayi" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/connor-panayi-40a3913ab/" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.65c0-1.35-.02-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98V21H9z"/></svg>
-        </a>
-      </div>
-      <span>Engineered in London · Built with obsession</span>
+    <div class="wrap foot-social">
+      <a href="https://x.com/itsCP666" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.instagram.com/connorpanayi" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.linkedin.com/in/connor-panayi-40a3913ab/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.65c0-1.35-.02-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98V21H9z"/></svg></a>
     </div>
   </footer>
 </section>
 
-<!-- ============================= THREE.JS 808 HERO ============================= -->
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-  }
-}
-</script>
+<script>
+/* ---------------- BUILDER DATA ---------------- */
+const BUILDS = [
+  { name:"Chops", media:"video", src:"assets/chops-demo.mp4", live:true,
+    desc:"A desktop sampler that listens before you do. Drop in a folder of audio and it analyzes onset, BPM, key and loudness, then auto-chops it into transients, beat-grid loops and phrases. Type a vibe and local <b>CLAP</b> embeddings re-rank every pad by semantic match, no cloud required. Send any chop to <b>LALAL.AI</b> to split into stems on demand.",
+    stack:"Audio DSP · Onset detection · CLAP · Local embeddings · LALAL.AI API · macOS",
+    case:{
+      problem:"Chopping a folder of samples into usable pads is slow, repetitive work: setting transient markers by hand, tagging by feel, remembering which folder had the right snare.",
+      build:"A native macOS analysis pipeline runs onset detection, BPM and key estimation, and loudness analysis on every file the moment it's dropped in, then auto-slices each one into transients, beat-grid loops and phrases and lays them onto sample pads.",
+      api:"Semantic search runs on local <b>CLAP</b> embeddings computed on-device, so typing a vibe re-ranks the pads with no network round trip. Stem separation is the one external call: any chop can be sent to the <b>LALAL.AI</b> REST API, which returns isolated drums, bass, vocals and keys. Ships as a standalone macOS app."
+    }},
 
-<script type="module">
-/* ---------------- DATA ---------------- */
-// Recorded works - curated selection by popularity. `big:true` => featured/large tile.
-// Every artwork is unique (no repeats). Hover reveals title + artist.
+  { name:"Sumi", media:"video", src:"assets/sumi-demo.mp4", live:true,
+    desc:"A reverb you paint, not dial in. Brush ink onto a canvas and the stroke becomes the impulse response, fast and dry for a tight room, slow and heavy for a cathedral tail. A live fluid simulation drives real convolution, synthesized and rendered in real time. Five masterworks ship built in as playable spaces.",
+    stack:"Convolution · Fluid simulation · IR synthesis · JUCE 8 · VST3 / AU · Standalone",
+    case:{
+      problem:"Reverb plugins ask you to reason in numbers (pre-delay, decay, diffusion) when what you actually want is a feeling: a room, a distance, a texture.",
+      build:"Every ink stroke is converted into a vector field, then run through a real-time fluid simulation. The simulation's output becomes the impulse response, synthesized live rather than pulled from a sample library, so a fast dry stroke and a slow heavy one produce genuinely different spaces.",
+      api:"The IR feeds a true convolution engine built on <b>JUCE 8</b>'s DSP module, processing in real time inside the plugin's audio callback. No external API; the whole signal chain runs on-device. One codebase compiles to <b>VST3</b>, <b>AU</b> and a standalone app."
+    }},
+
+  { name:"RADA/R", media:"image", src:"assets/radar-demo.png", live:true,
+    desc:"Sound-first trend detection for A&amp;R. Ingests emerging tracks daily from Deezer charts, editorial playlists, iTunes and Reddit, then embeds each 30-second preview with <b>CLAP</b>, listening to the sound itself rather than metadata. Clusters surface which sonic styles are rising from the ground up, with per-sound share velocity and <b>Claude</b> analyst notes, regenerated every day.",
+    stack:"CLAP · Semantic embeddings · Claude · Deezer / Apple / Reddit APIs · Trend detection",
+    case:{
+      problem:"Chart-based A&amp;R tools like Chartmetric and Soundcharts show what's already popular. By the time a sound shows up there, it isn't emerging anymore.",
+      build:"A daily ingestion job pulls fresh tracks from Deezer charts, editorial playlists, iTunes and Reddit music communities, embeds each 30-second preview with <b>CLAP</b>, and clusters those embeddings to find sonic styles gaining traction from the audio itself, not the metadata.",
+      api:"Ingestion is wired directly against the <b>Deezer</b>, <b>Apple/iTunes</b> and <b>Reddit</b> APIs. Each day's clusters are handed to <b>Claude</b>, which writes the analyst notes per sound family plus a running accuracy log. The pipeline regenerates and redeploys on a daily schedule."
+    }},
+
+  { name:"UnderTone", media:"image", src:"assets/undertone-demo.png", live:true,
+    desc:"Listens to every take of your vocal and hears what you're actually going for. Pick a feeling from 21 options like desperate, tender or triumphant, and it lights up which take nailed it, phrase by phrase, down to a single word. No cloud, no lyrics required. Click a waveform to hear it, drag to comp straight onto the timeline.",
+    stack:"Vocal comping · Emotional analysis · Local processing · Claude · DAW plugin · macOS",
+    case:{
+      problem:"Comping the best phrase out of a dozen vocal takes usually means scrubbing through all of them from memory, guessing which one had the right feeling.",
+      build:"A local emotional-analysis model scores every take against 21 feelings, desperate, tender, triumphant and others, at the phrase level and down to individual words, then lights up whichever take best matches the one you picked.",
+      api:"Everything runs locally against the audio itself: no cloud calls, no lyrics or transcription required. It ships as a DAW plugin: click a waveform to preview, drag to select a slice, and drop your comp straight onto the timeline."
+    }},
+
+  { name:"GrooveDNA", media:"images", src:["assets/groovedna-1.jpg","assets/groovedna-2.jpg","assets/groovedna-3.jpg","assets/groovedna-4.jpg"], live:true,
+    desc:"An AU/VST3 drum sampler that curates its own kits. Type a drummer or a vibe (\"Questlove but tighter\") and <b>Claude</b> reasons out the swing, ghost-note placement and kit balance that phrase implies, then drives a live search against <b>Splice's MCP server</b> for one-shots matching each drum voice. Not happy? Argue with it in plain text and it refines the search instead of restarting.",
+    stack:"AU / VST3 · JUCE · Claude · Splice MCP · Sample curation · macOS",
+    case:{
+      problem:"Building a drum kit from scratch means hours of trawling sample packs for a kick, snare and hat that actually sit together.",
+      build:"Type a drummer or a vibe and <b>Claude</b> reasons out the swing, ghost-note placement and kit balance that phrase implies, structured as a query for each drum voice: kick, snare, hats, toms, clap, perc.",
+      api:"That reasoning drives a live search against <b>Splice's MCP server</b>, which exposes sample search as tool calls Claude can invoke directly, sourcing each voice individually. Arguing back in plain text refines the same search instead of restarting it, on a real-API-with-offline-fallback architecture so a dropped connection falls back to a local cache rather than breaking the session. Ships as a <b>JUCE</b> AU/VST3 plugin."
+    }},
+
+  { name:"Patch", media:"video", src:"assets/patch-demo.mp4", live:true,
+    desc:"Turns any sound into a real, editable synth patch. Describe what you're after, say \"synth lead from Sandstorm\", and Patch reasons its way to a matching patch from synths you already own. Or drop in a sample: it analyzes the actual character (brightness, harmonics, attack, width) and reconstructs it as a live instrument that drops straight onto a Logic Pro channel strip.",
+    stack:"FFT · Spectral analysis agent · Claude · JUCE · Logic Pro",
+    case:{
+      problem:"A sampled sound is frozen. You can trim and pitch it, but you can't turn its filter or push its drive, because it was never a synth to begin with.",
+      build:"An FFT-based spectral analyzer extracts brightness, harmonics, attack and stereo width from any source, a sample or a text prompt, and a dedicated spectral analysis agent maps those features onto the parameters of synths you already own.",
+      api:"<b>Claude</b> reasons from a text description straight to a parameter set. The result isn't a rendered sample: it's a genuine hosted synth instance dropped onto a real <b>Logic Pro</b> channel strip, with every parameter still live and automatable."
+    }},
+
+  { name:"ElevenIdeas", media:"video", src:"assets/elevenideas-demo.mp4", live:true,
+    desc:"Lives inside your DAW and turns a single clip into eleven finished, song-aware ideas: new melodies, rewritten hooks, alternate deliveries, harmonies, the same line re-sung in a cloned voice. A companion plugin, ElevenBrain, sits on your master bus listening to key, tempo, energy and tone, and shapes every result. Built on <b>ElevenLabs</b> Music v2, Voice Changer, Voice Design and Audio Isolation.",
+    stack:"ElevenLabs API · DAW plugin · Music generation · Voice cloning · Sound effects",
+    case:{
+      problem:"Generating a real alternative to a vocal take, a new melody, a harmony, a re-sung line in another voice, usually means leaving the DAW entirely.",
+      build:"A companion plugin, ElevenBrain, sits on the master bus listening to key, tempo, energy and tone in real time, and that context shapes every idea the main plugin generates from a selected clip.",
+      api:"Built across five <b>ElevenLabs</b> endpoints in one session: Music v2 for new melodic material, Voice Changer and Voice Design for alternate deliveries and cloned re-sings, Sound Effects for transitions, and Audio Isolation to isolate and transcribe the source clip first. Every idea locks to the project grid and drags straight onto the timeline."
+    }},
+
+  { name:"Blueprint", media:"video", src:"assets/blueprint-demo.mp4", live:true,
+    desc:"Arrangement intelligence for your DAW. Drop in any track and Blueprint analyzes section structure, key, tempo, dynamics and instrumentation, then drafts a session-ready arrangement scaffold. Export as a standard MIDI marker file into Logic, Cubase, Studio One or Reaper. Under the hood: Google's <b>YAMNet</b> and a custom spectral analyzer identify instrumentation, <b>Claude</b> writes the arrangement.",
+    stack:"C++ / JUCE 8 · YAMNet · Spectral DSP · Claude · MIDI markers · macOS",
+    case:{
+      problem:"Deconstructing a reference track's arrangement, or breaking through your own arrangement block, means manually mapping sections and markers by ear.",
+      build:"A native <b>C++/JUCE 8</b> engine runs Google's <b>YAMNet</b> neural network for instrumentation identification alongside a custom spectral DSP analyzer for section structure, key, tempo and dynamics, entirely on-device.",
+      api:"Those signals are handed to <b>Claude</b>, which writes the arrangement scaffold. Export is a standard MIDI marker file that drops straight into Logic, Cubase, Studio One or Reaper, or as text markers for Ableton Live and FL Studio. The interface is a dependency-free web UI embedded in the native app."
+    }},
+
+  { name:"slopworthy.xyz", media:"image", src:"assets/slopworthy-demo.png", live:true, url:"https://slopworthy.xyz",
+    desc:"Tells vibecoders whether their genius idea already exists. Paste in your idea and get an honest read on whether it's a breakthrough or the fortieth to-do app in a trench coat. It won't stop you building it, just quietly note that 500 people beat you there. <a href=\"https://slopworthy.xyz\" target=\"_blank\" rel=\"noopener\">slopworthy.xyz →</a>",
+    stack:"LLM judgment · Idea validation · Web app · Claude",
+    case:{
+      problem:"Every vibecoder thinks their app idea is original. Most aren't, and there was no fast, honest way to check.",
+      build:"Originally ran on a fixed database of 12 categories; now an LLM reads the idea directly and reasons about whether it's genuinely new or the fortieth to-do app in a trench coat.",
+      api:"A single <b>Claude</b> call takes the pasted idea and returns a verdict with reasoning, no database lookup required. Ships as a small, fast web app at <a href=\"https://slopworthy.xyz\" target=\"_blank\" rel=\"noopener\">slopworthy.xyz</a>."
+    }},
+];
+
+const MORE = [
+  { name:"BetMe",
+    desc:"A social challenge app where friends stake real money on real-world dares. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>. The video judge is Gemini's native video API, fed the clips plus a category rubric, returning schema-enforced JSON (observation, then reasoning, then verdict and confidence) so reasoning can't drift to fit a pre-picked outcome.",
+    stack:"Gemini 2.5 Flash/Pro · Native video API · Schema-enforced JSON · React Native",
+    build:"Uploaded clips plus a category-specific rubric prompt go into Gemini's native video API; observation, then reasoning, then a verdict with a 0 to 100 confidence score come out. Bets above the confidence threshold auto-resolve; the rest route to a human." },
+  { name:"Stella Says",
+    desc:"A local-first desktop app that lets anyone direct AI coding agents <b>without touching a terminal</b>. Wraps Claude (plus optional providers) in a plain-language interface, running real Plan and Agent sessions against your files with live tool execution you can watch and steer. Parallel isolated git workspaces.",
+    stack:"Agent orchestration · LLM tooling · Full-stack · Design systems",
+    build:"Each workspace runs as its own isolated git worktree, so parallel tasks never collide. The interface streams tool calls and file edits from a real agent session as they happen, turning what would normally be terminal output into a plain-language, watchable feed." },
+  { name:"LockedIn",
+    desc:"A job marketplace where employers deposit real stablecoins into escrow before a listing goes live. Seekers apply knowing <b>every posting is backed by actual money</b>; funds release automatically once a hire is verified. Runs on Base with automated screening and multi-signal hire verification.",
+    stack:"Stablecoin escrow · Base · Automated screening · Hire verification",
+    build:"Employer funds sit in a stablecoin escrow contract on <b>Base</b> before a listing can go live. A verification step checks multiple signals to confirm an actual hire before the contract is authorized to release funds automatically." },
+  { name:"GasBuddy",
+    desc:"A UK fuel-price iOS app showing drivers the <b>cheapest nearby petrol, diesel or premium</b>, sourced live from CMA-mandated retailer feeds. Ranks stations by price or distance on a map, with a homescreen widget for glanceable prices.",
+    stack:"SwiftUI · iOS · MapKit · Live CMA feeds · Homescreen widget",
+    build:"Ingests the UK's CMA-mandated live fuel-price feeds, ranks nearby stations by price or distance on a MapKit view, and mirrors the same data to a homescreen widget so prices are glanceable with the app closed." },
+  { name:"Various Tools",
+    desc:"Purpose-built <b>internal tools</b> for GTM, BD, partnerships and strategy, plus creative audio plugins from distortion units to key-tracking modulated reverbs and delays. Available to demo on a call.",
+    stack:"GTM · BD · Partnerships · Strategy · Audio plugins",
+    build:"Mostly small, purpose-built scripts and plugins solving one specific GTM, BD or partnerships problem at a time, plus a handful of creative audio plugins built the same way. All demoable on a call." },
+];
+
+/* ---------------- RENDER BUILDER ---------------- */
+const buildList = document.getElementById('buildList');
+buildList.innerHTML = BUILDS.map((b,i)=>{
+  const rev = i % 2 === 1 ? 'rev' : '';
+  let media = '';
+  if(b.media==='video') media = `<div class="frame"><video src="${b.src}" ${i===0?'autoplay ':''}muted loop playsinline preload="metadata" controls></video></div>`;
+  else if(b.media==='image') media = `<div class="frame"><img src="${b.src}" alt="${b.name}" loading="lazy" /></div>`;
+  else if(b.media==='images') media = `<div class="carousel" data-i="0">
+      <div class="carousel-track">${b.src.map(s=>`<img src="${s}" alt="${b.name}" loading="lazy" />`).join('')}</div>
+      <button class="cn prev" aria-label="Prev">‹</button><button class="cn next" aria-label="Next">›</button>
+      <div class="cd">${b.src.map((_,j)=>`<span class="dot${j===0?' on':''}"></span>`).join('')}</div>
+    </div>`;
+  const c = b.case;
+  return `<div class="build-item ${rev}">
+    <div class="build-top">
+      <div class="build-text">
+        <div class="build-name">${b.name} ${b.live?'<span class="live">Live</span>':'<span class="live" style="color:var(--ink-faint)">In dev</span>'}</div>
+        <p class="build-desc">${b.desc}</p>
+        <div class="build-stack"><span class="k">Stack</span> · ${b.stack}</div>
+      </div>
+      <div class="build-media">${media}</div>
+    </div>
+    ${c?`<div class="case">
+      <div class="case-cell"><span class="cl">The problem</span><p>${c.problem}</p></div>
+      <div class="case-cell"><span class="cl">How it's built</span><p>${c.build}</p></div>
+      <div class="case-cell"><span class="cl">API, integration &amp; deployment</span><p>${c.api}</p></div>
+    </div>`:''}
+  </div>`;
+}).join('');
+
+/* carousels */
+buildList.querySelectorAll('.carousel').forEach(c=>{
+  const track=c.querySelector('.carousel-track'), dots=[...c.querySelectorAll('.dot')], n=track.children.length;
+  const go=i=>{const x=(i+n)%n;c.dataset.i=x;track.style.transform=`translateX(-${x*100}%)`;dots.forEach((d,j)=>d.classList.toggle('on',j===x));};
+  c.querySelector('.next').onclick=()=>go(+c.dataset.i+1);
+  c.querySelector('.prev').onclick=()=>go(+c.dataset.i-1);
+  dots.forEach((d,j)=>d.onclick=()=>go(j));
+});
+
+/* more carousel */
+const moreGrid = document.getElementById('moreList');
+moreGrid.innerHTML = MORE.map(m=>`
+  <div class="more-card">
+    <div class="mn">${m.name}</div>
+    <p>${m.desc}</p>
+    <div class="build-stack">${m.stack}</div>
+    ${m.build?`<div class="more-case"><span class="cl">How it's built</span><p>${m.build}</p></div>`:''}
+  </div>`).join('');
+document.getElementById('moreNext').onclick=()=>moreGrid.scrollBy({left:358,behavior:'smooth'});
+document.getElementById('morePrev').onclick=()=>moreGrid.scrollBy({left:-358,behavior:'smooth'});
+
+/* ---------------- MUSIC GRID ---------------- */
 const WORKS = [
-  {t:"My Universe", a:"Coldplay, BTS", img:"https://i.scdn.co/image/ab67616d0000b273ec10f247b100da1ce0d80b6d", big:true},
-  {t:"Nothing Breaks Like a Heart", a:"Mark Ronson, Miley Cyrus", img:"https://i.scdn.co/image/ab67616d0000b273de087ae2924d2c1654f60d74", big:true},
+  {t:"My Universe", a:"Coldplay, BTS", img:"https://i.scdn.co/image/ab67616d0000b273ec10f247b100da1ce0d80b6d"},
+  {t:"Nothing Breaks Like a Heart", a:"Mark Ronson, Miley Cyrus", img:"https://i.scdn.co/image/ab67616d0000b273de087ae2924d2c1654f60d74"},
   {t:"Higher Power", a:"Coldplay", img:"https://i.scdn.co/image/ab67616d0000b2738af1d785b38ed4b769c24659"},
-  {t:"Solo", a:"Clean Bandit, Demi Lovato", img:"https://i.scdn.co/image/ab67616d0000b27367eda217860e86c43481a5cb"},
-  {t:"Dream Girl Evil", a:"Florence + The Machine", img:"https://i.scdn.co/image/ab67616d0000b2735fd9e21618182df7d70b2186", big:true},
   {t:"Hackney Diamonds", a:"The Rolling Stones", img:"https://i.scdn.co/image/ab67616d0000b273683680975bf153c97ea8ad8d"},
-  {t:"Leave a Light On", a:"Tom Walker", img:"https://i.scdn.co/image/ab67616d0000b27322cf06089dc7304bb41b7217"},
-  {t:"Lost Without You", a:"Freya Ridings", img:"https://i.scdn.co/image/ab67616d0000b273692701741cd800811b944be9"},
-  {t:"GOOD FEELiNGS", a:"Coldplay, Ayra Starr", img:"https://i.scdn.co/image/ab67616d0000b27309ba52a5116e0c3e8461f58b"},
-  {t:"Point and Kill", a:"Little Simz, Obongjayar", img:"https://i.scdn.co/image/ab67616d0000b273aede85ed28c2237a33b63dba"},
+  {t:"Dream Girl Evil", a:"Florence + The Machine", img:"https://i.scdn.co/image/ab67616d0000b2735fd9e21618182df7d70b2186"},
+  {t:"Solo", a:"Clean Bandit, Demi Lovato", img:"https://i.scdn.co/image/ab67616d0000b27367eda217860e86c43481a5cb"},
+  {t:"Point and Kill", a:"Little Simz", img:"https://i.scdn.co/image/ab67616d0000b273aede85ed28c2237a33b63dba"},
   {t:"Solid Ground", a:"Michael Kiwanuka", img:"https://i.scdn.co/image/ab67616d0000b27360ada139840fb439d6750f27"},
+  {t:"I See You", a:"The xx", img:"https://i.scdn.co/image/ab67616d0000b273fa132d6237850ac3f29e3af3"},
+  {t:"Lost Without You", a:"Freya Ridings", img:"https://i.scdn.co/image/ab67616d0000b273692701741cd800811b944be9"},
   {t:"mother tongue", a:"Bring Me The Horizon", img:"https://i.scdn.co/image/ab67616d0000b27349e3b7e85829da2fbc68bc46"},
   {t:"Futureproof", a:"Nothing But Thieves", img:"https://i.scdn.co/image/ab67616d0000b273e0efd8bb1f9943c40a6e5897"},
-  {t:"Quietly Yours", a:"Birdy", img:"https://i.scdn.co/image/ab67616d0000b273d62ae1ab3d346b3c2f093fb1"},
-  {t:"Sweetest Human Being Alive", a:"George Ezra", img:"https://i.scdn.co/image/ab67616d0000b2739dd1a35ada9870dc879dfb9e"},
-  {t:"My Love", a:"Florence + The Machine", img:"https://i.scdn.co/image/ab67616d0000b2738f8a358161593abe6f717bba"},
-  {t:"How Did We Get So Dark?", a:"Royal Blood", img:"https://i.scdn.co/image/ab67616d0000b27394b63000190c83e4dc4ea064"},
-  {t:"道 (Michi)", a:"Hikaru Utada", img:"https://i.scdn.co/image/ab67616d0000b2739f5c5e06d31160668cd48c22"},
-  {t:"I See You", a:"The xx", img:"https://i.scdn.co/image/ab67616d0000b273fa132d6237850ac3f29e3af3"},
 ];
-
-const BUILDS = [
-  {
-    name:"Chops", feature:true,
-    desc:"Chops is a desktop sampler that listens before you do.<br><br>Drop in a folder of audio and it analyzes onset, BPM, key, and loudness - then auto-chops it into transients, beat-grid loops, and phrases.<br><br>Type a vibe, and local CLAP embeddings re-rank every sample pad by semantic match, no cloud required.<br><br>Send any chop to LALAL.AI to split into drums, bass, vocals, and keys on demand.<br><br>Export clean WAVs or drag straight into your DAW.",
-    stack:["Audio analysis","Onset detection","CLAP","Local embeddings","LALAL.AI","Sample pads","macOS"],
-    video:"assets/chops-demo.mp4"
-  },
-  {
-    name:"Sumi", feature:true,
-    desc:"Sumi-e Space - a reverb you paint, not dial in.<br><br>Brush ink onto a canvas; your stroke becomes the impulse response - fast and dry for a tight room, slow and heavy for a cathedral tail.<br><br>Five masterworks come built in as playable spaces: The Starry Night, The Scream, Mona Lisa, and more.<br><br>A live fluid simulation drives real convolution, synthesized and rendered in real time as you paint.<br><br>For VST3, AU, and Standalone - built on JUCE 8.",
-    stack:["Convolution reverb","Fluid simulation","Impulse response synthesis","JUCE 8","VST3 / AU","Standalone"],
-    video:"assets/sumi-demo.mp4"
-  },
-  {
-    name:"RADA/R", feature:true,
-    desc:"Sound-first trend detection for A&amp;R professionals. RADA/R ingests emerging tracks daily from Deezer charts, editorial playlists, iTunes, and Reddit music communities, then embeds each 30-second preview using CLAP, a semantic audio model that listens to the sound itself, not metadata.<br><br>It clusters these embeddings to surface which sonic styles are gaining traction from the ground up, where Chartmetric and Soundcharts track chart positions top-down.<br><br>Every day, the radar regenerates with new findings: ranked sound families, per-sound detail pages with share velocity and Claude analyst notes, and a running accuracy board to prove the predictions work. Pure listening. No gatekeeping.",
-    stack:["CLAP","Semantic audio embeddings","A&R tooling","Trend detection","Claude","Deezer / Apple / Reddit"],
-    image:"assets/radar-demo.png"
-  },
-  {
-    name:"UnderTone", feature:true,
-    desc:"UnderTone listens to every take of your vocal and hears what you're actually going for. Pick a feeling from 21 options like desperate, tender or triumphant, and it lights up which take nailed it, phrase by phrase, even down to a single word.<br><br>No cloud, no lyrics required, no more scrubbing through twelve takes by memory. Click a waveform to hear it, drag to pick just a slice, then drag your comp straight onto the timeline.",
-    stack:["Vocal comping","Emotional analysis","Local processing","Claude","DAW plugin","macOS"],
-    image:"assets/undertone-demo.png"
-  },
-  {
-    name:"GrooveDNA", feature:true,
-    desc:"GrooveDNA - an AU/VST3 drum sampler plugin that curates its own kits. Type a drummer's name or a vibe (\"Questlove but tighter,\" \"sloppy garage rock\") and Claude reasons out the swing, ghost-note placement, and kit balance that phrase actually implies. That reasoning drives a live search against Splice's MCP server for one-shot samples matching the character of each drum voice - kick, snare, hats, toms, clap, perc, individually sourced and loaded.<br><br>Not happy with a hit? Argue with it in plain text and it refines the search instead of starting over. Built in JUCE on the same real-API-with-offline-fallback architecture as Patch.",
-    stack:["AU / VST3","JUCE","Claude","Splice MCP","Sample curation","macOS"],
-    images:["assets/groovedna-1.jpg","assets/groovedna-2.jpg","assets/groovedna-3.jpg","assets/groovedna-4.jpg"]
-  },
-  {
-    name:"Patch", feature:true,
-    desc:"Patch turns any sound into a real, editable synth patch.<br><br>Describe what you're after. \"Synth lead from Darude Sandstorm\" and Patch reasons its way to a matching patch, built from synths you already own.<br><br>Or drop in a sample straight from your library. Patch analyzes its actual character (brightness, harmonics, attack, stereo width) and reconstructs it as a live instrument shaped to match, instead of a frozen loop you're stuck with. From there it's yours: turn the filter, push the drive, automate it, make it your own.<br><br>Every patch is a real, hosted synth with real parameters (not a rendered sample) and drops straight onto a genuine Logic Pro channel strip, ready to keep working with.",
-    stack:["FFT","Logic Pro","Claude","JUCE","Spectral Analysis Agent"],
-    video:"assets/patch-demo.mp4"
-  },
-  {
-    name:"ElevenIdeas", feature:true,
-    desc:"ElevenIdeas, built using ElevenAPI, lives inside your DAW and turns a single clip into eleven finished, song-aware ideas. Select a vocal, get new melodies, rewritten hooks, alternate deliveries, harmonies, and the same line re-sung in a cloned voice - isolated and transcribed for accuracy. Generate sound effects and transitions from text, or design new singers from a description, audition them, and keep your favourite.<br><br>It stays relevant because it understands the whole track. A companion plugin, ElevenBrain, sits on your master bus listening to key, tempo, energy, and tone, then shapes every ElevenIdeas result. Every idea locks to the grid and drags straight onto your timeline.<br><br>Built on ElevenLabs Music v2, Voice Changer, Voice Design, Sound Effects, and Audio Isolation.",
-    stack:["ElevenAPI","DAW plugin","Music generation","Voice cloning","Voice design","Sound effects","In Development"],
-    video:"assets/elevenideas-demo.mp4"
-  },
-  {
-    name:"Blueprint", feature:true,
-    desc:"Blueprint Studio: Arrangement Intelligence for your DAW.<br><br>Drop in any track and Blueprint analyzes the audio (section structure, key, tempo, dynamics, and instrumentation), then drafts a session-ready arrangement scaffold.<br><br>Perfect for producers who want to deconstruct a reference track, sketch a remix, or break through arrangement block: skip hours of manual mapping and start from a structured session instead of a blank one.<br><br>Export the blueprint as a standard MIDI marker file (tempo, time signature, and section markers) that drops straight into Logic, Cubase, Studio One, or Reaper, or as text for Ableton Live and FL Studio.<br><br>Under the hood: Google's YAMNet neural network and a custom spectral DSP analyzer identify the instrumentation, Anthropic's Claude writes the arrangement, all in a native C++ / JUCE 8 macOS engine with a dependency-free web UI.",
-    stack:["C++ / JUCE 8","YAMNet","Spectral DSP","Claude","MIDI markers","macOS"],
-    video:"assets/blueprint-demo.mp4"
-  },
-  {
-    name:"slopworthy.xyz", feature:true,
-    desc:"A tool that tells vibecoders whether their genius idea already exists. It used to run on a fixed database of 12 categories, now it's an LLM, because apparently even the judgment needed an upgrade. Paste in your idea and get an honest read on whether it's a breakthrough or the fortieth to-do app in a trench coat. It won't stop you from building it, just quietly note that 500 people beat you there. Some things never change, mainly the ideas people think are original. <a href=\"https://slopworthy.xyz\" target=\"_blank\" rel=\"noopener\">https://slopworthy.xyz</a> - Try it out for your next idea.",
-    stack:["LLM judgment","Idea validation","Web app","Claude"],
-    image:"assets/slopworthy-demo.png"
-  },
-  {
-    name:"BetMe", feature:true,
-    desc:"A social challenge app where friends put stakes on real-world dares - run a 10k, nail a trick shot, finish the plate. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>.",
-    highlight:{lbl:"The Video Judge", text:"The video judge is Google Gemini's native video API (gemini-2.5-flash by default, gemini-2.5 pro for crossmodel reruns), fed the uploaded video(s), a category-specific rubric prompt, and any structured bet criteria (target value, time cap, disqualifiers). It returns schema-enforced JSON - observation, reasoning, and extracted criteria before a final decision (A/B/draw/inconclusive/needs_human) plus a 0-100 confidence score, to prevent reasoning from drifting to fit a pre-picked verdict. Bet resolution auto-accepts the verdict if confidence clears a per-bet threshold"},
-    stack:["Gemini 2.5 Flash/Pro","Native video API","Schema-enforced JSON","React Native","Serverless"]
-  },
-  {
-    name:"Stella Says",
-    desc:"Stella Says is a local-first desktop app that lets anyone direct AI coding agents without ever touching a terminal. It wraps Claude (plus optional providers like Codex and OpenRouter) in a plain-language interface, running real Plan and Agent sessions against your actual project files with live tool execution you can watch and steer. Multiple workspaces run in parallel, each isolated in its own git workspace, so you can juggle several tasks without them colliding. Built for people who want the leverage of an AI engineer without needing to know what a terminal, branch, or commit even is.",
-    stack:["Agent orchestration","LLM tooling","Full-stack","Design systems"]
-  },
-  {
-    name:"LockedIn",
-    desc:"A job marketplace where employers deposit real stablecoins (sign on bonus or first month wages) into escrow before a listing goes live. Job seekers apply knowing <b>every posting is backed by actual money</b>, and funds release automatically once a hire is verified. It runs on Base and covers employers, job seekers and recruiters, with automated screening and multi-signal hire verification built in. No more applying for jobs that may not even exist.",
-    stack:["Stablecoin escrow","Base","Automated screening","Hire verification"]
-  },
-  {
-    name:"GasBuddy",
-    desc:"A UK fuel-price iOS app that shows drivers the <b>cheapest nearby petrol, diesel or premium</b>, sourced live from CMA-mandated retailer feeds. It ranks stations by price or distance on a map, with a smart default radius and a homescreen widget for glanceable prices.",
-    stack:["SwiftUI · iOS","MapKit","Live CMA feeds","Homescreen widget"]
-  },
-  {
-    name:"Various Tools",
-    desc:"Purpose-built <b>tools</b> to improve efficiency in GTM, BD, partnerships and strategy. Creative audio plugins from distortion units, to key-tracking modulated reverbs & delays. All available to be demoed on a call.",
-    stack:["GTM","BD","Partnerships","Strategy","Audio Plugins"]
-  },
-];
-
-const HOBBIES = [
-  {ic:"♫", h:"Crate digging", p:"Forever hunting the sample, the break, the record that reframes what a song can be. My ear for music is the same one I bring to product."},
-  {ic:"▤", h:"Synths & gear", p:"An unreasonable love of analog hardware - the 808, the Juno, the Prophet. If it has knobs, I want to understand it."},
-  {ic:"◈", h:"Building for fun", p:"Most weekends there's a half-finished side project open in another tab. Building is how I think - and how I keep learning fast."},
-];
-
-/* ---------------- RENDER CONTENT ---------------- */
-const worksGrid = document.getElementById('worksGrid');
-worksGrid.innerHTML = WORKS.map(w=>`
-  <div class="tile ${w.big?'big':''}">
-    <img src="${w.img}" alt="${w.t} - ${w.a}" loading="lazy" />
-    <span class="meta"><span class="t">${w.t}</span><span class="a">${w.a}</span></span>
-  </div>`).join('');
-
-const buildGrid = document.getElementById('buildGrid');
-buildGrid.innerHTML = BUILDS.map(b=>`
-  <div class="build-card ${b.feature?'feature':''}">
-    <div class="build-top">
-      <div class="build-name">${b.name}</div>
-      ${b.status?`<span class="build-status ${b.statusClass||''}">${b.status}</span>`:''}
-    </div>
-    <div class="build-body">
-      <div class="build-text">
-        <p class="build-desc">${b.desc}</p>
-        ${b.highlight?`<div class="build-highlight"><div class="lbl">${b.highlight.lbl}</div><p>${b.highlight.text}</p></div>`:''}
-      </div>
-      ${b.video?`<div class="build-media"><video src="${b.video}" controls playsinline preload="metadata"></video></div>`:''}
-      ${b.image?`<div class="build-media"><img src="${b.image}" alt="${b.name} screenshot" loading="lazy" /></div>`:''}
-      ${b.images?`<div class="build-media"><div class="carousel" data-idx="0">
-        <div class="carousel-track">${b.images.map((src,i)=>`<img src="${src}" alt="${b.name} screenshot ${i+1}" loading="lazy" />`).join('')}</div>
-        <button class="carousel-nav prev" aria-label="Previous">&#8249;</button>
-        <button class="carousel-nav next" aria-label="Next">&#8250;</button>
-        <div class="carousel-dots">${b.images.map((_,i)=>`<span class="dot${i===0?' on':''}"></span>`).join('')}</div>
-      </div></div>`:''}
-    </div>
-    <div class="build-stack">${b.stack.map(s=>`<span class="chip">${s}</span>`).join('')}</div>
-  </div>`).join('');
-
-/* ---------------- BUILD CAROUSELS ---------------- */
-buildGrid.querySelectorAll('.carousel').forEach(c=>{
-  const track=c.querySelector('.carousel-track');
-  const dots=[...c.querySelectorAll('.dot')];
-  const n=track.children.length;
-  const go=i=>{const idx=(i+n)%n;c.dataset.idx=idx;track.style.transform=`translateX(-${idx*100}%)`;dots.forEach((d,j)=>d.classList.toggle('on',j===idx));};
-  c.querySelector('.next').addEventListener('click',()=>go(+c.dataset.idx+1));
-  c.querySelector('.prev').addEventListener('click',()=>go(+c.dataset.idx-1));
-  dots.forEach((d,j)=>d.addEventListener('click',()=>go(j)));
-});
-
-const hobGrid = document.getElementById('hobGrid');
-hobGrid.innerHTML = HOBBIES.map(h=>`
-  <div class="hob"><span class="ic">${h.ic}</span><h3>${h.h}</h3><p>${h.p}</p></div>`).join('');
-
-document.getElementById('yr').textContent = "2026";
+document.getElementById('worksGrid').innerHTML = WORKS.map(w=>`
+  <div class="tile"><img src="${w.img}" alt="${w.t}, ${w.a}" loading="lazy" />
+    <span class="meta"><span class="t">${w.t}</span><span class="a">${w.a}</span></span></div>`).join('');
 
 /* ---------------- NAV ---------------- */
-const nav = document.getElementById('nav');
-addEventListener('scroll', ()=>{ nav.classList.toggle('scrolled', scrollY>40); }, {passive:true});
-
-/* ---------------- MOBILE NAV ---------------- */
-const navBurger = document.getElementById('navBurger');
-const navLinks = document.getElementById('navLinks');
-function closeMobileNav(){
-  navLinks.classList.remove('open'); navBurger.classList.remove('open');
-  navBurger.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open');
-}
-navBurger.addEventListener('click', ()=>{
-  const open = navLinks.classList.toggle('open');
-  navBurger.classList.toggle('open', open);
-  navBurger.setAttribute('aria-expanded', String(open));
-  document.body.classList.toggle('nav-open', open);
-});
-navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMobileNav));
-document.addEventListener('click', (e)=>{
-  if(navLinks.classList.contains('open') && !navLinks.contains(e.target) && !navBurger.contains(e.target)) closeMobileNav();
-});
-addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMobileNav(); });
-addEventListener('resize', ()=>{ if(innerWidth>900) closeMobileNav(); }, {passive:true});
-
-/* ============================================================
-   THREE.JS - TR-808 inspired drum machine hero
-   ============================================================ */
-let sceneStarted = false;
-async function initScene(){
-  if(sceneStarted) return; sceneStarted = true;
-
-  let THREE, OrbitControls, EffectComposer, RenderPass, UnrealBloomPass, OutputPass, RoomEnvironment;
-  try{
-    THREE = await import('three');
-    ({ OrbitControls } = await import('three/addons/controls/OrbitControls.js'));
-    ({ EffectComposer } = await import('three/addons/postprocessing/EffectComposer.js'));
-    ({ RenderPass } = await import('three/addons/postprocessing/RenderPass.js'));
-    ({ UnrealBloomPass } = await import('three/addons/postprocessing/UnrealBloomPass.js'));
-    ({ OutputPass } = await import('three/addons/postprocessing/OutputPass.js'));
-    ({ RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js'));
-  }catch(err){
-    console.warn('WebGL/three failed to load - showing fallback.', err);
-    return; // CSS fallback stays visible
-  }
-
-  const host = document.getElementById('scene');
-  const scene = new THREE.Scene();
-
-  const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true, powerPreference:'high-performance'});
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.setSize(innerWidth, innerHeight);
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.82;
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  host.appendChild(renderer.domElement);
-
-  // environment reflections
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-
-  const camera = new THREE.PerspectiveCamera(38, innerWidth/innerHeight, 0.1, 100);
-  camera.position.set(3.4, 4.4, 7.6);
-
-  // ---- lighting ----
-  scene.add(new THREE.AmbientLight(0x3a3a46, 0.6));
-  const key = new THREE.DirectionalLight(0xfff2e6, 1.5);
-  key.position.set(4, 9, 5); scene.add(key);
-  const warm = new THREE.PointLight(0xff7a3c, 22, 30); warm.position.set(-5, 3, 4); scene.add(warm);
-  const cool = new THREE.PointLight(0x3a6cff, 18, 30); cool.position.set(5, 2, -5); scene.add(cool);
-  const rim = new THREE.DirectionalLight(0xffffff, 1.1); rim.position.set(-3, 4, -6); scene.add(rim);
-
-  // ---- helpers ----
-  function roundedRectShape(w, h, r){
-    const s = new THREE.Shape();
-    const x=-w/2, y=-h/2;
-    s.moveTo(x+r, y);
-    s.lineTo(x+w-r, y); s.quadraticCurveTo(x+w, y, x+w, y+r);
-    s.lineTo(x+w, y+h-r); s.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
-    s.lineTo(x+r, y+h); s.quadraticCurveTo(x, y+h, x, y+h-r);
-    s.lineTo(x, y+r); s.quadraticCurveTo(x, y, x+r, y);
-    return s;
-  }
-  function panel(w, h, depth, r, mat){
-    const geo = new THREE.ExtrudeGeometry(roundedRectShape(w,h,r), {depth, bevelEnabled:true, bevelThickness:0.05, bevelSize:0.05, bevelSegments:3, steps:1});
-    geo.center();
-    const m = new THREE.Mesh(geo, mat);
-    m.rotation.x = -Math.PI/2; // lie flat
-    return m;
-  }
-
-  // ---- materials ----
-  const bodyMat  = new THREE.MeshStandardMaterial({color:0x1c1c22, roughness:0.55, metalness:0.35});
-  const plateMat = new THREE.MeshStandardMaterial({color:0x26262e, roughness:0.4,  metalness:0.5});
-  const knobMat  = new THREE.MeshStandardMaterial({color:0x14141a, roughness:0.35, metalness:0.7});
-  const stripeMat= new THREE.MeshStandardMaterial({color:0xff6a2b, roughness:0.4,  metalness:0.2, emissive:0xff5a1e, emissiveIntensity:0.25});
-
-  const unit = new THREE.Group();
-
-  // main body
-  const body = panel(9, 5.2, 1.0, 0.28, bodyMat);
-  unit.add(body);
-  // top plate (slightly raised, lighter)
-  const plate = panel(8.4, 4.6, 0.35, 0.22, plateMat);
-  plate.position.y = 0.62;
-  unit.add(plate);
-  // orange accent stripe near top of plate
-  const stripe = new THREE.Mesh(new THREE.BoxGeometry(8.4, 0.06, 0.28), stripeMat);
-  stripe.position.set(0, 0.82, -1.55);
-  unit.add(stripe);
-
-  // ---- knobs row (top section) ----
-  const knobColors = [0xe2483d, 0xf2b63c, 0xefe6d0, 0xff6a2b, 0x8a8a92, 0xefe6d0];
-  for(let i=0;i<6;i++){
-    const g = new THREE.Group();
-    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.34,0.36,0.34,32), knobMat);
-    const cap  = new THREE.Mesh(new THREE.CylinderGeometry(0.30,0.30,0.10,32),
-      new THREE.MeshStandardMaterial({color:knobColors[i], roughness:0.5, metalness:0.2}));
-    cap.position.y = 0.2;
-    // indicator notch
-    const notch = new THREE.Mesh(new THREE.BoxGeometry(0.05,0.12,0.20), new THREE.MeshStandardMaterial({color:0x0a0a0c,roughness:.6}));
-    notch.position.set(0,0.26,0.10); notch.rotation.y = (i*0.7);
-    g.add(base,cap,notch);
-    g.position.set(-3.4 + i*1.36, 0.94, -1.0);
-    unit.add(g);
-  }
-
-  // ---- small LED display ----
-  const disp = new THREE.Mesh(new THREE.BoxGeometry(1.7,0.5,0.06),
-    new THREE.MeshStandardMaterial({color:0x061014, roughness:0.3, metalness:0.3, emissive:0x0a2a2f, emissiveIntensity:0.6}));
-  disp.position.set(-2.6, 0.9, 0.15); disp.rotation.x = -Math.PI/2; disp.rotation.z = 0;
-  disp.rotation.x = -Math.PI/2;
-  // digits (emissive cyan bars)
-  const digitMat = new THREE.MeshStandardMaterial({color:0x38c6d9, emissive:0x38c6d9, emissiveIntensity:2.2, roughness:0.3});
-  for(let d=0; d<3; d++){
-    const seg = new THREE.Mesh(new THREE.BoxGeometry(0.32,0.42,0.03), digitMat);
-    seg.position.set(-3.1 + d*0.48, 0.94, 0.15);
-    seg.rotation.x = -Math.PI/2;
-    unit.add(seg);
-  }
-  unit.add(disp);
-
-  // ---- 16 step buttons (the sequencer) ----
-  // classic grouping: 4 red, 4 orange, 4 amber, 4 cream
-  const groupColors = [0xe2483d, 0xff6a2b, 0xf2b63c, 0xefe6d0];
-  const steps = [];
-  const pattern = [1,0,0,0, 1,0,1,0, 1,0,0,0, 1,0,1,0]; // programmed hits
-  const startX = -3.9, gapX = 0.52;
-  for(let i=0;i<16;i++){
-    const col = groupColors[Math.floor(i/4)];
-    const mat = new THREE.MeshStandardMaterial({color:col, roughness:0.45, metalness:0.15, emissive:col, emissiveIntensity:0.0});
-    const btn = new THREE.Mesh(new THREE.BoxGeometry(0.42,0.16,0.42), mat);
-    // slight rounding illusion via bevel not needed; keep crisp
-    btn.position.set(startX + i*gapX, 0.86, 1.55);
-    unit.add(btn);
-    steps.push({mesh:btn, mat, on:pattern[i], base:col});
-  }
-
-  // ---- big trigger pads (2 accent pads, right of sequencer feel) ----
-  // (kept subtle - two illuminated pads)
-  [[3.4,0xff6a2b],[3.4,0xe2483d]].forEach(([x,c],i)=>{
-    const m = new THREE.MeshStandardMaterial({color:c, roughness:.4, metalness:.1, emissive:c, emissiveIntensity:0.35});
-    const pad = new THREE.Mesh(new THREE.BoxGeometry(0.9,0.2,0.9), m);
-    pad.position.set(x, 0.9, -0.3 + i*1.15);
-    unit.add(pad);
-  });
-
-  unit.rotation.y = -0.35;
-  unit.position.y = 0.2;
-  scene.add(unit);
-
-  // ---- controls ----
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.target.set(0, 0.4, 0);
-  controls.enableDamping = true; controls.dampingFactor = 0.06;
-  controls.enablePan = false; controls.enableZoom = false;
-  controls.autoRotate = true; controls.autoRotateSpeed = 0.6;
-  controls.minPolarAngle = 0.6; controls.maxPolarAngle = 1.35;
-
-  // ---- postprocessing (bloom for LED glow) ----
-  const composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.55, 0.5, 0.28);
-  composer.addPass(bloom);
-  composer.addPass(new OutputPass());
-
-  // ---- mouse parallax ----
-  let mx=0,my=0;
-  addEventListener('pointermove', e=>{
-    mx = (e.clientX/innerWidth - 0.5);
-    my = (e.clientY/innerHeight - 0.5);
-  }, {passive:true});
-
-  // ---- sequencer animation ----
-  const clock = new THREE.Clock();
-  let acc = 0, cur = 0;
-  const stepDur = 0.16; // 16th-note feel
-
-  function tick(){
-    const dt = clock.getDelta();
-    acc += dt;
-    if(acc >= stepDur){
-      acc -= stepDur;
-      cur = (cur+1) % 16;
-    }
-    // update pad glow: programmed hits glow dim; playhead pulses bright
-    steps.forEach((s,i)=>{
-      let target = s.on ? 0.22 : 0.02;
-      if(i===cur) target = s.on ? 1.6 : 0.5;
-      s.mat.emissiveIntensity += (target - s.mat.emissiveIntensity) * Math.min(1, dt*14);
-    });
-
-    // gentle float + parallax
-    const t = clock.elapsedTime;
-    unit.position.y = 0.2 + Math.sin(t*0.8)*0.05;
-    camera.position.x += ((3.4 + mx*1.6) - camera.position.x) * 0.03;
-    camera.position.y += ((4.4 - my*1.0) - camera.position.y) * 0.03;
-
-    controls.update();
-    composer.render();
-    requestAnimationFrame(tick);
-  }
-  tick();
-
-  // ---- resize ----
-  addEventListener('resize', ()=>{
-    camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
-    renderer.setSize(innerWidth, innerHeight);
-    composer.setSize(innerWidth, innerHeight);
-  }, {passive:true});
-}
-
-initScene();
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+const burger=document.getElementById('burger'), navl=document.getElementById('navl');
+burger.onclick=()=>{const o=navl.classList.toggle('open');burger.classList.toggle('open',o);document.body.classList.toggle('nav-open',o);};
+navl.querySelectorAll('a').forEach(a=>a.onclick=()=>{navl.classList.remove('open');burger.classList.remove('open');document.body.classList.remove('nav-open');});
 </script>
 </body>
 </html>
