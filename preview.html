@@ -121,6 +121,17 @@ section{padding:92px 0}
 .frame{border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;background:#0c0d10;
   box-shadow:0 24px 50px -30px rgba(20,20,20,.3)}
 .frame video,.frame img{width:100%;display:block;aspect-ratio:16/10;object-fit:contain;background:#0c0d10}
+/* case study panel */
+.case{grid-column:1/-1;margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.case-cell{background:var(--surface);padding:24px 26px}
+.case-cell .cl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);display:block;margin-bottom:11px}
+.case-cell p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.62}
+.case-cell p b{color:var(--ink);font-weight:600}
+.case-cell p a{color:var(--acc);border-bottom:1px solid rgba(47,82,224,.3)}
+.more-case{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.more-case .cl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);display:block;margin-bottom:8px}
+.more-case p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.6}
+.more-case p b{color:var(--ink);font-weight:600}
 /* carousel */
 .carousel{position:relative;border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;background:#0c0d10;box-shadow:0 24px 50px -30px rgba(20,20,20,.3)}
 .carousel-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1)}
@@ -193,6 +204,7 @@ body.nav-open{overflow:hidden}
   .hero-grid{grid-template-columns:1fr;gap:40px}
   .build-item{grid-template-columns:1fr;gap:28px;padding:44px 0}
   .build-item.rev .build-media{order:0}
+  .case{grid-template-columns:1fr}
   .approach-grid{grid-template-columns:1fr}
   .tl-grid{grid-template-columns:1fr}
   .tl{border-top:none;border-left:2px solid var(--line-2);padding:0 0 28px 22px}
@@ -400,57 +412,107 @@ body.locked{overflow:hidden}
 const BUILDS = [
   { name:"Chops", media:"video", src:"assets/chops-demo.mp4", live:true,
     desc:"A desktop sampler that listens before you do. Drop in a folder of audio and it analyzes onset, BPM, key and loudness, then auto-chops it into transients, beat-grid loops and phrases. Type a vibe and local <b>CLAP</b> embeddings re-rank every pad by semantic match, no cloud required. Send any chop to <b>LALAL.AI</b> to split into stems on demand.",
-    stack:"Audio DSP · Onset detection · CLAP · Local embeddings · LALAL.AI API · macOS" },
+    stack:"Audio DSP · Onset detection · CLAP · Local embeddings · LALAL.AI API · macOS",
+    case:{
+      problem:"Chopping a folder of samples into usable pads is slow, repetitive work: setting transient markers by hand, tagging by feel, remembering which folder had the right snare.",
+      build:"A native macOS analysis pipeline runs onset detection, BPM and key estimation, and loudness analysis on every file the moment it's dropped in, then auto-slices each one into transients, beat-grid loops and phrases and lays them onto sample pads.",
+      api:"Semantic search runs on local <b>CLAP</b> embeddings computed on-device, so typing a vibe re-ranks the pads with no network round trip. Stem separation is the one external call: any chop can be sent to the <b>LALAL.AI</b> REST API, which returns isolated drums, bass, vocals and keys. Ships as a standalone macOS app."
+    }},
 
   { name:"Sumi", media:"video", src:"assets/sumi-demo.mp4", live:true,
     desc:"A reverb you paint, not dial in. Brush ink onto a canvas and the stroke becomes the impulse response, fast and dry for a tight room, slow and heavy for a cathedral tail. A live fluid simulation drives real convolution, synthesized and rendered in real time. Five masterworks ship built in as playable spaces.",
-    stack:"Convolution · Fluid simulation · IR synthesis · JUCE 8 · VST3 / AU · Standalone" },
+    stack:"Convolution · Fluid simulation · IR synthesis · JUCE 8 · VST3 / AU · Standalone",
+    case:{
+      problem:"Reverb plugins ask you to reason in numbers (pre-delay, decay, diffusion) when what you actually want is a feeling: a room, a distance, a texture.",
+      build:"Every ink stroke is converted into a vector field, then run through a real-time fluid simulation. The simulation's output becomes the impulse response, synthesized live rather than pulled from a sample library, so a fast dry stroke and a slow heavy one produce genuinely different spaces.",
+      api:"The IR feeds a true convolution engine built on <b>JUCE 8</b>'s DSP module, processing in real time inside the plugin's audio callback. No external API; the whole signal chain runs on-device. One codebase compiles to <b>VST3</b>, <b>AU</b> and a standalone app."
+    }},
 
   { name:"RADA/R", media:"image", src:"assets/radar-demo.png", live:true,
     desc:"Sound-first trend detection for A&amp;R. Ingests emerging tracks daily from Deezer charts, editorial playlists, iTunes and Reddit, then embeds each 30-second preview with <b>CLAP</b>, listening to the sound itself rather than metadata. Clusters surface which sonic styles are rising from the ground up, with per-sound share velocity and <b>Claude</b> analyst notes, regenerated every day.",
-    stack:"CLAP · Semantic embeddings · Claude · Deezer / Apple / Reddit APIs · Trend detection" },
+    stack:"CLAP · Semantic embeddings · Claude · Deezer / Apple / Reddit APIs · Trend detection",
+    case:{
+      problem:"Chart-based A&amp;R tools like Chartmetric and Soundcharts show what's already popular. By the time a sound shows up there, it isn't emerging anymore.",
+      build:"A daily ingestion job pulls fresh tracks from Deezer charts, editorial playlists, iTunes and Reddit music communities, embeds each 30-second preview with <b>CLAP</b>, and clusters those embeddings to find sonic styles gaining traction from the audio itself, not the metadata.",
+      api:"Ingestion is wired directly against the <b>Deezer</b>, <b>Apple/iTunes</b> and <b>Reddit</b> APIs. Each day's clusters are handed to <b>Claude</b>, which writes the analyst notes per sound family plus a running accuracy log. The pipeline regenerates and redeploys on a daily schedule."
+    }},
 
   { name:"UnderTone", media:"image", src:"assets/undertone-demo.png", live:true,
     desc:"Listens to every take of your vocal and hears what you're actually going for. Pick a feeling from 21 options like desperate, tender or triumphant, and it lights up which take nailed it, phrase by phrase, down to a single word. No cloud, no lyrics required. Click a waveform to hear it, drag to comp straight onto the timeline.",
-    stack:"Vocal comping · Emotional analysis · Local processing · Claude · DAW plugin · macOS" },
+    stack:"Vocal comping · Emotional analysis · Local processing · Claude · DAW plugin · macOS",
+    case:{
+      problem:"Comping the best phrase out of a dozen vocal takes usually means scrubbing through all of them from memory, guessing which one had the right feeling.",
+      build:"A local emotional-analysis model scores every take against 21 feelings, desperate, tender, triumphant and others, at the phrase level and down to individual words, then lights up whichever take best matches the one you picked.",
+      api:"Everything runs locally against the audio itself: no cloud calls, no lyrics or transcription required. It ships as a DAW plugin: click a waveform to preview, drag to select a slice, and drop your comp straight onto the timeline."
+    }},
 
   { name:"GrooveDNA", media:"images", src:["assets/groovedna-1.jpg","assets/groovedna-2.jpg","assets/groovedna-3.jpg","assets/groovedna-4.jpg"], live:true,
     desc:"An AU/VST3 drum sampler that curates its own kits. Type a drummer or a vibe (\"Questlove but tighter\") and <b>Claude</b> reasons out the swing, ghost-note placement and kit balance that phrase implies, then drives a live search against <b>Splice's MCP server</b> for one-shots matching each drum voice. Not happy? Argue with it in plain text and it refines the search instead of restarting.",
-    stack:"AU / VST3 · JUCE · Claude · Splice MCP · Sample curation · macOS" },
+    stack:"AU / VST3 · JUCE · Claude · Splice MCP · Sample curation · macOS",
+    case:{
+      problem:"Building a drum kit from scratch means hours of trawling sample packs for a kick, snare and hat that actually sit together.",
+      build:"Type a drummer or a vibe and <b>Claude</b> reasons out the swing, ghost-note placement and kit balance that phrase implies, structured as a query for each drum voice: kick, snare, hats, toms, clap, perc.",
+      api:"That reasoning drives a live search against <b>Splice's MCP server</b>, which exposes sample search as tool calls Claude can invoke directly, sourcing each voice individually. Arguing back in plain text refines the same search instead of restarting it, on a real-API-with-offline-fallback architecture so a dropped connection falls back to a local cache rather than breaking the session. Ships as a <b>JUCE</b> AU/VST3 plugin."
+    }},
 
   { name:"Patch", media:"video", src:"assets/patch-demo.mp4", live:true,
     desc:"Turns any sound into a real, editable synth patch. Describe what you're after, say \"synth lead from Sandstorm\", and Patch reasons its way to a matching patch from synths you already own. Or drop in a sample: it analyzes the actual character (brightness, harmonics, attack, width) and reconstructs it as a live instrument that drops straight onto a Logic Pro channel strip.",
-    stack:"FFT · Spectral analysis agent · Claude · JUCE · Logic Pro" },
+    stack:"FFT · Spectral analysis agent · Claude · JUCE · Logic Pro",
+    case:{
+      problem:"A sampled sound is frozen. You can trim and pitch it, but you can't turn its filter or push its drive, because it was never a synth to begin with.",
+      build:"An FFT-based spectral analyzer extracts brightness, harmonics, attack and stereo width from any source, a sample or a text prompt, and a dedicated spectral analysis agent maps those features onto the parameters of synths you already own.",
+      api:"<b>Claude</b> reasons from a text description straight to a parameter set. The result isn't a rendered sample: it's a genuine hosted synth instance dropped onto a real <b>Logic Pro</b> channel strip, with every parameter still live and automatable."
+    }},
 
   { name:"ElevenIdeas", media:"video", src:"assets/elevenideas-demo.mp4", live:true,
     desc:"Lives inside your DAW and turns a single clip into eleven finished, song-aware ideas: new melodies, rewritten hooks, alternate deliveries, harmonies, the same line re-sung in a cloned voice. A companion plugin, ElevenBrain, sits on your master bus listening to key, tempo, energy and tone, and shapes every result. Built on <b>ElevenLabs</b> Music v2, Voice Changer, Voice Design and Audio Isolation.",
-    stack:"ElevenLabs API · DAW plugin · Music generation · Voice cloning · Sound effects" },
+    stack:"ElevenLabs API · DAW plugin · Music generation · Voice cloning · Sound effects",
+    case:{
+      problem:"Generating a real alternative to a vocal take, a new melody, a harmony, a re-sung line in another voice, usually means leaving the DAW entirely.",
+      build:"A companion plugin, ElevenBrain, sits on the master bus listening to key, tempo, energy and tone in real time, and that context shapes every idea the main plugin generates from a selected clip.",
+      api:"Built across five <b>ElevenLabs</b> endpoints in one session: Music v2 for new melodic material, Voice Changer and Voice Design for alternate deliveries and cloned re-sings, Sound Effects for transitions, and Audio Isolation to isolate and transcribe the source clip first. Every idea locks to the project grid and drags straight onto the timeline."
+    }},
 
   { name:"Blueprint", media:"video", src:"assets/blueprint-demo.mp4", live:true,
     desc:"Arrangement intelligence for your DAW. Drop in any track and Blueprint analyzes section structure, key, tempo, dynamics and instrumentation, then drafts a session-ready arrangement scaffold. Export as a standard MIDI marker file into Logic, Cubase, Studio One or Reaper. Under the hood: Google's <b>YAMNet</b> and a custom spectral analyzer identify instrumentation, <b>Claude</b> writes the arrangement.",
-    stack:"C++ / JUCE 8 · YAMNet · Spectral DSP · Claude · MIDI markers · macOS" },
+    stack:"C++ / JUCE 8 · YAMNet · Spectral DSP · Claude · MIDI markers · macOS",
+    case:{
+      problem:"Deconstructing a reference track's arrangement, or breaking through your own arrangement block, means manually mapping sections and markers by ear.",
+      build:"A native <b>C++/JUCE 8</b> engine runs Google's <b>YAMNet</b> neural network for instrumentation identification alongside a custom spectral DSP analyzer for section structure, key, tempo and dynamics, entirely on-device.",
+      api:"Those signals are handed to <b>Claude</b>, which writes the arrangement scaffold. Export is a standard MIDI marker file that drops straight into Logic, Cubase, Studio One or Reaper, or as text markers for Ableton Live and FL Studio. The interface is a dependency-free web UI embedded in the native app."
+    }},
 
   { name:"slopworthy.xyz", media:"image", src:"assets/slopworthy-demo.png", live:true, url:"https://slopworthy.xyz",
     desc:"Tells vibecoders whether their genius idea already exists. Paste in your idea and get an honest read on whether it's a breakthrough or the fortieth to-do app in a trench coat. It won't stop you building it, just quietly note that 500 people beat you there. <a href=\"https://slopworthy.xyz\" target=\"_blank\" rel=\"noopener\">slopworthy.xyz →</a>",
-    stack:"LLM judgment · Idea validation · Web app · Claude" },
+    stack:"LLM judgment · Idea validation · Web app · Claude",
+    case:{
+      problem:"Every vibecoder thinks their app idea is original. Most aren't, and there was no fast, honest way to check.",
+      build:"Originally ran on a fixed database of 12 categories; now an LLM reads the idea directly and reasons about whether it's genuinely new or the fortieth to-do app in a trench coat.",
+      api:"A single <b>Claude</b> call takes the pasted idea and returns a verdict with reasoning, no database lookup required. Ships as a small, fast web app at <a href=\"https://slopworthy.xyz\" target=\"_blank\" rel=\"noopener\">slopworthy.xyz</a>."
+    }},
 ];
 
 const MORE = [
   { name:"BetMe",
     desc:"A social challenge app where friends stake real money on real-world dares. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>. The video judge is Gemini's native video API, fed the clips plus a category rubric, returning schema-enforced JSON (observation, then reasoning, then verdict and confidence) so reasoning can't drift to fit a pre-picked outcome.",
-    stack:"Gemini 2.5 Flash/Pro · Native video API · Schema-enforced JSON · React Native" },
+    stack:"Gemini 2.5 Flash/Pro · Native video API · Schema-enforced JSON · React Native",
+    build:"Uploaded clips plus a category-specific rubric prompt go into Gemini's native video API; observation, then reasoning, then a verdict with a 0 to 100 confidence score come out. Bets above the confidence threshold auto-resolve; the rest route to a human." },
   { name:"Stella Says",
     desc:"A local-first desktop app that lets anyone direct AI coding agents <b>without touching a terminal</b>. Wraps Claude (plus optional providers) in a plain-language interface, running real Plan and Agent sessions against your files with live tool execution you can watch and steer. Parallel isolated git workspaces.",
-    stack:"Agent orchestration · LLM tooling · Full-stack · Design systems" },
+    stack:"Agent orchestration · LLM tooling · Full-stack · Design systems",
+    build:"Each workspace runs as its own isolated git worktree, so parallel tasks never collide. The interface streams tool calls and file edits from a real agent session as they happen, turning what would normally be terminal output into a plain-language, watchable feed." },
   { name:"LockedIn",
     desc:"A job marketplace where employers deposit real stablecoins into escrow before a listing goes live. Seekers apply knowing <b>every posting is backed by actual money</b>; funds release automatically once a hire is verified. Runs on Base with automated screening and multi-signal hire verification.",
-    stack:"Stablecoin escrow · Base · Automated screening · Hire verification" },
+    stack:"Stablecoin escrow · Base · Automated screening · Hire verification",
+    build:"Employer funds sit in a stablecoin escrow contract on <b>Base</b> before a listing can go live. A verification step checks multiple signals to confirm an actual hire before the contract is authorized to release funds automatically." },
   { name:"GasBuddy",
     desc:"A UK fuel-price iOS app showing drivers the <b>cheapest nearby petrol, diesel or premium</b>, sourced live from CMA-mandated retailer feeds. Ranks stations by price or distance on a map, with a homescreen widget for glanceable prices.",
-    stack:"SwiftUI · iOS · MapKit · Live CMA feeds · Homescreen widget" },
+    stack:"SwiftUI · iOS · MapKit · Live CMA feeds · Homescreen widget",
+    build:"Ingests the UK's CMA-mandated live fuel-price feeds, ranks nearby stations by price or distance on a MapKit view, and mirrors the same data to a homescreen widget so prices are glanceable with the app closed." },
   { name:"Various Tools",
     desc:"Purpose-built <b>internal tools</b> for GTM, BD, partnerships and strategy, plus creative audio plugins from distortion units to key-tracking modulated reverbs and delays. Available to demo on a call.",
-    stack:"GTM · BD · Partnerships · Strategy · Audio plugins" },
+    stack:"GTM · BD · Partnerships · Strategy · Audio plugins",
+    build:"Mostly small, purpose-built scripts and plugins solving one specific GTM, BD or partnerships problem at a time, plus a handful of creative audio plugins built the same way. All demoable on a call." },
 ];
 
 /* ---------------- RENDER BUILDER ---------------- */
@@ -465,6 +527,7 @@ buildList.innerHTML = BUILDS.map((b,i)=>{
       <button class="cn prev" aria-label="Prev">‹</button><button class="cn next" aria-label="Next">›</button>
       <div class="cd">${b.src.map((_,j)=>`<span class="dot${j===0?' on':''}"></span>`).join('')}</div>
     </div>`;
+  const c = b.case;
   return `<div class="build-item ${rev}">
     <div class="build-text">
       <div class="build-name">${b.name} ${b.live?'<span class="live">Live</span>':'<span class="live" style="color:var(--ink-faint)">In dev</span>'}</div>
@@ -472,6 +535,11 @@ buildList.innerHTML = BUILDS.map((b,i)=>{
       <div class="build-stack"><span class="k">Stack</span> · ${b.stack}</div>
     </div>
     <div class="build-media">${media}</div>
+    ${c?`<div class="case">
+      <div class="case-cell"><span class="cl">The problem</span><p>${c.problem}</p></div>
+      <div class="case-cell"><span class="cl">How it's built</span><p>${c.build}</p></div>
+      <div class="case-cell"><span class="cl">API, integration &amp; deployment</span><p>${c.api}</p></div>
+    </div>`:''}
   </div>`;
 }).join('');
 
@@ -490,6 +558,7 @@ document.getElementById('moreList').innerHTML = MORE.map(m=>`
     <div class="mn">${m.name}</div>
     <p>${m.desc}</p>
     <div class="build-stack">${m.stack}</div>
+    ${m.build?`<div class="more-case"><span class="cl">How it's built</span><p>${m.build}</p></div>`:''}
   </div>`).join('');
 
 /* ---------------- MUSIC GRID ---------------- */
