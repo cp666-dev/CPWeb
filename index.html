@@ -77,14 +77,121 @@ h1.title{font-size:clamp(42px,5.6vw,72px);font-weight:700;letter-spacing:-.038em
 .stat .n{font-size:26px;font-weight:700;letter-spacing:-.02em}
 .stat .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px}
 
-/* hero flagship viewer (real product footage) */
+/* hero flagship viewer (live Chops console) */
 .viewer{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-lg);
   box-shadow:0 1px 0 #fff inset,0 30px 60px -34px rgba(20,20,20,.32);overflow:hidden}
-.viewer-media{position:relative;aspect-ratio:16/10;background:#0c0d10}
+.viewer-media{position:relative;aspect-ratio:16/10;background:#e7e3d8}
 .viewer-media video{width:100%;height:100%;object-fit:contain}
 .viewer-cap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 18px;border-top:1px solid var(--line)}
 .viewer-cap .nm{font-weight:600;font-size:15px}
 .viewer-cap .st{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);letter-spacing:.04em}
+
+/* ---------- CHOPS LIVE CONSOLE (hero, interactive replica) ---------- */
+.cc{--bone:#e7e3d8;--bone-2:#ded9cc;--panel:#f2efe7;--card:#f7f5ef;--cink:#1b1b18;--cink-2:#6c6a61;--cink-3:#9a978c;
+  --orange:#ff4a00;--orange-deep:#d63d00;--cline:#cdc7b6;--cline-2:#bcb5a0;--cgreen:#3e8e5a;--cblue:#2b6ca3;
+  position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bone);color:var(--cink);
+  font-family:var(--sans);overflow:hidden}
+.cc *{box-sizing:border-box}
+.cc .mono{font-family:var(--mono)}
+.cc-top{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1.5px solid var(--cink);background:var(--bone-2);flex:none}
+.cc-brand{font-weight:600;font-size:13px;letter-spacing:.01em;background:var(--cink);color:var(--bone);padding:3px 8px;border-radius:4px}
+.cc-brand span{color:var(--orange)}
+.cc-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 3px rgba(255,74,0,.18);flex:none}
+.cc-status{font-size:9.5px;color:var(--cink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-spacer{flex:1}
+.cc-tbtn{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;border:1.3px solid var(--cink);
+  background:var(--card);padding:5px 9px;border-radius:5px;color:var(--cink)}
+.cc-tbtn.pri{background:var(--orange);border-color:var(--orange-deep);color:#fff}
+.cc-tbtn:active{transform:translateY(1px)}
+.cc-body{flex:1;display:grid;grid-template-columns:118px 1fr;min-height:0}
+.cc-side{border-right:1.5px solid var(--cink);background:var(--panel);display:flex;flex-direction:column;min-height:0;padding:8px}
+.cc-side h4{margin:0 0 6px;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--cink-2)}
+.cc-drop{border:1.5px dashed var(--cline-2);border-radius:6px;padding:9px 6px;text-align:center;font-size:8.5px;color:var(--cink-2);
+  background:var(--card);cursor:pointer;margin-bottom:8px;transition:.12s}
+.cc-drop:hover{border-color:var(--orange);background:#fff4ef}
+.cc-drop b{display:block;color:var(--cink);font-size:9.5px;margin-bottom:2px}
+.cc-files{overflow:auto;flex:1;display:flex;flex-direction:column;gap:2px}
+.cc-file{display:flex;align-items:center;gap:5px;padding:5px 6px;border-radius:5px;font-size:9.5px;cursor:pointer;white-space:nowrap;overflow:hidden}
+.cc-file .wf{width:16px;height:8px;flex:none;background:repeating-linear-gradient(90deg,var(--cline-2) 0 1.5px,transparent 1.5px 3px);opacity:.6;border-radius:2px}
+.cc-file span:last-child{overflow:hidden;text-overflow:ellipsis}
+.cc-file.active{background:var(--cink);color:var(--bone)}
+.cc-file.active .wf{background:repeating-linear-gradient(90deg,var(--orange) 0 1.5px,transparent 1.5px 3px);opacity:1}
+.cc-main{display:flex;flex-direction:column;min-height:0;min-width:0}
+.cc-wave-wrap{padding:9px 12px 7px;border-bottom:1px solid var(--cline);flex:none}
+.cc-wave-title{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.cc-wave-title b{font-size:10.5px}
+.cc-meta{display:flex;gap:9px;margin-left:auto;font-size:8.5px;color:var(--cink-2)}
+.cc-meta i{font-style:normal;color:var(--cink)}
+.cc-wave{position:relative;height:44px;background:var(--card);border:1.3px solid var(--cline-2);border-radius:6px;overflow:hidden;cursor:pointer}
+.cc-bars{position:absolute;inset:0;display:flex;align-items:center;gap:1.5px;padding:0 4px}
+.cc-bars i{flex:1;background:var(--cink-3);opacity:.55;border-radius:1px}
+.cc-playhead{position:absolute;top:0;bottom:0;left:0;width:1.5px;background:var(--cink);opacity:0;pointer-events:none}
+.cc-vibe{display:flex;align-items:center;gap:7px;padding:8px 12px;border-bottom:1px solid var(--cline);background:var(--bone-2);flex:none;flex-wrap:wrap}
+.cc-vlabel{font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--cink-2)}
+.cc-vinput{flex:1;min-width:120px;display:flex;align-items:center;gap:5px;background:var(--card);border:1.3px solid var(--cink);border-radius:6px;padding:5px 8px}
+.cc-vinput .caret{color:var(--orange);font-family:var(--mono)}
+.cc-vinput input{border:0;background:transparent;font-family:var(--mono);font-size:9.5px;color:var(--cink);width:100%;outline:none}
+.cc-vinput input::placeholder{color:var(--cink-3)}
+.cc-lucky{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-weight:600;font-size:9px;letter-spacing:.04em;
+  text-transform:uppercase;background:var(--orange);color:#fff;border:1.3px solid var(--orange-deep);padding:5px 9px;border-radius:6px;
+  box-shadow:0 1.5px 0 var(--orange-deep);white-space:nowrap}
+.cc-lucky:active{transform:translateY(1.5px);box-shadow:none}
+.cc-padhead{display:flex;align-items:center;gap:8px;padding:7px 12px 5px;flex:none}
+.cc-padhead b{font-size:10px}
+.cc-count{font-size:8.5px;color:var(--cink-2)}
+.cc-mode{margin-left:auto;font-size:8px;color:var(--cgreen);border:1px solid var(--cgreen);padding:2px 6px;border-radius:10px}
+.cc-pads{flex:1;overflow:auto;padding:2px 12px 10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(94px,1fr));gap:6px;align-content:start}
+.cc-pad{background:var(--card);border:1.3px solid var(--cline-2);border-radius:7px;padding:6px;cursor:pointer;position:relative;transition:border-color .1s}
+.cc-pad:hover{border-color:var(--cink)}
+.cc-pad.hot{border-color:var(--orange)}
+.cc-pad .num{position:absolute;top:5px;right:6px;font-family:var(--mono);font-size:7.5px;color:var(--cink-3)}
+.cc-pad-bars{height:18px;margin:11px 0 5px;display:flex;align-items:center;gap:1px}
+.cc-pad-bars i{flex:1;border-radius:1px;background:var(--cink-3);opacity:.6}
+.cc-pad.c1 .cc-pad-bars i{background:var(--orange);opacity:.8}
+.cc-pad.c2 .cc-pad-bars i{background:var(--cblue);opacity:.7}
+.cc-pad.c3 .cc-pad-bars i{background:var(--cgreen);opacity:.7}
+.cc-pad .nm{font-family:var(--mono);font-size:7.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px}
+.cc-pad .tags{display:flex;flex-wrap:wrap;gap:2px;margin-bottom:5px}
+.cc-pad .tag{font-family:var(--mono);font-size:6.5px;padding:1px 4px;border-radius:3px;background:var(--bone-2);color:var(--cink-2)}
+.cc-pad .foot{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:7.5px;color:var(--cink-3)}
+.cc-pad .play-s{width:15px;height:15px;border-radius:50%;background:var(--cink);color:var(--bone);display:grid;place-items:center;font-size:6.5px;border:none;flex:none}
+.cc-pad.hot .play-s{background:var(--orange)}
+.cc-transport{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--bone-2);border-top:1.5px solid var(--cink);flex:none}
+.cc-tr{font-family:var(--mono);font-size:9px;width:22px;height:20px;border-radius:5px;border:1.3px solid var(--cline-2);background:var(--card);color:var(--cink-2)}
+.cc-tr:active{background:var(--cink);color:var(--bone)}
+.cc-clock{font-size:9px;background:var(--cink);color:var(--orange);padding:3px 7px;border-radius:4px}
+.cc-meters{display:flex;gap:3px}
+.cc-meter{width:38px;height:6px;background:var(--card);border:1px solid var(--cline-2);border-radius:3px;overflow:hidden}
+.cc-meter i{display:block;height:100%;width:10%;background:var(--cgreen);transition:width .15s}
+.cc-exportall{margin-left:auto;font-family:var(--mono);font-weight:600;font-size:8.5px;letter-spacing:.03em;text-transform:uppercase;
+  background:var(--orange);color:#fff;border:1.3px solid var(--orange-deep);border-radius:6px;padding:6px 10px;box-shadow:0 1.5px 0 var(--orange-deep);white-space:nowrap}
+.cc-exportall:active{transform:translateY(1.5px);box-shadow:none}
+.cc-scrim{position:absolute;inset:0;background:rgba(20,16,10,.28);display:none;align-items:flex-start;justify-content:center;padding:30px 16px;z-index:5}
+.cc-scrim.open{display:flex}
+.cc-dialog{width:min(420px,94%);background:#ece9e3;border-radius:9px;box-shadow:0 20px 45px -18px rgba(20,16,10,.5);overflow:hidden;font-size:10px;color:#222;border:1px solid rgba(0,0,0,.12)}
+.cc-dtop{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#ddd9d1;border-bottom:1px solid #cac5ba}
+.cc-dnav{width:16px;height:16px;border-radius:4px;border:1px solid #c3beb2;background:#efece6;font-size:9px;color:#888}
+.cc-dcrumb{font-size:9.5px;color:#333}
+.cc-dspacer{flex:1}
+.cc-dsearch{font-size:8.5px;color:#888;background:#f4f2ee;border:1px solid #cac5ba;border-radius:5px;padding:3px 7px}
+.cc-dbody{display:grid;grid-template-columns:92px 1fr;min-height:150px}
+.cc-dside{background:#e3e0d8;padding:8px 6px;border-right:1px solid #cac5ba}
+.cc-dgroup{font-size:8px;color:#948f80;margin:6px 0 3px;text-transform:uppercase;letter-spacing:.06em}
+.cc-ditem{font-size:9px;padding:3px 5px;border-radius:4px;color:#333}
+.cc-dlist{background:#fdfcfa;padding:0}
+.cc-drow{display:flex;justify-content:space-between;padding:6px 10px;font-size:9px;border-bottom:1px solid #eee}
+.cc-drow.head{color:#8a8578;font-size:8px;text-transform:uppercase;letter-spacing:.05em}
+.cc-drow.sel{background:#3574d4;color:#fff}
+.cc-dfoot{display:flex;justify-content:flex-end;gap:8px;padding:9px 10px;background:#ddd9d1;border-top:1px solid #cac5ba}
+.cc-dcancel,.cc-dopen{font-size:9px;padding:4px 12px;border-radius:5px;border:1px solid #c3beb2;cursor:pointer}
+.cc-dcancel{background:#efece6;color:#333}
+.cc-dopen{background:#3574d4;color:#fff;border-color:#2a5fb0}
+@media(max-width:480px){
+  .viewer-media{aspect-ratio:3/4}
+  .cc-side{display:none}
+  .cc-body{grid-template-columns:1fr}
+  .cc-pads{grid-template-columns:repeat(auto-fill,minmax(78px,1fr))}
+}
 
 /* ---------- SECTION SCAFFOLD ---------- */
 section{padding:92px 0}
@@ -274,7 +381,86 @@ body.nav-open{overflow:hidden}
 
     <div class="viewer">
       <div class="viewer-media">
-        <video src="assets/chops-demo.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="cc" id="cc">
+          <div class="cc-top">
+            <div class="cc-brand mono">ch<span>o</span>ps</div>
+            <span class="cc-dot"></span>
+            <span class="cc-status mono" id="ccStatus">ANALYSED · 8 CHOPS · CLAP READY</span>
+            <div class="cc-spacer"></div>
+            <button class="cc-tbtn">Rechop</button>
+            <button class="cc-tbtn pri">Export</button>
+          </div>
+          <div class="cc-body">
+            <aside class="cc-side">
+              <h4 class="mono">Source folder</h4>
+              <div class="cc-drop" id="ccDrop"><b>Drop audio here</b>wav · mp3 · aiff · flac</div>
+              <div class="cc-files" id="ccFiles"></div>
+            </aside>
+            <div class="cc-main">
+              <div class="cc-wave-wrap">
+                <div class="cc-wave-title">
+                  <b class="mono">Ketsa - Who Dat.mp3</b>
+                  <div class="cc-meta mono">
+                    <span>BPM <i>094</i></span><span>KEY <i>F#-min</i></span><span>ONSETS <i>257</i></span><span>LUFS <i>-12</i></span>
+                  </div>
+                </div>
+                <div class="cc-wave" id="ccWave" title="click to preview">
+                  <div class="cc-bars" id="ccBars"></div>
+                  <div class="cc-playhead" id="ccPlayhead"></div>
+                </div>
+              </div>
+              <div class="cc-vibe">
+                <span class="cc-vlabel mono">Vibe</span>
+                <div class="cc-vinput">
+                  <span class="caret">›</span>
+                  <input id="ccVibeInput" class="mono" placeholder="punchy boom-bap drum break, dusty" autocomplete="off" />
+                </div>
+                <button class="cc-lucky" id="ccLucky">🎲 I'm feeling lucky</button>
+              </div>
+              <div class="cc-padhead">
+                <b>Suggested chops</b>
+                <span class="cc-count mono" id="ccCount">8 · ranked by vibe match</span>
+                <span class="cc-mode mono">CLAP semantic</span>
+              </div>
+              <div class="cc-pads" id="ccPads"></div>
+            </div>
+          </div>
+          <div class="cc-transport">
+            <button class="cc-tr">⏮</button>
+            <button class="cc-tr" id="ccPlayAll">▶</button>
+            <div class="cc-clock mono">001.1.00</div>
+            <div class="cc-meters"><span class="cc-meter"><i id="ccMeterL"></i></span><span class="cc-meter"><i id="ccMeterR"></i></span></div>
+            <button class="cc-exportall mono" id="ccExportAll">Export all · 8 chops → disk</button>
+          </div>
+          <div class="cc-scrim" id="ccScrim">
+            <div class="cc-dialog">
+              <div class="cc-dtop">
+                <button class="cc-dnav">‹</button><button class="cc-dnav">›</button>
+                <span class="cc-dcrumb mono">📁 Chops</span>
+                <div class="cc-dspacer"></div>
+                <span class="cc-dsearch mono">🔍 Search</span>
+              </div>
+              <div class="cc-dbody">
+                <div class="cc-dside mono">
+                  <div class="cc-dgroup">Favourites</div>
+                  <div class="cc-ditem">🖥 Desktop</div>
+                  <div class="cc-ditem">📄 Documents</div>
+                  <div class="cc-ditem">⬇ Downloads</div>
+                  <div class="cc-dgroup">Locations</div>
+                  <div class="cc-ditem">🏠 cp</div>
+                </div>
+                <div class="cc-dlist mono">
+                  <div class="cc-drow head"><span>Name</span><span>Kind</span></div>
+                  <div class="cc-drow sel"><span>📁 Chops Test Music</span><span>Folder</span></div>
+                </div>
+              </div>
+              <div class="cc-dfoot">
+                <button class="cc-dcancel mono" id="ccCancel">Cancel</button>
+                <button class="cc-dopen mono" id="ccOpen">Open</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="viewer-cap">
         <span class="nm">Chops</span>
@@ -399,6 +585,120 @@ body.nav-open{overflow:hidden}
 </section>
 
 <script>
+/* ---------------- CHOPS LIVE CONSOLE (hero) ---------------- */
+(function(){
+  const cc = document.getElementById('cc');
+  if(!cc) return;
+  const seed = i => { const x = Math.sin(i*12.9898)*43758.5453; return x - Math.floor(x); };
+
+  const FILES = [
+    {nm:'1000 Handz - Mas…'},{nm:'Alex Morgan - So…'},{nm:'Audiobinger - De…'},
+    {nm:'Ketsa - Who Dat.mp3', active:true},{nm:'Lite Saturation…'},{nm:'SyncLab Music - …'},{nm:'Waveloom - Free…'}
+  ];
+  const PADS = [
+    {n:1, nm:'Ketsa - Who Dat_133771ms', tags:['boom-bap','break'], dur:'0.7s', c:'c1'},
+    {n:2, nm:'Ketsa - Who Dat_155904ms', tags:['boom-bap','break'], dur:'1.4s', c:'c2'},
+    {n:3, nm:'Ketsa - Who Dat_133056ms', tags:['boom-bap','break'], dur:'1.8s', c:'c3'},
+    {n:4, nm:'Ketsa - Who Dat_105547ms', tags:['dusty vinyl one-shot'], dur:'0.7s'},
+    {n:5, nm:'Ketsa - Who Dat_157323ms', tags:['warm punchy phrase'], dur:'1.5s'},
+    {n:6, nm:'Ketsa - Who Dat_134837ms', tags:['warm punchy phrase'], dur:'1.8s'},
+    {n:7, nm:'Ketsa - Who Dat_161973ms', tags:['warm punchy phrase'], dur:'1.4s'},
+    {n:8, nm:'Ketsa - Who Dat_151253ms', tags:['warm punchy phrase'], dur:'1.4s'}
+  ];
+
+  cc.querySelector('#ccFiles').innerHTML = FILES.map((f,i)=>
+    `<div class="cc-file${f.active?' active':''}" data-i="${i}"><span class="wf"></span><span>${f.nm}</span></div>`
+  ).join('');
+
+  const barsEl = cc.querySelector('#ccBars');
+  barsEl.innerHTML = Array.from({length:56},(_,i)=>{
+    const h = 14 + seed(i)*82;
+    const marker = [9,16,23,31,38,44,49].includes(i);
+    return `<i style="height:${h}%${marker?';background:var(--orange);opacity:.85':''}"></i>`;
+  }).join('');
+
+  const padsEl = cc.querySelector('#ccPads');
+  const countEl = cc.querySelector('#ccCount');
+  function renderPads(list){
+    padsEl.innerHTML = list.map(p=>`
+      <div class="cc-pad${p.c?' '+p.c:''}" data-n="${p.n}">
+        <span class="num">#${p.n}</span>
+        <div class="cc-pad-bars">${Array.from({length:10},(_,i)=>`<i style="height:${20+seed(p.n*10+i)*80}%"></i>`).join('')}</div>
+        <div class="nm">${p.nm}</div>
+        <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        <div class="foot"><button class="play-s">▶</button><span>${p.dur}</span></div>
+      </div>`).join('');
+    countEl.textContent = list.length + ' · ranked by vibe match';
+  }
+  renderPads(PADS);
+
+  padsEl.addEventListener('click', e=>{
+    const pad = e.target.closest('.cc-pad');
+    if(!pad) return;
+    const wasHot = pad.classList.contains('hot');
+    padsEl.querySelectorAll('.cc-pad.hot').forEach(p=>{p.classList.remove('hot'); p.querySelector('.play-s').textContent='▶';});
+    if(!wasHot){ pad.classList.add('hot'); pad.querySelector('.play-s').textContent='■'; }
+  });
+
+  const vibeInput = cc.querySelector('#ccVibeInput');
+  vibeInput.addEventListener('input', ()=>{
+    const q = vibeInput.value.toLowerCase().trim();
+    const list = q ? PADS.filter(p=> p.tags.some(t=>t.toLowerCase().includes(q)) || p.nm.toLowerCase().includes(q)) : PADS;
+    renderPads(list.length ? list : PADS);
+  });
+
+  cc.querySelector('#ccLucky').addEventListener('click', ()=>{
+    renderPads([...PADS].sort(()=>Math.random()-0.5));
+  });
+
+  const wave = cc.querySelector('#ccWave');
+  const playhead = cc.querySelector('#ccPlayhead');
+  let waveRaf = null;
+  wave.addEventListener('click', e=>{
+    const rect = wave.getBoundingClientRect();
+    const frac = Math.max(0, Math.min(1, (e.clientX-rect.left)/rect.width));
+    if(waveRaf) cancelAnimationFrame(waveRaf);
+    playhead.style.opacity = '1';
+    const start = performance.now();
+    const dur = (1-frac)*2600;
+    (function tick(t){
+      const p = Math.min(1, (t-start)/dur);
+      playhead.style.left = ((frac + p*(1-frac))*100)+'%';
+      if(p<1) waveRaf = requestAnimationFrame(tick);
+      else playhead.style.opacity='0';
+    })(start);
+  });
+
+  cc.querySelector('#ccFiles').addEventListener('click', e=>{
+    const f = e.target.closest('.cc-file');
+    if(!f) return;
+    cc.querySelectorAll('.cc-file.active').forEach(x=>x.classList.remove('active'));
+    f.classList.add('active');
+  });
+
+  const scrim = cc.querySelector('#ccScrim');
+  cc.querySelector('#ccDrop').addEventListener('click', ()=>scrim.classList.add('open'));
+  cc.querySelector('#ccCancel').addEventListener('click', ()=>scrim.classList.remove('open'));
+  cc.querySelector('#ccOpen').addEventListener('click', ()=>scrim.classList.remove('open'));
+  scrim.addEventListener('click', e=>{ if(e.target===scrim) scrim.classList.remove('open'); });
+
+  let playing = false, meterTimer = null;
+  const meterL = cc.querySelector('#ccMeterL'), meterR = cc.querySelector('#ccMeterR');
+  cc.querySelector('#ccPlayAll').addEventListener('click', e=>{
+    playing = !playing;
+    e.currentTarget.textContent = playing ? '■' : '▶';
+    if(playing){
+      meterTimer = setInterval(()=>{
+        meterL.style.width = (20+Math.random()*70)+'%';
+        meterR.style.width = (20+Math.random()*70)+'%';
+      }, 140);
+    } else {
+      clearInterval(meterTimer);
+      meterL.style.width = '10%'; meterR.style.width = '10%';
+    }
+  });
+})();
+
 /* ---------------- BUILDER DATA ---------------- */
 const BUILDS = [
   { name:"Chops", media:"video", src:"assets/chops-demo.mp4", live:true,
@@ -408,6 +708,15 @@ const BUILDS = [
       problem:"Chopping a folder of samples into usable pads is slow, repetitive work: setting transient markers by hand, tagging by feel, remembering which folder had the right snare.",
       build:"A native macOS analysis pipeline runs onset detection, BPM and key estimation, and loudness analysis on every file the moment it's dropped in, then auto-slices each one into transients, beat-grid loops and phrases and lays them onto sample pads.",
       api:"Semantic search runs on local <b>CLAP</b> embeddings computed on-device, so typing a vibe re-ranks the pads with no network round trip. Stem separation is the one external call: any chop can be sent to the <b>LALAL.AI</b> REST API, which returns isolated drums, bass, vocals and keys. Ships as a standalone macOS app."
+    }},
+
+  { name:"LLS", media:"images", src:["assets/lls-1.png","assets/lls-2.png"], live:true,
+    desc:"LLS stands for Looks Like Shit. Six rackable, stackable units, Comp, EQ, Tape, Reverb, Delay, Distortion, each one looking like it was drawn by the lil bro you never wanted but sounding like it went to <b>Berklee</b> (and won't shut up about it). Every meter has a strip of tape slapped over it that says: use ur ears. Because honestly, you should.",
+    stack:"JUCE 8 · AU / VST3 / Standalone · FET compression · FDN reverb · Tape saturation · Lemon Squeezy API · macOS / Windows",
+    case:{
+      problem:"Plugin UIs have turned into a beauty contest. Everyone's fighting to make the best looking plugin, glowy knobs, glass reflections, 4K vector everything, and somewhere in that arms race, sound and function took a back seat. Which is kinda wild, because that's the entire point of a plugin.",
+      build:"A native <b>JUCE</b> plugin models six pieces of classic hardware, an 1176 comp, Pultec EQ, reel tape, Lexicon 224 reverb, Copicat echo and DS-1 distortion, as a reorderable serial chain with real DSP: 4× oversampled FET compression, an 8-line modulated FDN reverb, wow/flutter tape saturation. All wrapped in hand-drawn, childlike doodle graphics that animate with every control.",
+      api:"Ships as a universal macOS (Intel + Apple Silicon) and Windows build in <b>AU</b>, <b>VST3</b> and Standalone formats. Licensing runs on the <b>Lemon Squeezy</b> API: a one-time purchase activates and binds to a machine, then works fully offline via a fingerprint-bound cached record, with silent background re-validation so a seat can be revoked remotely."
     }},
 
   { name:"Sumi", media:"video", src:"assets/sumi-demo.mp4", live:true,
