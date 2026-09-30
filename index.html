@@ -219,6 +219,8 @@ section{padding:92px 0}
 .build-item.rev .build-top .build-text{order:2}
 .build-name{font-size:clamp(28px,3.4vw,40px);letter-spacing:-.03em;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .build-name .live{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);border:1px solid var(--line-2);border-radius:100px;padding:4px 10px;font-weight:400}
+.build-name .buy{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--surface);background:var(--acc);border:1px solid var(--acc);border-radius:100px;padding:5px 12px 5px 13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.build-name .buy:hover{background:#2444c0;border-color:#2444c0}
 .build-desc{margin-top:18px;color:var(--ink-2);font-size:15.5px;line-height:1.62}
 .build-desc b{color:var(--ink);font-weight:600}
 .build-desc a{color:var(--acc);border-bottom:1px solid rgba(47,82,224,.3)}
@@ -701,7 +703,7 @@ body.nav-open{overflow:hidden}
 
 /* ---------------- BUILDER DATA ---------------- */
 const BUILDS = [
-  { name:"Chops", media:"video", src:"assets/chops-demo.mp4", live:true,
+  { name:"Chops", media:"video", src:"assets/chops-demo.mp4", live:true, buy:"https://squishlabs.store",
     desc:"A desktop sampler that listens before you do. Drop in a folder of audio and it analyzes onset, BPM, key and loudness, then auto-chops it into transients, beat-grid loops and phrases. Type a vibe and local <b>CLAP</b> embeddings re-rank every pad by semantic match, no cloud required. Send any chop to <b>LALAL.AI</b> to split into stems on demand.",
     stack:"Audio DSP · Onset detection · CLAP · Local embeddings · LALAL.AI API · macOS",
     case:{
@@ -710,7 +712,7 @@ const BUILDS = [
       api:"Semantic search runs on local <b>CLAP</b> embeddings computed on-device, so typing a vibe re-ranks the pads with no network round trip. Stem separation is the one external call: any chop can be sent to the <b>LALAL.AI</b> REST API, which returns isolated drums, bass, vocals and keys. Ships as a standalone macOS app."
     }},
 
-  { name:"LLS", media:"images", src:["assets/lls-1.png","assets/lls-2.png"], live:true,
+  { name:"LLS", media:"images", src:["assets/lls-1.png","assets/lls-2.png"], live:true, buy:"https://squishlabs.store",
     desc:"LLS stands for Looks Like Shit. Six rackable, stackable units, Comp, EQ, Tape, Reverb, Delay, Distortion, each one looking like it was drawn by the lil bro you never wanted but sounding like it went to <b>Berklee</b> (and won't shut up about it). Every meter has a strip of tape slapped over it that says: use ur ears. Because honestly, you should.",
     stack:"JUCE 8 · AU / VST3 / Standalone · FET compression · FDN reverb · Tape saturation · Lemon Squeezy API · macOS / Windows",
     case:{
@@ -831,7 +833,7 @@ buildList.innerHTML = BUILDS.map((b,i)=>{
   return `<div class="build-item ${rev}">
     <div class="build-top">
       <div class="build-text">
-        <div class="build-name">${b.name} ${b.live?'<span class="live">Live</span>':'<span class="live" style="color:var(--ink-faint)">In dev</span>'}</div>
+        <div class="build-name">${b.name} ${b.live?'<span class="live">Live</span>':'<span class="live" style="color:var(--ink-faint)">In dev</span>'} ${b.buy?`<a class="buy" href="${b.buy}" target="_blank" rel="noopener">Buy now ↗</a>`:''}</div>
         <p class="build-desc">${b.desc}</p>
         <div class="build-stack"><span class="k">Stack</span> · ${b.stack}</div>
       </div>
