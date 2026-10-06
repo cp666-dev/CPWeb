@@ -61,7 +61,8 @@ header.scrolled{border-bottom-color:var(--line)}
 
 /* ---------- HERO ---------- */
 #hero{padding:64px 0 84px}
-.hero-grid{display:grid;grid-template-columns:1fr 1.22fr;gap:56px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:56px;align-items:center}
+@media(min-width:901px){#hero .wrap{max-width:1440px}}
 h1.title{font-size:clamp(42px,5.6vw,72px);font-weight:700;letter-spacing:-.038em;line-height:.97}
 .title .and{color:var(--ink-faint);font-weight:500}
 .hero-sub{margin-top:26px;max-width:540px;font-size:18.5px;color:var(--ink-2);line-height:1.55}
@@ -213,14 +214,25 @@ section{padding:92px 0}
 
 /* ---------- BUILDER ---------- */
 #builder{background:var(--bg)}
+#builder .sec-head{margin-bottom:24px}
 .build-item{padding:60px 0;border-top:1px solid var(--line)}
-.build-item:first-of-type{border-top:none}
+.build-item:first-of-type{border-top:none;padding-top:24px}
 .build-top{display:grid;grid-template-columns:0.82fr 1.18fr;gap:60px;align-items:center}
 .build-item.rev .build-top .build-text{order:2}
 .build-name{font-size:clamp(28px,3.4vw,40px);letter-spacing:-.03em;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .build-name .live{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);border:1px solid var(--line-2);border-radius:100px;padding:4px 10px;font-weight:400}
+.build-name .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);border:1px solid var(--line-2);border-radius:100px;padding:4px 10px;font-weight:400;background:var(--panel)}
 .build-name .buy{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--surface);background:var(--acc);border:1px solid var(--acc);border-radius:100px;padding:5px 12px 5px 13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:.2s}
 .build-name .buy:hover{background:#2444c0;border-color:#2444c0}
+/* sort dropdown */
+.build-sort{margin-top:26px;display:flex;align-items:center;gap:10px}
+.build-sort label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+.build-sort select{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--ink);background-color:var(--surface);
+  border:1px solid var(--line-2);border-radius:100px;padding:9px 34px 9px 16px;cursor:pointer;appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238f9199' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;transition:.2s}
+.build-sort select:hover{border-color:var(--ink)}
+.build-sort select:focus{outline:none;border-color:var(--acc)}
 .build-desc{margin-top:18px;color:var(--ink-2);font-size:15.5px;line-height:1.62}
 .build-desc b{color:var(--ink);font-weight:600}
 .build-desc a{color:var(--acc);border-bottom:1px solid rgba(47,82,224,.3)}
@@ -270,7 +282,9 @@ section{padding:92px 0}
 .more-nav:hover{border-color:var(--ink)}
 .more-card{flex:0 0 calc(50% - 9px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
   padding:28px;display:flex;flex-direction:column}
-.more-card .mn{font-size:19px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
+.more-card .mn-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.more-card .mn{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.more-card .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);border:1px solid var(--line-2);border-radius:100px;padding:3px 9px;font-weight:400}
 .more-card > p{margin:0;color:var(--ink-muted);font-size:14.5px;line-height:1.55;min-height:91px;
   display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .more-card > p b{color:var(--ink);font-weight:600}
@@ -500,6 +514,12 @@ body.nav-open{overflow:hidden}
       <span class="eyebrow">Continuously shipping</span>
       <h2>Builder</h2>
       <p class="sub">Every product below was designed, engineered and shipped by me, end to end. APIs, models, DSP, interface, the lot.</p>
+      <div class="build-sort">
+        <label for="buildSort">Sort</label>
+        <select id="buildSort">
+          <option value="all" selected>All</option>
+        </select>
+      </div>
     </div>
     <div id="buildList"></div>
 
@@ -686,9 +706,10 @@ body.nav-open{overflow:hidden}
 
   let playing = false, meterTimer = null;
   const meterL = cc.querySelector('#ccMeterL'), meterR = cc.querySelector('#ccMeterR');
-  cc.querySelector('#ccPlayAll').addEventListener('click', e=>{
-    playing = !playing;
-    e.currentTarget.textContent = playing ? '■' : '▶';
+  const playBtn = cc.querySelector('#ccPlayAll');
+  const setPlaying = v=>{
+    playing = v;
+    playBtn.textContent = playing ? '■' : '▶';
     if(playing){
       meterTimer = setInterval(()=>{
         meterL.style.width = (20+Math.random()*70)+'%';
@@ -698,12 +719,14 @@ body.nav-open{overflow:hidden}
       clearInterval(meterTimer);
       meterL.style.width = '10%'; meterR.style.width = '10%';
     }
-  });
+  };
+  playBtn.addEventListener('click', ()=>setPlaying(!playing));
+  setPlaying(true);
 })();
 
 /* ---------------- BUILDER DATA ---------------- */
 const BUILDS = [
-  { name:"Chops", media:"video", src:"assets/chops-demo.mp4", live:true, buy:"https://squishlabs.store",
+  { name:"Chops", tag:"Application", media:"video", src:"assets/chops-demo.mp4", live:true, buy:"https://squishlabs.store",
     desc:"A desktop sampler that listens before you do. Drop in a folder of audio and it analyzes onset, BPM, key and loudness, then auto-chops it into transients, beat-grid loops and phrases. Type a vibe and local <b>CLAP</b> embeddings re-rank every pad by semantic match, no cloud required. Send any chop to <b>LALAL.AI</b> to split into stems on demand.",
     stack:"Audio DSP · Onset detection · CLAP · Local embeddings · LALAL.AI API · macOS",
     case:{
@@ -712,7 +735,16 @@ const BUILDS = [
       api:"Semantic search runs on local <b>CLAP</b> embeddings computed on-device, so typing a vibe re-ranks the pads with no network round trip. Stem separation is the one external call: any chop can be sent to the <b>LALAL.AI</b> REST API, which returns isolated drums, bass, vocals and keys. Ships as a standalone macOS app."
     }},
 
-  { name:"LLS", media:"images", src:["assets/lls-1.png","assets/lls-2.png"], live:true, buy:"https://squishlabs.store",
+  { name:"Fadie", tag:"Application", media:"image", src:"assets/fadie-demo.png", live:true,
+    desc:"Fadie turns any physical object on your desk into a real-time hardware controller for Logic Pro without needing a MIDI controller. Point an iPhone in Desk View (or any webcam) at a doorknob, a jar lid, or a fader you've drawn in Sharpie, and Fadie tracks it with on-device computer vision, turning its motion into 14-bit MIDI automation your DAW can learn like any control surface.",
+    stack:"Swift · SwiftUI · Metal · AVFoundation · Apple Vision · CoreMIDI · Continuity Camera (Desk View) · 14-bit MIDI CC · Computer Vision · macOS 14+",
+    case:{
+      problem:"Producers want the tactile feel of hands-on hardware control for mixing and automation, but most don't own a control surface. Buying one for every parameter isn't realistic. The alternative is dragging a mouse through automation lanes, which kills the physical, expressive feel that makes hardware mixing fun.",
+      build:"A native macOS app watches your desk through Continuity Camera's Desk View (or any UVC camera) and runs it through Apple's Vision framework in real time. A rotary tracker reads printable fiducial markers for knob-style motion, and a hand-pose tracker follows a fingertip along a hand-drawn fader. A One Euro filter and touch-gate logic smooth the signal and prevent accidental writes, targeting under 40ms perceived latency end to end.",
+      api:"No cloud calls, no plugin API. Everything runs on-device via <b>AVFoundation</b>, <b>Vision</b>, and <b>CoreMIDI</b>. Fadie exposes itself as a virtual CoreMIDI source emitting 14-bit MIDI CC pairs (16,384-step resolution) over Universal MIDI Packets, so Logic Pro picks it up through standard Controller Assignments \"Learn,\" exactly like hardware. Ships as a standalone macOS 14+ app, plus a printable PDF sticker sheet for fiducial markers."
+    }},
+
+  { name:"LLS", tag:"VST", media:"images", src:["assets/lls-1.png","assets/lls-2.png"], live:true, buy:"https://squishlabs.store",
     desc:"LLS stands for Looks Like Shit. Six rackable, stackable units, Comp, EQ, Tape, Reverb, Delay, Distortion, each one looking like it was drawn by the lil bro you never wanted but sounding like it went to <b>Berklee</b> (and won't shut up about it). Every meter has a strip of tape slapped over it that says: use ur ears. Because honestly, you should.",
     stack:"JUCE 8 · AU / VST3 / Standalone · FET compression · FDN reverb · Tape saturation · Lemon Squeezy API · macOS / Windows",
     case:{
@@ -721,52 +753,16 @@ const BUILDS = [
       api:"Ships as a universal macOS (Intel + Apple Silicon) and Windows build in <b>AU</b>, <b>VST3</b> and Standalone formats. Licensing runs on the <b>Lemon Squeezy</b> API: a one-time purchase activates and binds to a machine, then works fully offline via a fingerprint-bound cached record, with silent background re-validation so a seat can be revoked remotely."
     }},
 
-  { name:"Sumi", media:"video", src:"assets/sumi-demo.mp4", live:true,
-    desc:"A reverb you paint, not dial in. Brush ink onto a canvas and the stroke becomes the impulse response, fast and dry for a tight room, slow and heavy for a cathedral tail. A live fluid simulation drives real convolution, synthesized and rendered in real time. Five masterworks ship built in as playable spaces.",
-    stack:"Convolution · Fluid simulation · IR synthesis · JUCE 8 · VST3 / AU · Standalone",
+  { name:"Echo Map", tag:"Web App", media:"images", src:["assets/echomap-1.png","assets/echomap-2.png","assets/echomap-3.png","assets/echomap-4.png","assets/echomap-5.png","assets/echomap-6.png","assets/echomap-7.png"], live:true,
+    desc:"Reaction intelligence for artists. Mines replay heatmaps, timestamped comments and skip data from an artist's released catalog to learn exactly which moments make fans replay, comment and stay. That learned \"fan fingerprint\" is then used to score unreleased drafts, predicting a reaction curve before a single listener hears the song. Echo Map never writes or suggests music; it only tells artists what their audience has already proven it loves.",
+    stack:"YouTube Data API · Spotify for Artists · Spotify Web API · Reaction modeling · Scheduled ingestion",
     case:{
-      problem:"Reverb plugins ask you to reason in numbers (pre-delay, decay, diffusion) when what you actually want is a feeling: a room, a distance, a texture.",
-      build:"Every ink stroke is converted into a vector field, then run through a real-time fluid simulation. The simulation's output becomes the impulse response, synthesized live rather than pulled from a sample library, so a fast dry stroke and a slow heavy one produce genuinely different spaces.",
-      api:"The IR feeds a true convolution engine built on <b>JUCE 8</b>'s DSP module, processing in real time inside the plugin's audio callback. No external API; the whole signal chain runs on-device. One codebase compiles to <b>VST3</b>, <b>AU</b> and a standalone app."
+      problem:"Every release already comes with a verdict: replay spikes, comments and skip cliffs scattered across platforms. None of it connects back to the creative choices that caused it, so each new track ships as a guess.",
+      build:"Echo Map aligns reaction signals (replay density, comments, skip curves) against extracted musical features across an artist's catalog. A model ranks the results into a fan fingerprint, then scores new drafts against it to forecast a reaction curve.",
+      api:"Echo Map connects to the <b>YouTube Data API</b> for replay heatmaps and timestamped comments, and to <b>Spotify for Artists</b> / the <b>Spotify Web API</b> for streaming skip data. Ingestion runs on a schedule, keeping each fingerprint current. Draft analysis runs on demand: upload a track, get a scored prediction back in seconds, no DAW or distributor changes required."
     }},
 
-  { name:"RADA/R", media:"image", src:"assets/radar-demo.png", live:true,
-    desc:"Sound-first trend detection for A&amp;R. Ingests emerging tracks daily from Deezer charts, editorial playlists, iTunes and Reddit, then embeds each 30-second preview with <b>CLAP</b>, listening to the sound itself rather than metadata. Clusters surface which sonic styles are rising from the ground up, with per-sound share velocity and <b>Claude</b> analyst notes, regenerated every day.",
-    stack:"CLAP · Semantic embeddings · Claude · Deezer / Apple / Reddit APIs · Trend detection",
-    case:{
-      problem:"Chart-based A&amp;R tools like Chartmetric and Soundcharts show what's already popular. By the time a sound shows up there, it isn't emerging anymore.",
-      build:"A daily ingestion job pulls fresh tracks from Deezer charts, editorial playlists, iTunes and Reddit music communities, embeds each 30-second preview with <b>CLAP</b>, and clusters those embeddings to find sonic styles gaining traction from the audio itself, not the metadata.",
-      api:"Ingestion is wired directly against the <b>Deezer</b>, <b>Apple/iTunes</b> and <b>Reddit</b> APIs. Each day's clusters are handed to <b>Claude</b>, which writes the analyst notes per sound family plus a running accuracy log. The pipeline regenerates and redeploys on a daily schedule."
-    }},
-
-  { name:"UnderTone", media:"image", src:"assets/undertone-demo.png", live:true,
-    desc:"Listens to every take of your vocal and hears what you're actually going for. Pick a feeling from 21 options like desperate, tender or triumphant, and it lights up which take nailed it, phrase by phrase, down to a single word. No cloud, no lyrics required. Click a waveform to hear it, drag to comp straight onto the timeline.",
-    stack:"Vocal comping · Emotional analysis · Local processing · Claude · DAW plugin · macOS",
-    case:{
-      problem:"Comping the best phrase out of a dozen vocal takes usually means scrubbing through all of them from memory, guessing which one had the right feeling.",
-      build:"A local emotional-analysis model scores every take against 21 feelings, desperate, tender, triumphant and others, at the phrase level and down to individual words, then lights up whichever take best matches the one you picked.",
-      api:"Everything runs locally against the audio itself: no cloud calls, no lyrics or transcription required. It ships as a DAW plugin: click a waveform to preview, drag to select a slice, and drop your comp straight onto the timeline."
-    }},
-
-  { name:"GrooveDNA", media:"images", src:["assets/groovedna-1.jpg","assets/groovedna-2.jpg","assets/groovedna-3.jpg","assets/groovedna-4.jpg"], live:true,
-    desc:"An AU/VST3 drum sampler that curates its own kits. Type a drummer or a vibe (\"Questlove but tighter\") and <b>Claude</b> reasons out the swing, ghost-note placement and kit balance that phrase implies, then drives a live search against <b>Splice's MCP server</b> for one-shots matching each drum voice. Not happy? Argue with it in plain text and it refines the search instead of restarting.",
-    stack:"AU / VST3 · JUCE · Claude · Splice MCP · Sample curation · macOS",
-    case:{
-      problem:"Building a drum kit from scratch means hours of trawling sample packs for a kick, snare and hat that actually sit together.",
-      build:"Type a drummer or a vibe and <b>Claude</b> reasons out the swing, ghost-note placement and kit balance that phrase implies, structured as a query for each drum voice: kick, snare, hats, toms, clap, perc.",
-      api:"That reasoning drives a live search against <b>Splice's MCP server</b>, which exposes sample search as tool calls Claude can invoke directly, sourcing each voice individually. Arguing back in plain text refines the same search instead of restarting it, on a real-API-with-offline-fallback architecture so a dropped connection falls back to a local cache rather than breaking the session. Ships as a <b>JUCE</b> AU/VST3 plugin."
-    }},
-
-  { name:"Patch", media:"video", src:"assets/patch-demo.mp4", live:true,
-    desc:"Turns any sound into a real, editable synth patch. Describe what you're after, say \"synth lead from Sandstorm\", and Patch reasons its way to a matching patch from synths you already own. Or drop in a sample: it analyzes the actual character (brightness, harmonics, attack, width) and reconstructs it as a live instrument that drops straight onto a Logic Pro channel strip.",
-    stack:"FFT · Spectral analysis agent · Claude · JUCE · Logic Pro",
-    case:{
-      problem:"A sampled sound is frozen. You can trim and pitch it, but you can't turn its filter or push its drive, because it was never a synth to begin with.",
-      build:"An FFT-based spectral analyzer extracts brightness, harmonics, attack and stereo width from any source, a sample or a text prompt, and a dedicated spectral analysis agent maps those features onto the parameters of synths you already own.",
-      api:"<b>Claude</b> reasons from a text description straight to a parameter set. The result isn't a rendered sample: it's a genuine hosted synth instance dropped onto a real <b>Logic Pro</b> channel strip, with every parameter still live and automatable."
-    }},
-
-  { name:"ElevenIdeas", media:"video", src:"assets/elevenideas-demo.mp4", live:true,
+  { name:"ElevenIdeas", tag:"VST", media:"video", src:"assets/elevenideas-demo.mp4", live:true,
     desc:"Lives inside your DAW and turns a single clip into eleven finished, song-aware ideas: new melodies, rewritten hooks, alternate deliveries, harmonies, the same line re-sung in a cloned voice. A companion plugin, ElevenBrain, sits on your master bus listening to key, tempo, energy and tone, and shapes every result. Built on <b>ElevenLabs</b> Music v2, Voice Changer, Voice Design and Audio Isolation.",
     stack:"ElevenLabs API · DAW plugin · Music generation · Voice cloning · Sound effects",
     case:{
@@ -775,7 +771,52 @@ const BUILDS = [
       api:"Built across five <b>ElevenLabs</b> endpoints in one session: Music v2 for new melodic material, Voice Changer and Voice Design for alternate deliveries and cloned re-sings, Sound Effects for transitions, and Audio Isolation to isolate and transcribe the source clip first. Every idea locks to the project grid and drags straight onto the timeline."
     }},
 
-  { name:"Blueprint", media:"video", src:"assets/blueprint-demo.mp4", live:true,
+  { name:"Patch", tag:"VST", media:"video", src:"assets/patch-demo.mp4", live:true,
+    desc:"Turns any sound into a real, editable synth patch. Describe what you're after, say \"synth lead from Sandstorm\", and Patch reasons its way to a matching patch from synths you already own. Or drop in a sample: it analyzes the actual character (brightness, harmonics, attack, width) and reconstructs it as a live instrument that drops straight onto a Logic Pro channel strip.",
+    stack:"FFT · Spectral analysis agent · Claude · JUCE · Logic Pro",
+    case:{
+      problem:"A sampled sound is frozen. You can trim and pitch it, but you can't turn its filter or push its drive, because it was never a synth to begin with.",
+      build:"An FFT-based spectral analyzer extracts brightness, harmonics, attack and stereo width from any source, a sample or a text prompt, and a dedicated spectral analysis agent maps those features onto the parameters of synths you already own.",
+      api:"<b>Claude</b> reasons from a text description straight to a parameter set. The result isn't a rendered sample: it's a genuine hosted synth instance dropped onto a real <b>Logic Pro</b> channel strip, with every parameter still live and automatable."
+    }},
+
+  { name:"RADA/R", tag:"Web App", media:"image", src:"assets/radar-demo.png", live:true,
+    desc:"Sound-first trend detection for A&amp;R. Ingests emerging tracks daily from Deezer charts, editorial playlists, iTunes and Reddit, then embeds each 30-second preview with <b>CLAP</b>, listening to the sound itself rather than metadata. Clusters surface which sonic styles are rising from the ground up, with per-sound share velocity and <b>Claude</b> analyst notes, regenerated every day.",
+    stack:"CLAP · Semantic embeddings · Claude · Deezer / Apple / Reddit APIs · Trend detection",
+    case:{
+      problem:"Chart-based A&amp;R tools like Chartmetric and Soundcharts show what's already popular. By the time a sound shows up there, it isn't emerging anymore.",
+      build:"A daily ingestion job pulls fresh tracks from Deezer charts, editorial playlists, iTunes and Reddit music communities, embeds each 30-second preview with <b>CLAP</b>, and clusters those embeddings to find sonic styles gaining traction from the audio itself, not the metadata.",
+      api:"Ingestion is wired directly against the <b>Deezer</b>, <b>Apple/iTunes</b> and <b>Reddit</b> APIs. Each day's clusters are handed to <b>Claude</b>, which writes the analyst notes per sound family plus a running accuracy log. The pipeline regenerates and redeploys on a daily schedule."
+    }},
+
+  { name:"GrooveDNA", tag:"VST", media:"images", src:["assets/groovedna-1.jpg","assets/groovedna-2.jpg","assets/groovedna-3.jpg","assets/groovedna-4.jpg"], live:true,
+    desc:"An AU/VST3 drum sampler that curates its own kits. Type a drummer or a vibe (\"Questlove but tighter\") and <b>Claude</b> reasons out the swing, ghost-note placement and kit balance that phrase implies, then drives a live search against <b>Splice's MCP server</b> for one-shots matching each drum voice. Not happy? Argue with it in plain text and it refines the search instead of restarting.",
+    stack:"AU / VST3 · JUCE · Claude · Splice MCP · Sample curation · macOS",
+    case:{
+      problem:"Building a drum kit from scratch means hours of trawling sample packs for a kick, snare and hat that actually sit together.",
+      build:"Type a drummer or a vibe and <b>Claude</b> reasons out the swing, ghost-note placement and kit balance that phrase implies, structured as a query for each drum voice: kick, snare, hats, toms, clap, perc.",
+      api:"That reasoning drives a live search against <b>Splice's MCP server</b>, which exposes sample search as tool calls Claude can invoke directly, sourcing each voice individually. Arguing back in plain text refines the same search instead of restarting it, on a real-API-with-offline-fallback architecture so a dropped connection falls back to a local cache rather than breaking the session. Ships as a <b>JUCE</b> AU/VST3 plugin."
+    }},
+
+  { name:"LNE (Last Night's Ears)", tag:"VST", media:"images", src:["assets/lne-1.jpeg","assets/lne-2.jpeg","assets/lne-3.jpeg"], live:true,
+    desc:"Last Night's Ears models your hearing fatigue in real time and plays back the inverse, so the mix you judge at 1am is the mix tomorrow's ears will actually hear. Long sessions quietly recalibrate your ears to whatever your mix is hammering hardest. LNE tracks that fatigue session to session and can measure your actual hearing with a 30-second probe. Flip Fresh Ears before you commit to a decision.",
+    stack:"JUCE · AudioUnit · auval · Fatigue modeling · Spectral analysis · macOS",
+    case:{
+      problem:"Mixing at night, your ears adapt to fatigue. The balance that sounds right after hours reads wrong on fresh ears in the morning, and by then it's printed.",
+      build:"A native <b>JUCE</b> AudioUnit on the monitor bus models your hearing fatigue and applies the inverse live, blending a fatigue-curve model, your mix's own spectrum, and an optional 30-second ear probe. Fresh/Now toggle is loudness-matched so the comparison is tone, not level.",
+      api:"Ships as a universal macOS <b>AudioUnit</b>, validated with <b>auval</b> and integrated into Logic and other AU hosts. Your hearing profile persists across sessions in a local JSON baseline, carried forward project to project. Monitor-only by design: <b>isNonRealtime()</b> hard-bypasses offline bounces automatically, so nothing you print is ever touched."
+    }},
+
+  { name:"UnderTone", tag:"VST", media:"image", src:"assets/undertone-demo.png", live:true,
+    desc:"Listens to every take of your vocal and hears what you're actually going for. Pick a feeling from 21 options like desperate, tender or triumphant, and it lights up which take nailed it, phrase by phrase, down to a single word. No cloud, no lyrics required. Click a waveform to hear it, drag to comp straight onto the timeline.",
+    stack:"Vocal comping · Emotional analysis · Local processing · Claude · DAW plugin · macOS",
+    case:{
+      problem:"Comping the best phrase out of a dozen vocal takes usually means scrubbing through all of them from memory, guessing which one had the right feeling.",
+      build:"A local emotional-analysis model scores every take against 21 feelings, desperate, tender, triumphant and others, at the phrase level and down to individual words, then lights up whichever take best matches the one you picked.",
+      api:"Everything runs locally against the audio itself: no cloud calls, no lyrics or transcription required. It ships as a DAW plugin: click a waveform to preview, drag to select a slice, and drop your comp straight onto the timeline."
+    }},
+
+  { name:"Blueprint", tag:"Web App", media:"video", src:"assets/blueprint-demo.mp4", live:true,
     desc:"Arrangement intelligence for your DAW. Drop in any track and Blueprint analyzes section structure, key, tempo, dynamics and instrumentation, then drafts a session-ready arrangement scaffold. Export as a standard MIDI marker file into Logic, Cubase, Studio One or Reaper. Under the hood: Google's <b>YAMNet</b> and a custom spectral analyzer identify instrumentation, <b>Claude</b> writes the arrangement.",
     stack:"C++ / JUCE 8 · YAMNet · Spectral DSP · Claude · MIDI markers · macOS",
     case:{
@@ -784,7 +825,16 @@ const BUILDS = [
       api:"Those signals are handed to <b>Claude</b>, which writes the arrangement scaffold. Export is a standard MIDI marker file that drops straight into Logic, Cubase, Studio One or Reaper, or as text markers for Ableton Live and FL Studio. The interface is a dependency-free web UI embedded in the native app."
     }},
 
-  { name:"slopworthy.xyz", media:"image", src:"assets/slopworthy-demo.png", live:true, url:"https://slopworthy.xyz",
+  { name:"Sumi", tag:"VST", media:"video", src:"assets/sumi-demo.mp4", live:true,
+    desc:"A reverb you paint, not dial in. Brush ink onto a canvas and the stroke becomes the impulse response, fast and dry for a tight room, slow and heavy for a cathedral tail. A live fluid simulation drives real convolution, synthesized and rendered in real time. Five masterworks ship built in as playable spaces.",
+    stack:"Convolution · Fluid simulation · IR synthesis · JUCE 8 · VST3 / AU · Standalone",
+    case:{
+      problem:"Reverb plugins ask you to reason in numbers (pre-delay, decay, diffusion) when what you actually want is a feeling: a room, a distance, a texture.",
+      build:"Every ink stroke is converted into a vector field, then run through a real-time fluid simulation. The simulation's output becomes the impulse response, synthesized live rather than pulled from a sample library, so a fast dry stroke and a slow heavy one produce genuinely different spaces.",
+      api:"The IR feeds a true convolution engine built on <b>JUCE 8</b>'s DSP module, processing in real time inside the plugin's audio callback. No external API; the whole signal chain runs on-device. One codebase compiles to <b>VST3</b>, <b>AU</b> and a standalone app."
+    }},
+
+  { name:"slopworthy.xyz", tag:"Web App", media:"image", src:"assets/slopworthy-demo.png", live:true, url:"https://slopworthy.xyz",
     desc:"Tells vibecoders whether their genius idea already exists. Paste in your idea and get an honest read on whether it's a breakthrough or the fortieth to-do app in a trench coat. It won't stop you building it, just quietly note that 500 people beat you there. <a href=\"https://slopworthy.xyz\" target=\"_blank\" rel=\"noopener\">slopworthy.xyz →</a>",
     stack:"LLM judgment · Idea validation · Web app · Claude",
     case:{
@@ -795,23 +845,23 @@ const BUILDS = [
 ];
 
 const MORE = [
-  { name:"BetMe",
+  { name:"BetMe", tag:"Web App",
     desc:"A social challenge app where friends stake real money on real-world dares. The hard part isn't the wager, it's <b>proving the challenge actually happened</b>. The video judge is Gemini's native video API, fed the clips plus a category rubric, returning schema-enforced JSON (observation, then reasoning, then verdict and confidence) so reasoning can't drift to fit a pre-picked outcome.",
     stack:"Gemini 2.5 Flash/Pro · Native video API · Schema-enforced JSON · React Native",
     build:"Uploaded clips plus a category-specific rubric prompt go into Gemini's native video API; observation, then reasoning, then a verdict with a 0 to 100 confidence score come out. Bets above the confidence threshold auto-resolve; the rest route to a human." },
-  { name:"Stella Says",
+  { name:"Stella Says", tag:"Application",
     desc:"A local-first desktop app that lets anyone direct AI coding agents <b>without touching a terminal</b>. Wraps Claude (plus optional providers) in a plain-language interface, running real Plan and Agent sessions against your files with live tool execution you can watch and steer. Parallel isolated git workspaces.",
     stack:"Agent orchestration · LLM tooling · Full-stack · Design systems",
     build:"Each workspace runs as its own isolated git worktree, so parallel tasks never collide. The interface streams tool calls and file edits from a real agent session as they happen, turning what would normally be terminal output into a plain-language, watchable feed." },
-  { name:"LockedIn",
+  { name:"LockedIn", tag:"Web App",
     desc:"A job marketplace where employers deposit real stablecoins into escrow before a listing goes live. Seekers apply knowing <b>every posting is backed by actual money</b>; funds release automatically once a hire is verified. Runs on Base with automated screening and multi-signal hire verification.",
     stack:"Stablecoin escrow · Base · Automated screening · Hire verification",
     build:"Employer funds sit in a stablecoin escrow contract on <b>Base</b> before a listing can go live. A verification step checks multiple signals to confirm an actual hire before the contract is authorized to release funds automatically." },
-  { name:"GasBuddy",
+  { name:"GasBuddy", tag:"iOS App",
     desc:"A UK fuel-price iOS app showing drivers the <b>cheapest nearby petrol, diesel or premium</b>, sourced live from CMA-mandated retailer feeds. Ranks stations by price or distance on a map, with a homescreen widget for glanceable prices.",
     stack:"SwiftUI · iOS · MapKit · Live CMA feeds · Homescreen widget",
     build:"Ingests the UK's CMA-mandated live fuel-price feeds, ranks nearby stations by price or distance on a MapKit view, and mirrors the same data to a homescreen widget so prices are glanceable with the app closed." },
-  { name:"Various Tools",
+  { name:"Various Tools", tag:"VSTs & Web Apps",
     desc:"Purpose-built <b>internal tools</b> for GTM, BD, partnerships and strategy, plus creative audio plugins from distortion units to key-tracking modulated reverbs and delays. Available to demo on a call.",
     stack:"GTM · BD · Partnerships · Strategy · Audio plugins",
     build:"Mostly small, purpose-built scripts and plugins solving one specific GTM, BD or partnerships problem at a time, plus a handful of creative audio plugins built the same way. All demoable on a call." },
@@ -819,48 +869,75 @@ const MORE = [
 
 /* ---------------- RENDER BUILDER ---------------- */
 const buildList = document.getElementById('buildList');
-buildList.innerHTML = BUILDS.map((b,i)=>{
-  const rev = i % 2 === 1 ? 'rev' : '';
-  let media = '';
-  if(b.media==='video') media = `<div class="frame"><video src="${b.src}" ${i===0?'autoplay ':''}muted loop playsinline preload="metadata" controls></video></div>`;
-  else if(b.media==='image') media = `<div class="frame"><img src="${b.src}" alt="${b.name}" loading="lazy" /></div>`;
-  else if(b.media==='images') media = `<div class="carousel" data-i="0">
-      <div class="carousel-track">${b.src.map(s=>`<img src="${s}" alt="${b.name}" loading="lazy" />`).join('')}</div>
-      <button class="cn prev" aria-label="Prev">‹</button><button class="cn next" aria-label="Next">›</button>
-      <div class="cd">${b.src.map((_,j)=>`<span class="dot${j===0?' on':''}"></span>`).join('')}</div>
-    </div>`;
-  const c = b.case;
-  return `<div class="build-item ${rev}">
-    <div class="build-top">
-      <div class="build-text">
-        <div class="build-name">${b.name} ${b.live?'<span class="live">Live</span>':'<span class="live" style="color:var(--ink-faint)">In dev</span>'} ${b.buy?`<a class="buy" href="${b.buy}" target="_blank" rel="noopener">Buy now ↗</a>`:''}</div>
-        <p class="build-desc">${b.desc}</p>
-        <div class="build-stack"><span class="k">Stack</span> · ${b.stack}</div>
-      </div>
-      <div class="build-media">${media}</div>
-    </div>
-    ${c?`<div class="case">
-      <div class="case-cell"><span class="cl">The problem</span><p>${c.problem}</p></div>
-      <div class="case-cell"><span class="cl">How it's built</span><p>${c.build}</p></div>
-      <div class="case-cell"><span class="cl">API, integration &amp; deployment</span><p>${c.api}</p></div>
-    </div>`:''}
-  </div>`;
-}).join('');
+const BUILD_CATEGORY_ORDER = ["Application","VST","Web App"];
 
-/* carousels */
-buildList.querySelectorAll('.carousel').forEach(c=>{
-  const track=c.querySelector('.carousel-track'), dots=[...c.querySelectorAll('.dot')], n=track.children.length;
-  const go=i=>{const x=(i+n)%n;c.dataset.i=x;track.style.transform=`translateX(-${x*100}%)`;dots.forEach((d,j)=>d.classList.toggle('on',j===x));};
-  c.querySelector('.next').onclick=()=>go(+c.dataset.i+1);
-  c.querySelector('.prev').onclick=()=>go(+c.dataset.i-1);
-  dots.forEach((d,j)=>d.onclick=()=>go(j));
+function renderBuilds(list){
+  buildList.innerHTML = list.map((b,i)=>{
+    const rev = i % 2 === 1 ? 'rev' : '';
+    let media = '';
+    if(b.media==='video') media = `<div class="frame"><video src="${b.src}" ${i===0?'autoplay ':''}muted loop playsinline preload="metadata" controls></video></div>`;
+    else if(b.media==='image') media = `<div class="frame"><img src="${b.src}" alt="${b.name}" loading="lazy" /></div>`;
+    else if(b.media==='images') media = `<div class="carousel" data-i="0">
+        <div class="carousel-track">${b.src.map(s=>`<img src="${s}" alt="${b.name}" loading="lazy" />`).join('')}</div>
+        <button class="cn prev" aria-label="Prev">‹</button><button class="cn next" aria-label="Next">›</button>
+        <div class="cd">${b.src.map((_,j)=>`<span class="dot${j===0?' on':''}"></span>`).join('')}</div>
+      </div>`;
+    const c = b.case;
+    return `<div class="build-item ${rev}">
+      <div class="build-top">
+        <div class="build-text">
+          <div class="build-name">${b.name} ${b.live?'<span class="live">Live</span>':'<span class="live" style="color:var(--ink-faint)">In dev</span>'} ${b.tag?`<span class="tag">${b.tag}</span>`:''} ${b.buy?`<a class="buy" href="${b.buy}" target="_blank" rel="noopener">Buy now ↗</a>`:''}</div>
+          <p class="build-desc">${b.desc}</p>
+          <div class="build-stack"><span class="k">Stack</span> · ${b.stack}</div>
+        </div>
+        <div class="build-media">${media}</div>
+      </div>
+      ${c?`<div class="case">
+        <div class="case-cell"><span class="cl">The problem</span><p>${c.problem}</p></div>
+        <div class="case-cell"><span class="cl">How it's built</span><p>${c.build}</p></div>
+        <div class="case-cell"><span class="cl">API, integration &amp; deployment</span><p>${c.api}</p></div>
+      </div>`:''}
+    </div>`;
+  }).join('');
+
+  /* carousels */
+  buildList.querySelectorAll('.carousel').forEach(c=>{
+    const track=c.querySelector('.carousel-track'), dots=[...c.querySelectorAll('.dot')], n=track.children.length;
+    const go=i=>{const x=(i+n)%n;c.dataset.i=x;track.style.transform=`translateX(-${x*100}%)`;dots.forEach((d,j)=>d.classList.toggle('on',j===x));};
+    c.querySelector('.next').onclick=()=>go(+c.dataset.i+1);
+    c.querySelector('.prev').onclick=()=>go(+c.dataset.i-1);
+    dots.forEach((d,j)=>d.onclick=()=>go(j));
+  });
+}
+renderBuilds(BUILDS);
+
+const buildSort = document.getElementById('buildSort');
+BUILD_CATEGORY_ORDER.forEach(cat=>{
+  const opt = document.createElement('option');
+  opt.value = cat; opt.textContent = cat;
+  buildSort.appendChild(opt);
+});
+const azOpt = document.createElement('option');
+azOpt.value = 'az'; azOpt.textContent = 'A–Z';
+buildSort.appendChild(azOpt);
+
+buildSort.addEventListener('change', ()=>{
+  let list;
+  if(buildSort.value==='az'){
+    list = [...BUILDS].sort((a,b)=>a.name.localeCompare(b.name));
+  } else if(buildSort.value==='all'){
+    list = BUILDS;
+  } else {
+    list = BUILDS.filter(b=>b.tag===buildSort.value);
+  }
+  renderBuilds(list);
 });
 
 /* more carousel */
 const moreGrid = document.getElementById('moreList');
 moreGrid.innerHTML = MORE.map(m=>`
   <div class="more-card">
-    <div class="mn">${m.name}</div>
+    <div class="mn-row"><span class="mn">${m.name}</span>${m.tag?`<span class="tag">${m.tag}</span>`:''}</div>
     <p>${m.desc}</p>
     <div class="build-stack">${m.stack}</div>
     ${m.build?`<div class="more-case"><span class="cl">How it's built</span><p>${m.build}</p></div>`:''}
