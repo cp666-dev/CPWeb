@@ -290,6 +290,13 @@ section{padding:92px 0}
 .more-card > p b{color:var(--ink);font-weight:600}
 .more-card > p a{color:var(--acc)}
 .more-card .build-stack{margin-top:16px;min-height:44px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.more-toggle{margin-left:auto;padding:0;background:none;border:none;cursor:pointer;white-space:nowrap;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
+.more-toggle:hover{color:#2444c0}
+.more-toggle[hidden]{display:none}
+.more-card.open > p,.more-card.open .build-stack,.more-card.open .more-case p{-webkit-line-clamp:unset;display:block;overflow:visible}
+.more-grid.has-open .more-card:not(.open){align-self:flex-start}
+.more-grid.has-open .more-card:not(.open){height:var(--closed-h)}
 
 /* ---------- EXPERIENCE ---------- */
 #exp{background:var(--panel)}
@@ -726,6 +733,24 @@ body.nav-open{overflow:hidden}
 
 /* ---------------- BUILDER DATA ---------------- */
 const BUILDS = [
+  { name:"Overkill", tag:"VST", media:"video", src:"assets/overkill-demo.mp4", live:true,
+    desc:"An audio plugin that becomes whatever effect you describe. It loads in your DAW like any AU or VST3, but instead of being one fixed effect it's a prompt box. Type something like \"a filthy tape delay with feedback and dry/wet\" and <b>Claude</b> writes the <b>Faust</b> DSP, which is compiled to native code and hot-swapped onto the audio thread in seconds. You get real knobs your DAW can automate, with no dropouts and no new plugin to buy.",
+    stack:"C++20 · JUCE · Faust · LLVM JIT · Claude API · AU / VST3 · macOS",
+    case:{
+      problem:"Producers collect folders of single-purpose plugins and still can't find the sound in their head. Building a custom effect means learning DSP, C++ and a plugin framework, and AI music tools only spit out audio files, not effects you can play through and automate.",
+      build:"A <b>JUCE</b> plugin shell sends your prompt to <b>Claude</b>, which writes a <b>Faust</b> program. libfaust and <b>LLVM</b> JIT-compile it to native machine code in-process in about 60 to 70 ms. If compilation fails, the real compiler error goes back to the model to fix, with up to six attempts. The new effect crossfades in over 10 ms, and a limiter and NaN watchdog catch anything unstable.",
+      api:"Generation is the one cloud call: a request to the <b>Anthropic Messages API</b> using your own key, which is stored locally. Everything else runs on-device. The generated controls map onto 32 host-automatable parameters, and the Faust source is saved in your DAW session, so projects reopen offline with exactly the same sound. Ships as <b>AU</b>, <b>VST3</b> and a standalone macOS app."
+    }},
+
+  { name:"Patch V2 / UAD Patch", tag:"VST", media:"image", src:"assets/patchv2-demo.jpg", live:true,
+    desc:"An instrument plugin that rebuilds a sound you drop into it, using Universal Audio's <b>UADx</b> plugins. Drop in any audio clip and Patch analyses its envelope, timbre and effects, then loads and programs a matching UADx instrument and effects chain inside itself. Before it trusts a match, it plays candidate chains back offline, scores them against your clip and adjusts the settings until they sound closer. You get a playable instrument with real UADx gear behind it, with no presets to dig through and no prompt to write.",
+    stack:"C++20 · JUCE · DSP · Spectral Analysis · AU / VST3 Hosting · UADx · CMake · macOS",
+    case:{
+      problem:"Producers hear a sound on a record and lose an afternoon trying to recreate it, scrolling presets and guessing which synth, which reverb and which settings. Owning a full UADx bundle doesn't fix that: 58 plugins and 1,828 parameters make it harder. Preset browsers search by name, not by sound, and AI tools give you audio files, not a patch you can play and tweak.",
+      build:"A <b>JUCE</b> instrument analyses the clip's envelope, spectrum, pitch and effects on-device, then a deterministic ToneMatcher maps them onto a measured knowledge base of all 58 <b>UADx</b> plugins. The top candidates are rendered offline, scored by spectral similarity and tuned until they stop improving. If nothing's close enough, a native wavetable synth reconstructs the source instead.",
+      api:"No cloud, no API key, no network. Analysis and matching run inside the plugin, and the UADx knowledge base is compiled into the binary. The matched instrument and effects chain run inside Patch through the <b>AU</b>/<b>VST3</b> hosting APIs, so it behaves the same in every DAW and doesn't depend on Logic channel strips. The full chain and every plugin's state are saved in your session. Ships as AU, VST3 and a standalone macOS app."
+    }},
+
   { name:"Chops", tag:"Application", media:"video", src:"assets/chops-demo.mp4", live:true, buy:"https://squishlabs.store",
     desc:"A desktop sampler that listens before you do. Drop in a folder of audio and it analyzes onset, BPM, key and loudness, then auto-chops it into transients, beat-grid loops and phrases. Type a vibe and local <b>CLAP</b> embeddings re-rank every pad by semantic match, no cloud required. Send any chop to <b>LALAL.AI</b> to split into stems on demand.",
     stack:"Audio DSP · Onset detection · CLAP · Local embeddings · LALAL.AI API · macOS",
@@ -937,11 +962,33 @@ buildSort.addEventListener('change', ()=>{
 const moreGrid = document.getElementById('moreList');
 moreGrid.innerHTML = MORE.map(m=>`
   <div class="more-card">
-    <div class="mn-row"><span class="mn">${m.name}</span>${m.tag?`<span class="tag">${m.tag}</span>`:''}</div>
+    <div class="mn-row"><span class="mn">${m.name}</span>${m.tag?`<span class="tag">${m.tag}</span>`:''}<button class="more-toggle" type="button" aria-expanded="false" hidden>Read more ↓</button></div>
     <p>${m.desc}</p>
     <div class="build-stack">${m.stack}</div>
     ${m.build?`<div class="more-case"><span class="cl">How it's built</span><p>${m.build}</p></div>`:''}
   </div>`).join('');
+
+/* expandable more-cards: only offer the toggle where text is actually clamped */
+const syncMoreToggles = ()=>moreGrid.querySelectorAll('.more-card:not(.open)').forEach(card=>{
+  const els = [...card.querySelectorAll(':scope > p, .build-stack, .more-case p')];
+  const collapsed = els.map(el=>el.getBoundingClientRect().height);
+  card.classList.add('open');
+  const clamped = els.some((el,i)=>el.getBoundingClientRect().height > collapsed[i] + 1);
+  card.classList.remove('open');
+  card.querySelector('.more-toggle').hidden = !clamped;
+});
+moreGrid.querySelectorAll('.more-toggle').forEach(btn=>btn.onclick=()=>{
+  const card = btn.closest('.more-card');
+  /* pin the collapsed card height so neighbours don't stretch or shrink when one opens */
+  if(!moreGrid.classList.contains('has-open')) moreGrid.style.setProperty('--closed-h', card.offsetHeight+'px');
+  const open = card.classList.toggle('open');
+  btn.textContent = open ? 'Show less ↑' : 'Read more ↓';
+  btn.setAttribute('aria-expanded', open);
+  moreGrid.classList.toggle('has-open', !!moreGrid.querySelector('.more-card.open'));
+});
+syncMoreToggles();
+addEventListener('load', syncMoreToggles);
+addEventListener('resize', syncMoreToggles, {passive:true});
 document.getElementById('moreNext').onclick=()=>moreGrid.scrollBy({left:358,behavior:'smooth'});
 document.getElementById('morePrev').onclick=()=>moreGrid.scrollBy({left:-358,behavior:'smooth'});
 
