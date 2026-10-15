@@ -733,14 +733,24 @@ body.nav-open{overflow:hidden}
 
 /* ---------------- BUILDER DATA ---------------- */
 const BUILDS = [
+  { name:"OK Instruments", tag:"VST", media:"video", src:"assets/okinstruments-demo.mp4", live:true, try:"https://squishlabs.gumroad.com/l/okinstruments",
+    desc:"An instrument plugin that becomes whatever synth you describe. It loads in your DAW like any AU or VST3 instrument, but instead of being one fixed synth it's a prompt box. Type something like \"squelchy acid bass with glide and a filter envelope\" and a language model running on your own machine writes the <b>Faust</b> DSP. Seconds later the plugin is that instrument: native code on the audio thread, played polyphonically from MIDI, with a panel of knobs your DAW can automate. Name a classic like a Juno-106, TB-303 or DX7 and you get a hand-built emulation of it instead.",
+    stack:"C++20 · JUCE · Faust · LLVM JIT · Local LLM (Ollama) · MIDI / Polyphony · AU / VST3 · macOS / Windows",
+    case:{
+      problem:"Every synth is one fixed design, so finding the sound in your head means buying more of them or learning sound design from scratch. Building your own instrument means learning DSP, voice allocation, C++ and a plugin framework. AI music tools mostly run in the cloud, charge per use, and give you audio files back, not an instrument you can play and automate.",
+      build:"A <b>JUCE</b> instrument sends your prompt to a local language model, which writes a polyphonic <b>Faust</b> voice from a library of pre-tested blocks. <b>LLVM</b> JIT-compiles it in milliseconds. Before it goes live, every instrument is auditioned offline with chords, extreme notes and every knob at its limits to catch clicks, stuck notes and bad tuning. Then it crossfades in with held notes carried over.",
+      apiLabel:"Local-first, integration &amp; deployment",
+      api:"Everything runs on your machine: no cloud calls, no API key, no account. OK Instruments auto-detects <b>Ollama</b>, <b>LM Studio</b> or <b>llama.cpp</b> and downloads a coding model sized to your RAM. Controls map onto 64 host-automatable parameters, and the Faust source is saved in your DAW session, so projects reopen offline with the same sound. Ships as <b>AU</b>, <b>VST3</b> and standalone for macOS and Windows."
+    }},
+
   { name:"Overkill", tag:"VST", media:"video", src:"assets/overkill-demo.mp4", live:true, try:"https://squishlabs.gumroad.com/l/overkill",
     desc:"An audio plugin that becomes whatever effect you describe. It loads in your DAW like any AU or VST3, but instead of being one fixed effect it's a prompt box. Type something like \"a filthy tape delay with feedback and dry/wet\" and a language model running on your own machine writes the <b>Faust</b> DSP. That code is compiled to native code, tested, and hot-swapped onto the audio thread in seconds. You get real knobs your DAW can automate, with no dropouts, no cloud, no subscription and no new plugin to buy.",
-    stack:"C++20 · JUCE · Faust · LLVM JIT · Local LLM (Ollama) · AU / VST3 · macOS",
+    stack:"C++20 · JUCE · Faust · LLVM JIT · Local LLM (Ollama) · AU / VST3 · macOS / Windows",
     case:{
       problem:"Producers collect folders of single-purpose plugins and still can't find the sound in their head. Building a custom effect means learning DSP, C++ and a plugin framework. AI music tools mostly run in the cloud, charge per use, and only give you audio files back, not effects you can play through and automate.",
       build:"A <b>JUCE</b> plugin shell sends your prompt to a local language model, which writes a <b>Faust</b> program using a bundled library of pre-tested effect blocks. libfaust and <b>LLVM</b> JIT-compile it to native machine code in-process in tens of milliseconds. Before it goes live, every program is auditioned offline: test audio runs through it with every knob at its extremes to catch NaNs, blow-ups, silence, runaway feedback and CPU spikes. Compiler errors and failed checks go back to the model as targeted feedback, for up to six attempts. The new effect crossfades in over 10 ms, and a limiter and NaN watchdog catch anything unstable.",
       apiLabel:"Local-first, integration &amp; deployment",
-      api:"Everything runs on your machine: no cloud calls, no API key, no account. Overkill auto-detects <b>Ollama</b>, <b>LM Studio</b> or <b>llama.cpp</b>, and the first Build downloads a coding model sized to your RAM. The generated controls map onto 32 host-automatable parameters, and the Faust source is saved in your DAW session, so projects reopen offline with exactly the same sound. Ships as a signed, notarized <b>AU</b>, <b>VST3</b> and standalone app for macOS (Apple Silicon)."
+      api:"Everything runs on your machine: no cloud calls, no API key, no account. Overkill auto-detects <b>Ollama</b>, <b>LM Studio</b> or <b>llama.cpp</b>, and the first Build downloads a coding model sized to your RAM. The generated controls map onto 32 host-automatable parameters, and the Faust source is saved in your DAW session, so projects reopen offline with exactly the same sound. Ships as a signed, notarized <b>AU</b>, <b>VST3</b> and standalone app for macOS (Apple Silicon), plus <b>VST3</b> and standalone for Windows."
     }},
 
   { name:"Patch V2 / UAD Patch", tag:"VST", media:"image", src:"assets/patchv2-demo.jpg", live:true,
@@ -912,7 +922,7 @@ function renderBuilds(list){
     return `<div class="build-item ${rev}">
       <div class="build-top">
         <div class="build-text">
-          <div class="build-name">${b.name} ${b.live?'<span class="live">Live</span>':'<span class="live" style="color:var(--ink-faint)">In dev</span>'} ${b.tag?`<span class="tag">${b.tag}</span>`:''} ${b.buy?`<a class="buy" href="${b.buy}" target="_blank" rel="noopener">Buy now ↗</a>`:''} ${b.try?`<a class="buy" href="${b.try}" target="_blank" rel="noopener">Try now ↗</a>`:''}</div>
+          <div class="build-name"><span class="bn">${b.name}</span> ${b.live?'<span class="live">Live</span>':'<span class="live" style="color:var(--ink-faint)">In dev</span>'} ${b.tag?`<span class="tag">${b.tag}</span>`:''} ${b.buy?`<a class="buy" href="${b.buy}" target="_blank" rel="noopener">Buy now ↗</a>`:''} ${b.try?`<a class="buy" href="${b.try}" target="_blank" rel="noopener">Try now ↗</a>`:''}</div>
           <p class="build-desc">${b.desc}</p>
           <div class="build-stack"><span class="k">Stack</span> · ${b.stack}</div>
         </div>
@@ -934,8 +944,25 @@ function renderBuilds(list){
     c.querySelector('.prev').onclick=()=>go(+c.dataset.i-1);
     dots.forEach((d,j)=>d.onclick=()=>go(j));
   });
+  fitBuildNames();
+}
+
+/* desktop: keep badges on the same line as the product name by easing a long name's size down, rather than wrapping */
+const desktopRow = matchMedia('(min-width:901px)');
+function fitBuildNames(){
+  buildList.querySelectorAll('.build-name').forEach(n=>{
+    const t = n.querySelector('.bn');
+    t.style.fontSize = '';
+    if(!desktopRow.matches) return;
+    const wrapped = ()=>[...n.children].some(c=>c!==t && c.getBoundingClientRect().top >= t.getBoundingClientRect().bottom);
+    let size = parseFloat(getComputedStyle(t).fontSize);
+    while(wrapped() && size > 30){ size -= 1; t.style.fontSize = size+'px'; }
+    if(wrapped()) t.style.fontSize = '';
+  });
 }
 renderBuilds(BUILDS);
+addEventListener('resize', fitBuildNames, {passive:true});
+document.fonts && document.fonts.ready.then(fitBuildNames);
 
 const buildSort = document.getElementById('buildSort');
 BUILD_CATEGORY_ORDER.forEach(cat=>{
