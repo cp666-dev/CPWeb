@@ -213,50 +213,54 @@ section{padding:92px 0}
 .ap p{margin:0;color:var(--ink-muted);font-size:14.5px}
 
 /* ---------- BUILDER ---------- */
+/* index + stage: a sticky product list drives one detail stage (desktop); the list becomes an accordion (mobile) */
 #builder{background:var(--bg)}
-#builder .sec-head{margin-bottom:24px}
-.build-item{padding:60px 0;border-top:1px solid var(--line)}
-.build-item:first-of-type{border-top:none;padding-top:24px}
-.build-top{display:grid;grid-template-columns:0.82fr 1.18fr;gap:60px;align-items:center}
-.build-item.rev .build-top .build-text{order:2}
-.build-name{font-size:clamp(28px,3.4vw,40px);letter-spacing:-.03em;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+#builder .sec-head{margin-bottom:30px}
+.bf{margin-top:26px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.bf button{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink-muted);background:var(--surface);
+  border:1px solid var(--line-2);border-radius:100px;padding:8px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:.2s}
+.bf button .c{font-size:10.5px;color:var(--ink-faint)}
+.bf button:hover{border-color:var(--ink);color:var(--ink)}
+.bf button.on{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.bf button.on .c{color:rgba(255,255,255,.55)}
+.bf .sp{flex:1}
+.bx{display:grid;grid-template-columns:276px minmax(0,1fr);gap:48px;align-items:start}
+/* index */
+.bi{position:sticky;top:78px;max-height:calc(100vh - 100px);overflow-y:auto;border-top:1px solid var(--line);scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+.bi.more-below{-webkit-mask-image:linear-gradient(#000 calc(100% - 56px),transparent);mask-image:linear-gradient(#000 calc(100% - 56px),transparent)}
+.bi-row{display:flex;align-items:center;gap:12px;width:100%;padding:11px 10px 11px 14px;background:none;border:0;border-bottom:1px solid var(--line);
+  font:inherit;text-align:left;cursor:pointer;position:relative;scroll-margin-top:76px;transition:background .15s}
+.bi-row .ix{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);width:20px;flex:none}
+.bi-row .nm{flex:1;min-width:0;font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bi-row .tg{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);flex:none}
+.bi-row .chev{display:none}
+.bi-row:hover{background:rgba(255,255,255,.55)}
+.bi-row:hover .nm{color:var(--ink)}
+.bi-row:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+.bi-row.on{background:var(--surface)}
+.bi-row.on::before{content:"";position:absolute;left:0;top:9px;bottom:9px;width:2px;border-radius:2px;background:var(--acc)}
+.bi-row.on .ix{color:var(--acc)}
+.bi-row.on .nm{color:var(--ink);font-weight:600}
+.bi-group{padding:26px 0 10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+.bi-group span{display:block;margin-top:4px;letter-spacing:.03em;text-transform:none}
+/* stage */
+.bs{min-width:0}
+.bs.in{animation:bsIn .35s cubic-bezier(.4,0,.2,1)}
+@keyframes bsIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.bs-head{display:flex;align-items:center;gap:18px;margin-bottom:20px}
+.build-name{flex:1;min-width:0;font-size:clamp(28px,3.2vw,38px);font-weight:600;letter-spacing:-.03em;line-height:1.05;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .build-name .live{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);border:1px solid var(--line-2);border-radius:100px;padding:4px 10px;font-weight:400}
 .build-name .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);border:1px solid var(--line-2);border-radius:100px;padding:4px 10px;font-weight:400;background:var(--panel)}
 .build-name .buy{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--surface);background:var(--acc);border:1px solid var(--acc);border-radius:100px;padding:5px 12px 5px 13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:.2s}
 .build-name .buy:hover{background:#2444c0;border-color:#2444c0}
-/* sort dropdown */
-.build-sort{margin-top:26px;display:flex;align-items:center;gap:10px}
-.build-sort label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
-.build-sort select{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--ink);background-color:var(--surface);
-  border:1px solid var(--line-2);border-radius:100px;padding:9px 34px 9px 16px;cursor:pointer;appearance:none;-webkit-appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238f9199' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 14px center;transition:.2s}
-.build-sort select:hover{border-color:var(--ink)}
-.build-sort select:focus{outline:none;border-color:var(--acc)}
-.build-desc{margin-top:18px;color:var(--ink-2);font-size:15.5px;line-height:1.62}
-.build-desc b{color:var(--ink);font-weight:600}
-.build-desc a{color:var(--acc);border-bottom:1px solid rgba(47,82,224,.3)}
-.build-stack{margin-top:22px;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--ink-faint);line-height:1.9}
-.build-stack .k{color:var(--ink-2)}
+.bs-nav{display:flex;align-items:center;gap:6px;flex:none}
+.bs-nav .ct{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-faint);margin-right:6px}
+.bs-nav button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font-size:17px;line-height:1;cursor:pointer;transition:.2s}
+.bs-nav button:hover{border-color:var(--ink)}
 /* media frame */
-.build-media{position:relative}
-.frame{border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;background:#0c0d10;
-  box-shadow:0 24px 50px -30px rgba(20,20,20,.3)}
+.frame{border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;background:#0c0d10;box-shadow:0 24px 50px -30px rgba(20,20,20,.3)}
 .frame video,.frame img{width:100%;display:block;aspect-ratio:16/10;object-fit:contain;background:#0c0d10}
-/* case study panel — always a full-width block below build-top, never interleaved with media */
-.case{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
-.case-cell{background:var(--surface);padding:24px 26px}
-.case-cell .cl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);display:block;margin-bottom:11px}
-.case-cell p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.62}
-.case-cell p b{color:var(--ink);font-weight:600}
-.case-cell p a{color:var(--acc);border-bottom:1px solid rgba(47,82,224,.3)}
-.more-case{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
-.more-case .cl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);display:block;margin-bottom:8px}
-.more-case p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.6;
-  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.more-case p b{color:var(--ink);font-weight:600}
-/* carousel */
-.carousel{position:relative;border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;background:#0c0d10;box-shadow:0 24px 50px -30px rgba(20,20,20,.3)}
+.carousel{position:relative;border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;background:#0c0d10;box-shadow:0 24px 50px -30px rgba(20,20,20,.3);touch-action:pan-y}
 .carousel-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1)}
 .carousel-track img{flex:0 0 100%;width:100%;aspect-ratio:16/10;object-fit:contain;background:#0c0d10}
 .cn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;
@@ -267,36 +271,21 @@ section{padding:92px 0}
 .cd{position:absolute;bottom:12px;left:0;right:0;display:flex;gap:6px;justify-content:center}
 .cd .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer}
 .cd .dot.on{background:#fff}
-/* text-only builds */
-.build-more{margin-top:44px;border-top:1px solid var(--line);padding-top:48px}
-.build-more h3.mh{font-size:20px;margin-bottom:26px;letter-spacing:-.02em;padding:0 42px}
-.more-wrap{position:relative;padding:0 42px}
-.more-grid{display:flex;align-items:stretch;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
-  scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
-.more-grid::-webkit-scrollbar{display:none}
-.more-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;
-  background:var(--surface);border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;
-  cursor:pointer;font-size:18px;color:var(--ink);box-shadow:0 10px 24px -14px rgba(20,20,20,.35);z-index:2}
-.more-nav.prev{left:0}
-.more-nav.next{right:0}
-.more-nav:hover{border-color:var(--ink)}
-.more-card{flex:0 0 calc(50% - 9px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
-  padding:28px;display:flex;flex-direction:column}
-.more-card .mn-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-.more-card .mn{font-size:19px;font-weight:600;letter-spacing:-.01em}
-.more-card .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);border:1px solid var(--line-2);border-radius:100px;padding:3px 9px;font-weight:400}
-.more-card > p{margin:0;color:var(--ink-muted);font-size:14.5px;line-height:1.55;min-height:91px;
-  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.more-card > p b{color:var(--ink);font-weight:600}
-.more-card > p a{color:var(--acc)}
-.more-card .build-stack{margin-top:16px;min-height:44px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.more-toggle{margin-left:auto;padding:0;background:none;border:none;cursor:pointer;white-space:nowrap;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
-.more-toggle:hover{color:#2444c0}
-.more-toggle[hidden]{display:none}
-.more-card.open > p,.more-card.open .build-stack,.more-card.open .more-case p{-webkit-line-clamp:unset;display:block;overflow:visible}
-.more-grid.has-open .more-card:not(.open){align-self:flex-start}
-.more-grid.has-open .more-card:not(.open){height:var(--closed-h)}
+.bs-nomedia{border:1px dashed var(--line-2);border-radius:var(--r-lg);padding:18px 22px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink-faint)}
+/* tabs */
+.bs-tabs{display:flex;gap:2px;margin-top:24px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.bs-tabs::-webkit-scrollbar{display:none}
+.bs-tabs button{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);background:none;border:0;
+  border-bottom:2px solid transparent;margin-bottom:-1px;padding:11px 14px;cursor:pointer;white-space:nowrap;transition:color .15s}
+.bs-tabs button:first-child{padding-left:0}
+.bs-tabs button:hover{color:var(--ink)}
+.bs-tabs button.on{color:var(--ink);border-bottom-color:var(--acc)}
+.bs-panel{padding-top:20px;max-width:780px}
+.bs-panel p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.65}
+.bs-panel p b{color:var(--ink);font-weight:600}
+.bs-panel p a{color:var(--acc);border-bottom:1px solid rgba(47,82,224,.3)}
+.build-stack{margin-top:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--ink-faint);line-height:1.9}
+.build-stack .k{color:var(--ink-2)}
 
 /* ---------- EXPERIENCE ---------- */
 #exp{background:var(--panel)}
@@ -345,23 +334,34 @@ body.nav-open{overflow:hidden}
   .burger{display:flex;position:relative;z-index:36}
   section{padding:64px 0}
   .hero-grid{grid-template-columns:1fr;gap:40px}
-  .build-item{padding:44px 0}
-  .build-top{grid-template-columns:1fr;gap:28px}
-  .build-item.rev .build-top .build-text{order:0}
-  .case{grid-template-columns:1fr;margin-top:24px}
+  /* builder: accordion */
+  .bf{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:-34px;padding-right:34px}
+  .bf::-webkit-scrollbar{display:none}
+  .bf .sp{flex:0 0 4px}
+  .bx{display:block}
+  .bi{position:static;max-height:none;overflow:visible}
+  .bi.more-below{-webkit-mask-image:none;mask-image:none}
+  .bi-row{padding:15px 4px 15px 0}
+  .bi-row .nm{font-size:16.5px}
+  .bi-row .chev{display:block;font-family:var(--mono);font-size:17px;color:var(--ink-faint);width:18px;text-align:center;transition:transform .25s}
+  .bi-row.on{background:none}
+  .bi-row.on::before{display:none}
+  .bi-row.on .chev{transform:rotate(45deg);color:var(--acc)}
+  .bi-group{padding-left:0}
+  .bs{padding:6px 0 30px;border-bottom:1px solid var(--line)}
+  .bs-head{margin-bottom:16px}
+  .bs-head .bn,.bs-nav{display:none}
+  .build-name{gap:8px}
+  .bs-panel p{font-size:15px}
   .approach-grid{grid-template-columns:1fr}
   .tl-grid{grid-template-columns:1fr}
   .tl{border-top:none;border-left:2px solid var(--line-2);padding:0 0 28px 22px}
   .tl::before{top:2px;left:-6px}
   .tl .role,.tl .org{min-height:auto}
-  .more-wrap{padding:0}
-  .build-more h3.mh{padding:0}
-  .more-card{flex-basis:84vw}
-  .more-nav{display:none}
   .works-grid{grid-template-columns:repeat(3,1fr)}
   .sec-head{margin-bottom:34px}
 }
-@media(max-width:560px){.wrap{padding:0 22px}.works-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.wrap{padding:0 22px}.bf{margin-right:-22px;padding-right:22px}.works-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d25675f66fb24237903a30f64fa8f0ed"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
@@ -521,22 +521,11 @@ body.nav-open{overflow:hidden}
       <span class="eyebrow">Continuously shipping</span>
       <h2>Builder</h2>
       <p class="sub">Every product below was designed, engineered and shipped by me, end to end. APIs, models, DSP, interface, the lot.</p>
-      <div class="build-sort">
-        <label for="buildSort">Sort</label>
-        <select id="buildSort">
-          <option value="all" selected>All</option>
-        </select>
-      </div>
+      <div class="bf" id="buildFilter" role="toolbar" aria-label="Filter products"></div>
     </div>
-    <div id="buildList"></div>
-
-    <div class="build-more">
-      <h3 class="mh">More shipped</h3>
-      <div class="more-wrap">
-        <div class="more-grid" id="moreList"></div>
-        <button class="more-nav prev" id="morePrev" aria-label="Previous">‹</button>
-        <button class="more-nav next" id="moreNext" aria-label="Next">›</button>
-      </div>
+    <div class="bx" id="buildX">
+      <div class="bi" id="buildIndex" role="list"></div>
+      <div class="bs" id="buildStage" aria-live="polite"></div>
     </div>
   </div>
 </section>
@@ -934,121 +923,172 @@ const MORE = [
 ];
 
 /* ---------------- RENDER BUILDER ---------------- */
-const buildList = document.getElementById('buildList');
+/* one list (featured builds, then "more shipped" text-only builds) drives a single detail stage.
+   desktop: stage sits beside a sticky index. mobile: stage is moved under the open row, accordion-style. */
+const ITEMS = [...BUILDS.map(b=>({...b, more:false})), ...MORE.map(m=>({...m, more:true}))];
 const BUILD_CATEGORY_ORDER = ["Application","VST","Web App"];
+const bxEl = document.getElementById('buildX');
+const bIndex = document.getElementById('buildIndex');
+const bStage = document.getElementById('buildStage');
+const bFilter = document.getElementById('buildFilter');
+const desktopRow = matchMedia('(min-width:901px)');
+const bState = { filter:'all', az:false, active:ITEMS[0], open:true, tab:'overview' };
 
-function renderBuilds(list){
-  buildList.innerHTML = list.map((b,i)=>{
-    const rev = i % 2 === 1 ? 'rev' : '';
-    let media = '';
-    if(b.media==='video') media = `<div class="frame"><video src="${b.src}" ${i===0?'autoplay ':''}muted loop playsinline preload="metadata" controls></video></div>`;
-    else if(b.media==='image') media = `<div class="frame"><img src="${b.src}" alt="${b.name}" loading="lazy" /></div>`;
-    else if(b.media==='images') media = `<div class="carousel" data-i="0">
-        <div class="carousel-track">${b.src.map(s=>`<img src="${s}" alt="${b.name}" loading="lazy" />`).join('')}</div>
-        <button class="cn prev" aria-label="Prev">‹</button><button class="cn next" aria-label="Next">›</button>
-        <div class="cd">${b.src.map((_,j)=>`<span class="dot${j===0?' on':''}"></span>`).join('')}</div>
-      </div>`;
-    const c = b.case;
-    return `<div class="build-item ${rev}">
-      <div class="build-top">
-        <div class="build-text">
-          <div class="build-name"><span class="bn">${b.name}</span> ${b.live?'<span class="live">Live</span>':'<span class="live" style="color:var(--ink-faint)">In dev</span>'} ${b.tag?`<span class="tag">${b.tag}</span>`:''} ${b.buy?`<a class="buy" href="${b.buy}" target="_blank" rel="noopener">Buy now ↗</a>`:''} ${b.try?`<a class="buy" href="${b.try}" target="_blank" rel="noopener">Try now ↗</a>`:''}</div>
-          <p class="build-desc">${b.desc}</p>
-          <div class="build-stack"><span class="k">Stack</span> · ${b.stack}</div>
-        </div>
-        <div class="build-media">${media}</div>
-      </div>
-      ${c?`<div class="case">
-        <div class="case-cell"><span class="cl">The problem</span><p>${c.problem}</p></div>
-        <div class="case-cell"><span class="cl">How it's built</span><p>${c.build}</p></div>
-        <div class="case-cell"><span class="cl">${c.apiLabel||'API, integration &amp; deployment'}</span><p>${c.api}</p></div>
-      </div>`:''}
+const slug = s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+function visibleItems(){
+  let list = ITEMS.filter(it=>bState.filter==='all' || it.tag===bState.filter);
+  if(bState.az) list = [...list.filter(i=>!i.more).sort((a,b)=>a.name.localeCompare(b.name)), ...list.filter(i=>i.more).sort((a,b)=>a.name.localeCompare(b.name))];
+  return list;
+}
+function tabsFor(it){
+  const t = [['overview','Overview']];
+  if(it.case){
+    t.push(['problem','The problem'],['build',"How it's built"],['api',it.case.apiLabel||'API, integration &amp; deployment']);
+  } else if(it.build) t.push(['build',"How it's built"]);
+  return t;
+}
+function panelFor(it, tab){
+  if(tab==='overview') return `<p>${it.desc}</p><div class="build-stack"><span class="k">Stack</span> · ${it.stack}</div>`;
+  if(it.case) return `<p>${it.case[tab]}</p>`;
+  return `<p>${it.build}</p>`;
+}
+function mediaFor(it){
+  if(it.media==='video') return `<div class="frame"><video src="${it.src}" autoplay muted loop playsinline preload="metadata" controls></video></div>`;
+  if(it.media==='image') return `<div class="frame"><img src="${it.src}" alt="${it.name}" /></div>`;
+  if(it.media==='images') return `<div class="carousel" data-i="0">
+      <div class="carousel-track">${it.src.map(s=>`<img src="${s}" alt="${it.name}" loading="lazy" />`).join('')}</div>
+      <button class="cn prev" aria-label="Previous image">‹</button><button class="cn next" aria-label="Next image">›</button>
+      <div class="cd">${it.src.map((_,j)=>`<span class="dot${j===0?' on':''}"></span>`).join('')}</div>
     </div>`;
-  }).join('');
+  return `<div class="bs-nomedia">Demo available on a call</div>`;
+}
 
-  /* carousels */
-  buildList.querySelectorAll('.carousel').forEach(c=>{
+function renderFilter(){
+  const count = cat=>ITEMS.filter(it=>cat==='all'||it.tag===cat).length;
+  bFilter.innerHTML = [['all','All'],...BUILD_CATEGORY_ORDER.map(c=>[c,c])].map(([v,l])=>
+    `<button type="button" data-f="${v}" class="${bState.filter===v?'on':''}" aria-pressed="${bState.filter===v}">${l}<span class="c">${count(v)}</span></button>`).join('')
+    + `<span class="sp"></span><button type="button" data-az class="${bState.az?'on':''}" aria-pressed="${bState.az}">A–Z</button>`;
+}
+
+function renderIndex(){
+  const list = visibleItems();
+  let html = '', n = 0, groupDone = false;
+  list.forEach(it=>{
+    if(it.more && !groupDone){ groupDone = true; html += `<div class="bi-group">More shipped<span>Demo on request</span></div>`; }
+    n++;
+    const on = it===bState.active && (bState.open || desktopRow.matches);
+    html += `<button type="button" class="bi-row${on?' on':''}" role="listitem" data-k="${slug(it.name)}" aria-expanded="${on}">
+      <span class="ix">${String(n).padStart(2,'0')}</span><span class="nm">${it.name}</span><span class="tg">${it.tag||''}</span><span class="chev" aria-hidden="true">+</span></button>`;
+  });
+  bIndex.innerHTML = html;
+}
+
+function renderStage(){
+  const it = bState.active, list = visibleItems(), pos = list.indexOf(it);
+  const tabs = tabsFor(it);
+  if(!tabs.some(t=>t[0]===bState.tab)) bState.tab = 'overview';
+  bStage.innerHTML = `
+    <div class="bs-head">
+      <div class="build-name"><span class="bn">${it.name}</span> ${it.live===false?'<span class="live" style="color:var(--ink-faint)">In dev</span>':it.more?'':'<span class="live">Live</span>'} ${it.tag?`<span class="tag">${it.tag}</span>`:''} ${it.buy?`<a class="buy" href="${it.buy}" target="_blank" rel="noopener">Buy now ↗</a>`:''} ${it.try?`<a class="buy" href="${it.try}" target="_blank" rel="noopener">Try now ↗</a>`:''}</div>
+      <div class="bs-nav"><span class="ct">${String(pos+1).padStart(2,'0')} / ${String(list.length).padStart(2,'0')}</span>
+        <button type="button" data-step="-1" aria-label="Previous product">←</button><button type="button" data-step="1" aria-label="Next product">→</button></div>
+    </div>
+    ${mediaFor(it)}
+    <div class="bs-tabs" role="tablist">${tabs.map(([k,l])=>`<button type="button" role="tab" data-tab="${k}" class="${bState.tab===k?'on':''}" aria-selected="${bState.tab===k}">${l}</button>`).join('')}</div>
+    <div class="bs-panel" role="tabpanel">${panelFor(it, bState.tab)}</div>`;
+  bStage.classList.remove('in'); void bStage.offsetWidth; bStage.classList.add('in');
+
+  const c = bStage.querySelector('.carousel');
+  if(c){
     const track=c.querySelector('.carousel-track'), dots=[...c.querySelectorAll('.dot')], n=track.children.length;
     const go=i=>{const x=(i+n)%n;c.dataset.i=x;track.style.transform=`translateX(-${x*100}%)`;dots.forEach((d,j)=>d.classList.toggle('on',j===x));};
     c.querySelector('.next').onclick=()=>go(+c.dataset.i+1);
     c.querySelector('.prev').onclick=()=>go(+c.dataset.i-1);
     dots.forEach((d,j)=>d.onclick=()=>go(j));
-  });
-  fitBuildNames();
+    let x0=null;
+    c.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
+    c.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(+c.dataset.i+(dx<0?1:-1));x0=null;});
+  }
+  fitBuildName();
+}
+
+/* where the stage lives: beside the index on desktop, under the open row on mobile */
+function placeStage(){
+  if(desktopRow.matches){ bxEl.appendChild(bStage); bStage.hidden = false; return; }
+  const row = bIndex.querySelector('.bi-row.on');
+  if(row && bState.open){ row.after(bStage); bStage.hidden = false; }
+  else { bStage.hidden = true; bxEl.appendChild(bStage); }
+}
+
+function renderBuilder(){ renderFilter(); renderIndex(); renderStage(); placeStage(); syncIndexFade(); }
+
+function selectItem(it, {scroll=false}={}){
+  const same = it===bState.active;
+  if(!desktopRow.matches && same){ bState.open = !bState.open; }
+  else { bState.active = it; bState.open = true; }
+  renderIndex(); if(!same) renderStage(); placeStage();
+  const row = bIndex.querySelector('.bi-row.on');
+  if(row){
+    if(desktopRow.matches){
+      /* keep the selected row clear of the index's faded bottom edge */
+      const top = row.offsetTop, bottom = top + row.offsetHeight, v = bIndex.scrollTop, h = bIndex.clientHeight;
+      if(top < v || bottom > v + h - 60) bIndex.scrollTop = top - h/2 + row.offsetHeight/2;
+    }
+    else if(scroll) row.scrollIntoView({block:'start', behavior:'smooth'});
+  }
+  return row;
+}
+
+bFilter.addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  if('az' in b.dataset) bState.az = !bState.az; else bState.filter = b.dataset.f;
+  const list = visibleItems();
+  if(!list.includes(bState.active)) bState.active = list[0];
+  renderBuilder();
+});
+bIndex.addEventListener('click', e=>{
+  const r = e.target.closest('.bi-row'); if(!r) return;
+  selectItem(ITEMS.find(it=>slug(it.name)===r.dataset.k), {scroll:true});
+});
+bIndex.addEventListener('keydown', e=>{
+  if(!desktopRow.matches || !['ArrowDown','ArrowUp'].includes(e.key)) return;
+  e.preventDefault(); step(e.key==='ArrowDown'?1:-1)?.focus();
+});
+bStage.addEventListener('click', e=>{
+  const t = e.target.closest('[data-tab]');
+  if(t){
+    bState.tab = t.dataset.tab;
+    bStage.querySelectorAll('[data-tab]').forEach(b=>{b.classList.toggle('on',b===t);b.setAttribute('aria-selected',b===t);});
+    bStage.querySelector('.bs-panel').innerHTML = panelFor(bState.active, bState.tab);
+    return;
+  }
+  const s = e.target.closest('[data-step]');
+  if(s) step(+s.dataset.step);
+});
+function step(d){
+  const list = visibleItems(), i = list.indexOf(bState.active);
+  return selectItem(list[(i+d+list.length)%list.length]);
 }
 
 /* desktop: keep badges on the same line as the product name by easing a long name's size down, rather than wrapping */
-const desktopRow = matchMedia('(min-width:901px)');
-function fitBuildNames(){
-  buildList.querySelectorAll('.build-name').forEach(n=>{
-    const t = n.querySelector('.bn');
-    t.style.fontSize = '';
-    if(!desktopRow.matches) return;
-    const wrapped = ()=>[...n.children].some(c=>c!==t && c.getBoundingClientRect().top >= t.getBoundingClientRect().bottom);
-    let size = parseFloat(getComputedStyle(t).fontSize);
-    while(wrapped() && size > 30){ size -= 1; t.style.fontSize = size+'px'; }
-    if(wrapped()) t.style.fontSize = '';
-  });
+function fitBuildName(){
+  const n = bStage.querySelector('.build-name'); if(!n) return;
+  const t = n.querySelector('.bn');
+  t.style.fontSize = '';
+  if(!desktopRow.matches) return;
+  const wrapped = ()=>[...n.children].some(c=>c!==t && c.getBoundingClientRect().top >= t.getBoundingClientRect().bottom);
+  let size = parseFloat(getComputedStyle(t).fontSize);
+  while(wrapped() && size > 24){ size -= 1; t.style.fontSize = size+'px'; }
+  if(wrapped()) t.style.fontSize = '';
 }
-renderBuilds(BUILDS);
-addEventListener('resize', fitBuildNames, {passive:true});
-document.fonts && document.fonts.ready.then(fitBuildNames);
-
-const buildSort = document.getElementById('buildSort');
-BUILD_CATEGORY_ORDER.forEach(cat=>{
-  const opt = document.createElement('option');
-  opt.value = cat; opt.textContent = cat;
-  buildSort.appendChild(opt);
-});
-const azOpt = document.createElement('option');
-azOpt.value = 'az'; azOpt.textContent = 'A–Z';
-buildSort.appendChild(azOpt);
-
-buildSort.addEventListener('change', ()=>{
-  let list;
-  if(buildSort.value==='az'){
-    list = [...BUILDS].sort((a,b)=>a.name.localeCompare(b.name));
-  } else if(buildSort.value==='all'){
-    list = BUILDS;
-  } else {
-    list = BUILDS.filter(b=>b.tag===buildSort.value);
-  }
-  renderBuilds(list);
-});
-
-/* more carousel */
-const moreGrid = document.getElementById('moreList');
-moreGrid.innerHTML = MORE.map(m=>`
-  <div class="more-card">
-    <div class="mn-row"><span class="mn">${m.name}</span>${m.tag?`<span class="tag">${m.tag}</span>`:''}<button class="more-toggle" type="button" aria-expanded="false" hidden>Read more ↓</button></div>
-    <p>${m.desc}</p>
-    <div class="build-stack">${m.stack}</div>
-    ${m.build?`<div class="more-case"><span class="cl">How it's built</span><p>${m.build}</p></div>`:''}
-  </div>`).join('');
-
-/* expandable more-cards: only offer the toggle where text is actually clamped */
-const syncMoreToggles = ()=>moreGrid.querySelectorAll('.more-card:not(.open)').forEach(card=>{
-  const els = [...card.querySelectorAll(':scope > p, .build-stack, .more-case p')];
-  const collapsed = els.map(el=>el.getBoundingClientRect().height);
-  card.classList.add('open');
-  const clamped = els.some((el,i)=>el.getBoundingClientRect().height > collapsed[i] + 1);
-  card.classList.remove('open');
-  card.querySelector('.more-toggle').hidden = !clamped;
-});
-moreGrid.querySelectorAll('.more-toggle').forEach(btn=>btn.onclick=()=>{
-  const card = btn.closest('.more-card');
-  /* pin the collapsed card height so neighbours don't stretch or shrink when one opens */
-  if(!moreGrid.classList.contains('has-open')) moreGrid.style.setProperty('--closed-h', card.offsetHeight+'px');
-  const open = card.classList.toggle('open');
-  btn.textContent = open ? 'Show less ↑' : 'Read more ↓';
-  btn.setAttribute('aria-expanded', open);
-  moreGrid.classList.toggle('has-open', !!moreGrid.querySelector('.more-card.open'));
-});
-syncMoreToggles();
-addEventListener('load', syncMoreToggles);
-addEventListener('resize', syncMoreToggles, {passive:true});
-document.getElementById('moreNext').onclick=()=>moreGrid.scrollBy({left:358,behavior:'smooth'});
-document.getElementById('morePrev').onclick=()=>moreGrid.scrollBy({left:-358,behavior:'smooth'});
+/* fade the index's bottom edge while more rows sit below its fold */
+const syncIndexFade = ()=>bIndex.classList.toggle('more-below', bIndex.scrollHeight - bIndex.scrollTop - bIndex.clientHeight > 4);
+bIndex.addEventListener('scroll', syncIndexFade, {passive:true});
+addEventListener('resize', syncIndexFade, {passive:true});
+desktopRow.addEventListener('change', ()=>{ bState.open = true; renderIndex(); placeStage(); fitBuildName(); });
+addEventListener('resize', fitBuildName, {passive:true});
+document.fonts && document.fonts.ready.then(fitBuildName);
+renderBuilder();
 
 /* ---------------- MUSIC GRID ---------------- */
 const WORKS = [
