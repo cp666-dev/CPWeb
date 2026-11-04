@@ -6,7 +6,7 @@
 <title>Connor Panayi · Forward Deployed Creative & Technologist</title>
 <meta name="description" content="Forward deployed creative and technologist. I embed with teams, wire APIs and models into shipped products, and sit between what builders can make and what users actually need. 20+ products shipped. Previously a record producer with 16B+ streams." />
 <meta name="robots" content="noindex, nofollow" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌘</text></svg>" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%2222%22 y=%2222%22 width=%2256%22 height=%2256%22 rx=%2212%22 fill=%22%2315161a%22/></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -40,7 +40,7 @@ img,video{display:block;max-width:100%}
 h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.025em;line-height:1.03}
 .mono{font-family:var(--mono)}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 34px;position:relative}
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-faint)}
+.eyebrow{font-size:14px;font-weight:500;letter-spacing:-.005em;color:var(--ink-muted)}
 
 /* ---------- NAV ---------- */
 header{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;
@@ -49,7 +49,7 @@ header.scrolled{border-bottom-color:var(--line)}
 .brand{display:flex;align-items:center;gap:11px;font-weight:600;font-size:15px;letter-spacing:-.01em}
 .brand .sq{width:9px;height:9px;background:var(--ink);border-radius:2px}
 .navl{display:flex;gap:2px;align-items:center}
-.navl a{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);padding:8px 13px;border-radius:var(--r)}
+.navl a{font-size:14px;font-weight:500;letter-spacing:-.005em;color:var(--ink-muted);padding:8px 13px;border-radius:6px}
 .navl a:hover{color:var(--ink);background:rgba(0,0,0,.04)}
 .navl a.cta{color:var(--surface);background:var(--ink);margin-left:6px}
 .navl a.cta:hover{background:#000}
@@ -67,16 +67,16 @@ h1.title{font-size:clamp(42px,5.6vw,72px);font-weight:700;letter-spacing:-.038em
 .title .and{color:var(--ink-faint);font-weight:500}
 .hero-sub{margin-top:26px;max-width:540px;font-size:18.5px;color:var(--ink-2);line-height:1.55}
 .hero-sub b{color:var(--ink);font-weight:600}
-.hero-avail{margin-top:18px;max-width:540px;font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;color:var(--ink-muted);display:flex;align-items:center;gap:9px}
+.hero-avail{margin-top:16px;max-width:540px;font-size:14.5px;color:var(--ink-muted);display:flex;align-items:center;gap:9px}
 .hero-avail .d{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
 .hero-cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.btn{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;padding:12px 20px;border-radius:100px;border:1px solid var(--line-2);color:var(--ink);transition:.2s;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.btn{font-size:14.5px;font-weight:500;letter-spacing:-.005em;padding:11px 19px;border-radius:6px;border:1px solid var(--line-2);color:var(--ink);transition:.2s;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
 .btn:hover{border-color:var(--ink)}
 .btn.pri{background:var(--ink);color:var(--surface);border-color:var(--ink)}
 .btn.pri:hover{background:#000}
 .hero-stats{margin-top:38px;display:flex;gap:44px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--line)}
 .stat .n{font-size:26px;font-weight:700;letter-spacing:-.02em}
-.stat .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px}
+.stat .k{font-size:13px;color:var(--ink-muted);margin-top:2px}
 
 /* hero flagship viewer (live Chops console) */
 .viewer{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-lg);
@@ -206,10 +206,9 @@ section{padding:92px 0}
 #approach{background:var(--panel)}
 .lead{font-size:clamp(23px,3.1vw,34px);font-weight:500;letter-spacing:-.02em;line-height:1.3;max-width:940px}
 .lead .mut{color:var(--ink-faint)}
-.approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;margin-top:56px}
-.ap{background:var(--panel);padding:32px}
-.ap .num{font-family:var(--mono);font-size:12px;color:var(--acc);letter-spacing:.1em}
-.ap h3{font-size:19px;margin:14px 0 9px}
+.approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:60px}
+.ap{padding-top:22px;border-top:1px solid var(--ink)}
+.ap h3{font-size:19px;margin:0 0 9px}
 .ap p{margin:0;color:var(--ink-muted);font-size:14.5px}
 
 /* ---------- BUILDER ---------- */
@@ -217,9 +216,9 @@ section{padding:92px 0}
 #builder{background:var(--bg)}
 #builder .sec-head{margin-bottom:30px}
 .bf{margin-top:26px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.bf button{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink-muted);background:var(--surface);
-  border:1px solid var(--line-2);border-radius:100px;padding:8px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:.2s}
-.bf button .c{font-size:10.5px;color:var(--ink-faint)}
+.bf button{font-size:13.5px;font-weight:500;color:var(--ink-muted);background:var(--surface);
+  border:1px solid var(--line-2);border-radius:6px;padding:7px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:.2s}
+.bf button .c{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
 .bf button:hover{border-color:var(--ink);color:var(--ink)}
 .bf button.on{background:var(--ink);border-color:var(--ink);color:var(--surface)}
 .bf button.on .c{color:rgba(255,255,255,.55)}
@@ -232,7 +231,7 @@ section{padding:92px 0}
   font:inherit;text-align:left;cursor:pointer;position:relative;scroll-margin-top:76px;transition:background .15s}
 .bi-row .ix{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);width:20px;flex:none}
 .bi-row .nm{flex:1;min-width:0;font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bi-row .tg{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);flex:none}
+.bi-row .tg{font-size:12.5px;color:var(--ink-faint);flex:none}
 .bi-row .chev{display:none}
 .bi-row:hover{background:rgba(255,255,255,.55)}
 .bi-row:hover .nm{color:var(--ink)}
@@ -241,21 +240,22 @@ section{padding:92px 0}
 .bi-row.on::before{content:"";position:absolute;left:0;top:9px;bottom:9px;width:2px;border-radius:2px;background:var(--acc)}
 .bi-row.on .ix{color:var(--acc)}
 .bi-row.on .nm{color:var(--ink);font-weight:600}
-.bi-group{padding:26px 0 10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
-.bi-group span{display:block;margin-top:4px;letter-spacing:.03em;text-transform:none}
+.bi-group{padding:28px 0 10px 14px;border-bottom:1px solid var(--line);font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.bi-group span{display:block;margin-top:1px;font-weight:400;color:var(--ink-faint)}
 /* stage */
 .bs{min-width:0}
 .bs.in{animation:bsIn .35s cubic-bezier(.4,0,.2,1)}
 @keyframes bsIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .bs-head{display:flex;align-items:center;gap:18px;margin-bottom:20px}
 .build-name{flex:1;min-width:0;font-size:clamp(28px,3.2vw,38px);font-weight:600;letter-spacing:-.03em;line-height:1.05;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.build-name .live{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);border:1px solid var(--line-2);border-radius:100px;padding:4px 10px;font-weight:400}
-.build-name .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);border:1px solid var(--line-2);border-radius:100px;padding:4px 10px;font-weight:400;background:var(--panel)}
-.build-name .buy{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--surface);background:var(--acc);border:1px solid var(--acc);border-radius:100px;padding:5px 12px 5px 13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.build-name .live{font-size:12.5px;letter-spacing:0;color:var(--ink-faint);border:1px solid var(--line-2);border-radius:5px;padding:3px 8px;font-weight:500}
+.build-name .tag{font-size:12.5px;letter-spacing:0;color:var(--ink-muted);border:1px solid var(--line-2);border-radius:5px;padding:3px 8px;font-weight:500;background:var(--panel)}
+.build-name .buy{font-size:12.5px;letter-spacing:0;color:var(--surface);background:var(--acc);border:1px solid var(--acc);border-radius:5px;padding:3px 10px;font-weight:500;transition:.2s}
 .build-name .buy:hover{background:#2444c0;border-color:#2444c0}
 .bs-nav{display:flex;align-items:center;gap:6px;flex:none}
 .bs-nav .ct{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-faint);margin-right:6px}
-.bs-nav button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font-size:17px;line-height:1;cursor:pointer;transition:.2s}
+.bs-nav button{width:34px;height:34px;border-radius:6px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:.2s}
+.bs-nav svg{width:14px;height:14px}
 .bs-nav button:hover{border-color:var(--ink)}
 /* media frame */
 .frame{border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;background:#0c0d10;box-shadow:0 24px 50px -30px rgba(20,20,20,.3)}
@@ -271,11 +271,11 @@ section{padding:92px 0}
 .cd{position:absolute;bottom:12px;left:0;right:0;display:flex;gap:6px;justify-content:center}
 .cd .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer}
 .cd .dot.on{background:#fff}
-.bs-nomedia{border:1px dashed var(--line-2);border-radius:var(--r-lg);padding:18px 22px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink-faint)}
+.bs-nomedia{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--panel);padding:16px 20px;font-size:14px;color:var(--ink-faint)}
 /* tabs */
 .bs-tabs{display:flex;gap:2px;margin-top:24px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
 .bs-tabs::-webkit-scrollbar{display:none}
-.bs-tabs button{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);background:none;border:0;
+.bs-tabs button{font-size:14px;font-weight:500;letter-spacing:-.005em;color:var(--ink-faint);background:none;border:0;
   border-bottom:2px solid transparent;margin-bottom:-1px;padding:11px 14px;cursor:pointer;white-space:nowrap;transition:color .15s}
 .bs-tabs button:first-child{padding-left:0}
 .bs-tabs button:hover{color:var(--ink)}
@@ -309,7 +309,7 @@ section{padding:92px 0}
 .tile:hover .meta{opacity:1;transform:none}
 .tile .t{display:block;color:#fff;font-weight:600;font-size:13px;line-height:1.15}
 .tile .a{display:block;color:rgba(255,255,255,.75);font-size:11.5px;margin-top:3px}
-.works-note{margin-top:30px;font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:.03em}
+.works-note{margin-top:28px;font-size:13.5px;color:var(--ink-faint)}
 
 /* ---------- CONTACT ---------- */
 #contact{background:var(--panel);text-align:center}
@@ -320,6 +320,7 @@ section{padding:92px 0}
 footer{padding:34px 0}
 .foot-social{display:flex;gap:18px;align-items:center;justify-content:center}
 .foot-social a{color:var(--ink-faint);display:flex}
+.foot-name{font-size:13px;color:var(--ink-faint);margin-right:8px}
 .foot-social svg{width:17px;height:17px}
 .foot-social a:hover{color:var(--ink)}
 
@@ -329,7 +330,7 @@ body.nav-open{overflow:hidden}
   .navl{position:fixed;inset:0 0 0 auto;width:min(78vw,320px);height:100svh;flex-direction:column;align-items:stretch;justify-content:center;
     background:var(--surface);border-left:1px solid var(--line);padding:30px;gap:2px;display:none;z-index:35}
   .navl.open{display:flex}
-  .navl a{padding:16px 6px;font-size:14px;border-bottom:1px solid var(--line)}
+  .navl a{padding:16px 6px;font-size:16px;border-bottom:1px solid var(--line)}
   .navl a.cta{margin:14px 0 0;text-align:center;border-radius:var(--r)}
   .burger{display:flex;position:relative;z-index:36}
   section{padding:64px 0}
@@ -353,7 +354,7 @@ body.nav-open{overflow:hidden}
   .bs-head .bn,.bs-nav{display:none}
   .build-name{gap:8px}
   .bs-panel p{font-size:15px}
-  .approach-grid{grid-template-columns:1fr}
+  .approach-grid{grid-template-columns:1fr;gap:30px}
   .tl-grid{grid-template-columns:1fr}
   .tl{border-top:none;border-left:2px solid var(--line-2);padding:0 0 28px 22px}
   .tl::before{top:2px;left:-6px}
@@ -375,7 +376,7 @@ body.nav-open{overflow:hidden}
     <a href="#exp">Experience</a>
     <a href="#works">Music</a>
     <a href="#contact">Contact</a>
-    <a class="cta" href="assets/Connor-Panayi-CV.pdf" download>Resume ↗</a>
+    <a class="cta" href="assets/Connor-Panayi-CV.pdf" download>Resume</a>
   </nav>
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
@@ -392,7 +393,7 @@ body.nav-open{overflow:hidden}
       </p>
       <p class="hero-avail">Currently available for forward deployed, product and creative-technologist roles.</p>
       <div class="hero-cta">
-        <a class="btn pri" href="#builder">See the work →</a>
+        <a class="btn pri" href="#builder">See the work</a>
         <a class="btn" href="https://calendly.com/connor-panayi/30min" target="_blank" rel="noopener">Book a call</a>
       </div>
       <div class="hero-stats">
@@ -438,7 +439,7 @@ body.nav-open{overflow:hidden}
                   <span class="caret">›</span>
                   <input id="ccVibeInput" class="mono" placeholder="punchy boom-bap drum break, dusty" autocomplete="off" />
                 </div>
-                <button class="cc-lucky" id="ccLucky">🎲 I'm feeling lucky</button>
+                <button class="cc-lucky" id="ccLucky">I'm feeling lucky</button>
               </div>
               <div class="cc-padhead">
                 <b>Suggested chops</b>
@@ -449,8 +450,8 @@ body.nav-open{overflow:hidden}
             </div>
           </div>
           <div class="cc-transport">
-            <button class="cc-tr">⏮</button>
-            <button class="cc-tr" id="ccPlayAll">▶</button>
+            <button class="cc-tr">&#x23EE;&#xFE0E;</button>
+            <button class="cc-tr" id="ccPlayAll">&#x25B6;&#xFE0E;</button>
             <div class="cc-clock mono">001.1.00</div>
             <div class="cc-meters"><span class="cc-meter"><i id="ccMeterL"></i></span><span class="cc-meter"><i id="ccMeterR"></i></span></div>
             <button class="cc-exportall mono" id="ccExportAll">Export all · 8 chops → disk</button>
@@ -459,22 +460,22 @@ body.nav-open{overflow:hidden}
             <div class="cc-dialog">
               <div class="cc-dtop">
                 <button class="cc-dnav">‹</button><button class="cc-dnav">›</button>
-                <span class="cc-dcrumb mono">📁 Chops</span>
+                <span class="cc-dcrumb mono">Chops</span>
                 <div class="cc-dspacer"></div>
-                <span class="cc-dsearch mono">🔍 Search</span>
+                <span class="cc-dsearch mono">Search</span>
               </div>
               <div class="cc-dbody">
                 <div class="cc-dside mono">
                   <div class="cc-dgroup">Favourites</div>
-                  <div class="cc-ditem">🖥 Desktop</div>
-                  <div class="cc-ditem">📄 Documents</div>
-                  <div class="cc-ditem">⬇ Downloads</div>
+                  <div class="cc-ditem">Desktop</div>
+                  <div class="cc-ditem">Documents</div>
+                  <div class="cc-ditem">Downloads</div>
                   <div class="cc-dgroup">Locations</div>
-                  <div class="cc-ditem">🏠 cp</div>
+                  <div class="cc-ditem">cp</div>
                 </div>
                 <div class="cc-dlist mono">
                   <div class="cc-drow head"><span>Name</span><span>Kind</span></div>
-                  <div class="cc-drow sel"><span>📁 Chops Test Music</span><span>Folder</span></div>
+                  <div class="cc-drow sel"><span>Chops Test Music</span><span>Folder</span></div>
                 </div>
               </div>
               <div class="cc-dfoot">
@@ -505,9 +506,9 @@ body.nav-open{overflow:hidden}
       and turn hard problems into product that ships.</span>
     </p>
     <div class="approach-grid">
-      <div class="ap"><div class="num">01</div><h3>Embed &amp; learn the domain</h3><p>Drop into the problem, talk to the people living it, and get fluent fast. The same ear I built for a mix, aimed at a workflow.</p></div>
-      <div class="ap"><div class="num">02</div><h3>Wire the hard parts</h3><p>APIs, models, DSP, agents. I integrate the whole stack so the clever bit actually runs, not just demos.</p></div>
-      <div class="ap"><div class="num">03</div><h3>Ship something people use</h3><p>Design, build and release a real product, then sit with the users and iterate until it feels inevitable.</p></div>
+      <div class="ap"><h3>Embed &amp; learn the domain</h3><p>Drop into the problem, talk to the people living it, and get fluent fast. The same ear I built for a mix, aimed at a workflow.</p></div>
+      <div class="ap"><h3>Wire the hard parts</h3><p>APIs, models, DSP, agents. I integrate the whole stack so the clever bit actually runs, not just demos.</p></div>
+      <div class="ap"><h3>Ship something people use</h3><p>Design, build and release a real product, then sit with the users and iterate until it feels inevitable.</p></div>
     </div>
   </div>
 </section>
@@ -594,7 +595,7 @@ body.nav-open{overflow:hidden}
     </div>
   </div>
   <footer>
-    <div class="wrap foot-social">
+    <div class="wrap foot-social"><span class="foot-name">© 2026 Connor Panayi</span>
       <a href="https://x.com/itsCP666" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
       <a href="https://www.instagram.com/connorpanayi" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
       <a href="https://www.linkedin.com/in/connor-panayi-40a3913ab/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.65c0-1.35-.02-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98V21H9z"/></svg></a>
@@ -654,7 +655,7 @@ body.nav-open{overflow:hidden}
     const pad = e.target.closest('.cc-pad');
     if(!pad) return;
     const wasHot = pad.classList.contains('hot');
-    padsEl.querySelectorAll('.cc-pad.hot').forEach(p=>{p.classList.remove('hot'); p.querySelector('.play-s').textContent='▶';});
+    padsEl.querySelectorAll('.cc-pad.hot').forEach(p=>{p.classList.remove('hot'); p.querySelector('.play-s').textContent='\u25B6\uFE0E';});
     if(!wasHot){ pad.classList.add('hot'); pad.querySelector('.play-s').textContent='■'; }
   });
 
@@ -705,7 +706,7 @@ body.nav-open{overflow:hidden}
   const playBtn = cc.querySelector('#ccPlayAll');
   const setPlaying = v=>{
     playing = v;
-    playBtn.textContent = playing ? '■' : '▶';
+    playBtn.textContent = playing ? '■' : '\u25B6\uFE0E';
     if(playing){
       meterTimer = setInterval(()=>{
         meterL.style.width = (20+Math.random()*70)+'%';
@@ -989,9 +990,9 @@ function renderStage(){
   if(!tabs.some(t=>t[0]===bState.tab)) bState.tab = 'overview';
   bStage.innerHTML = `
     <div class="bs-head">
-      <div class="build-name"><span class="bn">${it.name}</span> ${it.live===false?'<span class="live" style="color:var(--ink-faint)">In dev</span>':it.more?'':'<span class="live">Live</span>'} ${it.tag?`<span class="tag">${it.tag}</span>`:''} ${it.buy?`<a class="buy" href="${it.buy}" target="_blank" rel="noopener">Buy now ↗</a>`:''} ${it.try?`<a class="buy" href="${it.try}" target="_blank" rel="noopener">Try now ↗</a>`:''}</div>
+      <div class="build-name"><span class="bn">${it.name}</span> ${it.live===false?'<span class="live">In dev</span>':''} ${it.tag?`<span class="tag">${it.tag}</span>`:''} ${it.buy?`<a class="buy" href="${it.buy}" target="_blank" rel="noopener">Buy now</a>`:''} ${it.try?`<a class="buy" href="${it.try}" target="_blank" rel="noopener">Try now</a>`:''}</div>
       <div class="bs-nav"><span class="ct">${String(pos+1).padStart(2,'0')} / ${String(list.length).padStart(2,'0')}</span>
-        <button type="button" data-step="-1" aria-label="Previous product">←</button><button type="button" data-step="1" aria-label="Next product">→</button></div>
+        <button type="button" data-step="-1" aria-label="Previous product"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"/></svg></button><button type="button" data-step="1" aria-label="Next product"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3 5 5-5 5"/></svg></button></div>
     </div>
     ${mediaFor(it)}
     <div class="bs-tabs" role="tablist">${tabs.map(([k,l])=>`<button type="button" role="tab" data-tab="${k}" class="${bState.tab===k?'on':''}" aria-selected="${bState.tab===k}">${l}</button>`).join('')}</div>
