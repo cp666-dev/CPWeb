@@ -733,6 +733,16 @@ body.nav-open{overflow:hidden}
 
 /* ---------------- BUILDER DATA ---------------- */
 const BUILDS = [
+  { name:"Booth", tag:"VST", media:"video", src:"assets/booth-demo.mp4", live:true,
+    desc:"Booth is a vocal producer that sits in your headphones while you record alone in <b>Ableton Live 12</b>. You load the <b>Booth Capture</b> plugin on your vocal track, paste your lyrics, set the intent and press record. After each take you hear one short note in a producer's voice, starting with what worked, then a single fix tied to a bar and a word. Booth punches you in from the right bar on its own, stops flagging the scoops you tell it to keep, and builds the comp on its own track when you're done. You finish with a summary for your mix engineer, and your vocal never leaves the laptop.",
+    stack:"Python · C++17 / JUCE 8 · numpy (YIN pitch tracking) · Max for Live · AbletonOSC · AU / VST3 · macOS / Ableton Live 12",
+    case:{
+      problem:"Most artists now record vocals alone, so nobody is in the room to say the chorus rushed or that \"gold\" sat flat, and nobody comps the takes afterwards. Metering and tuning tools show you numbers, but they don't run the session: they can't call the punch-in, remember that a scoop was deliberate, or pick the best line from each take.",
+      build:"A <b>JUCE</b> capture plugin streams the vocal and a sample-accurate playhead over localhost to a <b>Python</b> engine that analyses each take for pitch (its own <b>numpy</b> implementation of <b>YIN</b>), timing, lyrics and fatigue. Seven playbook rules decide the note: praise first, two notes at most, and timing judged against the singer's own feel. <b>Claude</b> can reword it in a producer's voice, but the rules decide what is said.",
+      apiLabel:"Local-first, integration &amp; deployment",
+      api:"All audio analysis runs on your machine. Only short text leaves: the draft note goes to <b>Claude</b> and the note text to <b>ElevenLabs</b> for the producer voice, with macOS <b>say</b> as an offline fallback. Spoken commands like \"go again\" are transcribed locally with <b>faster-whisper</b>. Punch-ins run through <b>AbletonOSC</b>, other DAWs get a coach mode, and the plugin builds as AU and VST3 for macOS 11 and later."
+    }},
+
   { name:"Pre-Release Vault", tag:"Web App", media:"image", src:"assets/prereleasevault-demo.png", live:true,
     desc:"Pre-Release Vault is a web app that lets software agents work on your unreleased music without being able to leak it. You upload a track, and an isolated worker extracts descriptors such as tempo, key, loudness, mood tags and a 512-dimension embedding. You then give each agent an expiring credential that names exactly which columns it may read, so <b>Claude</b> can rank this week's demos by hook score without seeing a title, an artist or the audio. Every read is signed and hash-chained into a ledger, refused attempts land there in red, and each track gets a receipt the artist can verify offline.",
     stack:"TypeScript · Next.js · Agents++ · PostgreSQL 16 + pgvector · ffmpeg · MCP · Ed25519 / AES-256-GCM · Self-hosted (Node 20)",
