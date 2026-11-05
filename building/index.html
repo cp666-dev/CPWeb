@@ -112,6 +112,7 @@ button.room:hover .rtag .s{color:#4a250c}
 .items button{min-height:40px;padding:8px 10px;text-align:left;font-size:13.5px;font-weight:600;line-height:1.25;color:var(--soft);background:var(--panel)}
 .items button:hover{background:#1d1840;color:var(--cream)}
 .items button:last-child:nth-child(odd){grid-column:span 2}
+.rdesc{margin:0 0 14px;font-size:14px;line-height:1.55;color:var(--soft)}
 .enter{width:100%}
 
 /* --- lift call panel --- */
@@ -323,8 +324,8 @@ const L=[.296,.452], R=[.548,.705], FH=.135, SHAFT=[.466,.534];
 const FLOORS=[
   {k:'G',name:'Lobby',y:.815,rooms:[]},
   {k:'2',name:'Back office & live room',y:.665,rooms:[
-    {id:'exp',x:L,t:'Back office',s:'Experience',kind:'experience'},
-    {id:'music',x:R,t:'Live room',s:'Music',kind:'music'}]},
+    {id:'exp',x:L,t:'Back office',s:'Experience',kind:'experience',d:'The roles on the CV, from co-founding a company to leading music and infrastructure at an IP platform, with what I did in each.'},
+    {id:'music',x:R,t:'Live room',s:'Music',kind:'music',d:'Thirteen years producing and engineering records, and a selected discography. It\'s where the ear I bring to product came from.'}]},
   {k:'3',name:'Workshop & lab',y:.515,rooms:[
     {id:'vst',x:L,t:'Workshop',s:`${VST.length} plugins`,items:VST},
     {id:'apps',x:R,t:'Lab',s:`${APPS.length} applications`,items:APPS}]},
@@ -332,9 +333,9 @@ const FLOORS=[
     {id:'web',x:L,t:'Web desk',s:`${WEB.length} web apps`,items:WEB},
     {id:'archive',x:R,t:'Archive',s:`${S.MORE.length} more shipped`,items:S.MORE}]},
   {k:'5',name:'Studio',y:.21,rooms:[
-    {id:'approach',x:L,t:'Studio',s:'How I work',kind:'approach'},
+    {id:'approach',x:L,t:'Studio',s:'How I work',kind:'approach',d:'How I go from landing in an unfamiliar problem to shipping something people use. Three steps, and the record-making habit behind them.'},
     {id:'storeroom',x:R,spare:true}]},
-  {k:'R',name:'Rooftop',y:.21,rooms:[{id:'contact',x:[.245,.755],yy:[.12,.19],t:'Rooftop',s:'Say hello',kind:'contact',outdoor:true}]}
+  {k:'R',name:'Rooftop',y:.21,rooms:[{id:'contact',x:[.245,.755],yy:[.12,.19],t:'Rooftop',s:'Say hello',kind:'contact',d:'Where to reach me, by email or with a call on the calendar.',outdoor:true}]}
 ];
 const TOP=FLOORS.length-1;
 const PX=n=>`assets/px/pose-${n}.png`;  // 1 idle · 2 walk · 3 press · 4 wave · 5 handheld · 6 jump
@@ -443,7 +444,7 @@ function renderLeft(i){
   const f=FLOORS[i];
   if(i===0){ left.innerHTML=INTRO; return; }
   left.innerHTML=`<div class="floorhead"><div class="big">${f.k}</div><div><h2>${f.name}</h2>${f.rooms.some(r=>r.items&&r.items!==S.MORE)?`<p>${BUILDER_SUB}</p>`:''}</div></div>`+
-    f.rooms.filter(r=>!r.spare).map(r=>`<div class="rgroup"><h3>${r.t}<span>${r.s}</span></h3>${r.items?`<div class="items">${r.items.map((p,k)=>`<button data-room="${r.id}" data-k="${k}">${p.name}</button>`).join('')}</div>`:`<button class="btn ghost enter" data-room="${r.id}">Enter the ${r.t.toLowerCase()}</button>`}</div>`).join('');
+    f.rooms.filter(r=>!r.spare).map(r=>`<div class="rgroup"><h3>${r.t}<span>${r.s}</span></h3>${r.d?`<p class="rdesc">${r.d}</p>`:''}${r.items?`<div class="items">${r.items.map((p,k)=>`<button data-room="${r.id}" data-k="${k}">${p.name}</button>`).join('')}</div>`:`<button class="btn ghost enter" data-room="${r.id}">Enter the ${r.t.toLowerCase()}</button>`}</div>`).join('');
 }
 left.addEventListener('click',e=>{const b=e.target.closest('[data-room]'); if(b) openRoom(b.dataset.room,b.dataset.k?+b.dataset.k:0);});
 document.addEventListener('click',e=>{ if(e.target.closest('[data-jump]')){ pose(6,1200); Snd.tone(523,.08,'square',.04); Snd.tone(784,.12,'square',.04,.08); }});
@@ -525,7 +526,7 @@ const mob=document.getElementById('mobile');
 const KIND=p=>p.media==='video'?ICON.play:p.media==='images'?ICON.images:p.media==='image'?ICON.image:ICON.call;
 function buildMobile(){
   const floors=FLOORS.slice(1).reverse();
-  mob.innerHTML=floors.map(f=>{const i=FLOORS.indexOf(f); return `<section class="mfloor" id="m-floor-${i}" data-floor="${i}"><header><span class="big">${f.k}</span><h2>${f.name}</h2></header>${f.rooms.filter(r=>!r.spare).map(r=>`<div class="mroom"><div class="mart" data-art="${r.id}"><span class="rtag"><span class="t">${r.t}</span><span class="s">${r.s}</span></span></div>
+  mob.innerHTML=floors.map(f=>{const i=FLOORS.indexOf(f); return `<section class="mfloor" id="m-floor-${i}" data-floor="${i}"><header><span class="big">${f.k}</span><h2>${f.name}</h2></header>${f.rooms.filter(r=>!r.spare).map(r=>`<div class="mroom"><div class="mart" data-art="${r.id}"><span class="rtag"><span class="t">${r.t}</span><span class="s">${r.s}</span></span></div>${r.d?`<p class="rdesc">${r.d}</p>`:''}
     <div class="mitems">${r.items?r.items.map((p,k)=>`<button data-room="${r.id}" data-k="${k}"><span class="k">${KIND(p)}</span><span class="n"><b>${p.name}</b><span>${p.tag} · ${MEDIA_KIND(p)}</span></span>${p.buy?'<span class="c">Buy</span>':p.try?'<span class="c">Try</span>':''}</button>`).join(''):`<button data-room="${r.id}"><span class="k">${ICON.next}</span><span class="n"><b>Enter the ${r.t.toLowerCase()}</b><span>${r.s}</span></span></button>`}</div></div>`).join('')}</section>`;}).join('')+
     `<section id="m-floor-0" data-floor="0"><div class="mbuild" id="mbuild"></div><div class="mintro">${INTRO}</div></section>
     <nav class="rail" aria-label="Lift">${FLOORS.map((f,i)=>`<button class="stop" data-floor="${i}" style="top:${92-i*16.8}%" aria-label="Floor ${f.k}">${f.k}</button>`).join('')}<div class="mcar" id="mcar"><img src="${PX(4)}" alt=""></div></nav>`;
